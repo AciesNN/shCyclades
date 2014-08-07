@@ -5,8 +5,10 @@ using System.Collections;
 public class GameStateManager : Manager<GameStateManager> {
 
 	public UIGamePanelTabs AuctionTabsPanel;
-	public string state;
-
+	public string auctionState;
+	public UIGamePanelTabs CardsTabsPanel;
+	public bool cardState;
+	
 	private void SetAuctionState(string currentGod) {
 		switch (currentGod) {
 			case Cyclades.Game.Constants.godNone: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO); break;
@@ -18,7 +20,12 @@ public class GameStateManager : Manager<GameStateManager> {
 		}			
 	}
 
+	private void SetCardState(bool isConcreteCard) {
+		CardsTabsPanel.SetTab( isConcreteCard ? PanelType.CARD_TAB_INFO : PanelType.CARD_TAB_CARDS );		
+	}
+	
 	void Update () {
-		SetAuctionState(state);
+		SetAuctionState(auctionState);
+		SetCardState(cardState);
 	}
 }

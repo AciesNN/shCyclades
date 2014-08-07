@@ -95,7 +95,10 @@ public enum PanelType {
 
 	AUCTION_PANEL,
 	BUY_CARD_PANEL,
-	BATTLE_PANEL
+	BATTLE_PANEL,
+	
+	CARD_TAB_CARDS,
+	CARD_TAB_INFO
 }
 
 public enum ModelPanelCloseResult {
