@@ -95,6 +95,11 @@ public class UI_DEBUG_MapPanel : UIGamePanel {
 		case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
 		case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
 		}
+
+		if (type == MapEventerType.DEFAULT)
+			this.Hide();
+		else
+			this.Show();
 	}
 
 	#region ViewWidgetsSet
