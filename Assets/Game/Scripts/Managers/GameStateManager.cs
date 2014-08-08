@@ -10,6 +10,9 @@ public class GameStateManager : Manager<GameStateManager> {
 	public string auctionState;
 	public UIGamePanelTabs CardsTabsPanel;
 	public bool cardState;
+	public UIGamePanel BattlePanel;
+	bool oldBattleState;
+	public bool battleState;
 
 	public void SetAuctionState(string currentGod) {
 		switch (currentGod) {
@@ -25,9 +28,22 @@ public class GameStateManager : Manager<GameStateManager> {
 	public void SetCardState(bool isConcreteCard) {
 		CardsTabsPanel.SetTab( isConcreteCard ? PanelType.CARD_TAB_INFO : PanelType.CARD_TAB_CARDS );		
 	}
-	
+
+	public void SetBattleState(bool isBattle) {
+		if (isBattle != oldBattleState) {
+			oldBattleState = isBattle;
+			if (isBattle) {
+				BattlePanel.LateInit();
+				BattlePanel.Show ();
+			} else {
+				BattlePanel.Hide ();
+			}
+		}
+	}
+
 	void Update () {
 		SetAuctionState(auctionState);
 		SetCardState(cardState);
+		SetBattleState(battleState);
 	}
 }

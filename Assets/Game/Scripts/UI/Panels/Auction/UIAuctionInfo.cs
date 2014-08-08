@@ -14,7 +14,7 @@ public class UIAuctionInfo : UIGamePanel {
 		LateInit();
 	}
 
-	override protected void LateInit() {
+	override public void LateInit() {
 		uiAuctionGods = new List<UIAuctionGod>();
 
 		for (int i = 0; i < players_number; ++i) {

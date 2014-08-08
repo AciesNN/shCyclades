@@ -14,7 +14,7 @@ public class UIUsersInfo : UIGamePanel {
 		LateInit();
 	}
 
-	override protected void LateInit() {
+	override public void LateInit() {
 		userInfoWidgets = new List<UIUserInfoWidget>();
 
 		for (int i = 0; i < players_number; ++i) {

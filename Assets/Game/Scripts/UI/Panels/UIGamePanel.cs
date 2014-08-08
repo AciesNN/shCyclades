@@ -42,13 +42,20 @@ public class UIGamePanel : MonoBehaviour {
 	}
 
 	/*поздняя инициализация - когда уже есть исходные данные, не вызывается автоматически*/
-	virtual protected void LateInit() {
+	virtual public void LateInit() {
 	}
 
 	virtual public void Show() {
 		content.SetActive(true);
 		if (IsModal) //???
 			activePanel = this;
+	}
+
+	public void Show(bool show) {
+		if (show)
+			Show();
+		else
+			Hide();
 	}
 
 	virtual public void Hide() {

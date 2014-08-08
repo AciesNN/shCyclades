@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class UIBuyCardPanel : UIGamePanel {
 
-	#region ViewWidgetsSet
+	#region ViewWidgets
 	public UISprite CardSprite;
 	public UILabel CardText;
-	public List<GameObject> PriceElements = new List<GameObject>(4);
+	public List<GameObject> PriceElements;
 	#endregion
 
 	private string card;
