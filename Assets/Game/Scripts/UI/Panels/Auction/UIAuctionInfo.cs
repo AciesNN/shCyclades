@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class UIAuctionInfo : UIGamePanel {
 
+	#region ViewWidgets
 	public UITable Table;
 	public GameObject UIAuctionGodPrefab;
 	public List<UIAuctionGod> uiAuctionGods;
+	#endregion
 
 	private int players_number { get {return 5;} } //debug
 
