@@ -11,6 +11,7 @@ public class UIGodMarsPanel : UIGamePanel {
 	}
 
 	public void OnBuildClick() {
+		Sh.GameState.MapPanel.SetEventer(MapEventerType.BUILD);
 	}
 
 	public void OnEndTurn() {

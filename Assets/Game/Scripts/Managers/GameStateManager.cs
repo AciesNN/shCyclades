@@ -4,11 +4,13 @@ using System.Collections;
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
+	public UI_DEBUG_MapPanel MapPanel;
+
 	public UIGamePanelTabs AuctionTabsPanel;
 	public string auctionState;
 	public UIGamePanelTabs CardsTabsPanel;
 	public bool cardState;
-	
+
 	private void SetAuctionState(string currentGod) {
 		switch (currentGod) {
 			case Cyclades.Game.Constants.godNone: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO); break;

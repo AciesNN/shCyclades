@@ -3,8 +3,8 @@ using System.Collections;
 
 public class UIGodZeusPanel : UIGamePanel {
 	
-	public void OnBuyUnitClick() {
-		Debug.Log("buy unit");
+	public void OnBuildClick() {
+		Sh.GameState.MapPanel.SetEventer(MapEventerType.BUILD);
 	}
 	
 	public void OnManClick() {
