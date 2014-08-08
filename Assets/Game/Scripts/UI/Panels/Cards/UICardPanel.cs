@@ -4,6 +4,11 @@ using System.Collections;
 public class UICardPanel : UIGamePanel {
 
 	public void OnCardClick(int cardSlot) {
+		UIBuyCardPanel panel = UIGamePanel.GetPanel<UIBuyCardPanel>(PanelType.BUY_CARD_PANEL);
+
+		panel.Card = Cyclades.Game.Constants.cardChimera;
+		panel.SetPrice(5-cardSlot);
+
 		UIGamePanel.ShowPanel(PanelType.BUY_CARD_PANEL);
 	}
 

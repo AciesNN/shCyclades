@@ -19,6 +19,10 @@ public class UIGamePanel : MonoBehaviour {
 		return panels[type] as T;
 	}
 
+	public static UIGamePanel GetPanel(PanelType type) {
+		return panels[type];
+	}
+
 	void Awake() {
 		if (panels == null) panels = new Dictionary <PanelType, UIGamePanel> ();
 		if (panelType != PanelType.DEFAULT)

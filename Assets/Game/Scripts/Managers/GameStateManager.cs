@@ -11,7 +11,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	public UIGamePanelTabs CardsTabsPanel;
 	public bool cardState;
 
-	private void SetAuctionState(string currentGod) {
+	public void SetAuctionState(string currentGod) {
 		switch (currentGod) {
 			case Cyclades.Game.Constants.godNone: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO); break;
 			case Cyclades.Game.Constants.godPoseidon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_POSEIDON); break;
@@ -22,7 +22,7 @@ public class GameStateManager : Manager<GameStateManager> {
 		}			
 	}
 
-	private void SetCardState(bool isConcreteCard) {
+	public void SetCardState(bool isConcreteCard) {
 		CardsTabsPanel.SetTab( isConcreteCard ? PanelType.CARD_TAB_INFO : PanelType.CARD_TAB_CARDS );		
 	}
 	

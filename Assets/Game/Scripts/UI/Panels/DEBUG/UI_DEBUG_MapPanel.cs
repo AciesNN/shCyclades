@@ -78,8 +78,11 @@ public class UI_DEBUG_MapPanel : UIGamePanel {
 	}
 	#endregion
 
-	MapEventer mapEventer;
+	#region VewWidgets
 	public UISprite IslandSprite;
+	#endregion
+
+	MapEventer mapEventer;
 
 	void Awake() {
 		SetEventer(MapEventerType.DEFAULT);
@@ -94,6 +97,7 @@ public class UI_DEBUG_MapPanel : UIGamePanel {
 		}
 	}
 
+	#region ViewWidgetsSet
 	public void BuildOnIsland() {
 		Sh.Out.Send("build");
 		SetEventer(MapEventerType.DEFAULT);
@@ -102,6 +106,7 @@ public class UI_DEBUG_MapPanel : UIGamePanel {
 	public void HighlightIsland(bool active) {
 		IslandSprite.color = (active ? Color.green : Color.white );
 	}
+	#endregion
 
 	#region Events
 	public void OnUnitClick() {
