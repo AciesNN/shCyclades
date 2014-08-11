@@ -22,6 +22,8 @@ public class UIMapGridLayer : MonoBehaviour {
 				CreateSprite(new GridPosition(x, y));
 			}
 		}
+
+		MapController.SetCenterToDefaultPoint();
 	}
 
 	void CreateSprite(GridPosition pos) {
