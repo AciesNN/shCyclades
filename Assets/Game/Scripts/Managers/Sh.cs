@@ -14,4 +14,7 @@ public class Sh: MonoBehaviour {
 	static public GameStateManager GameState {
 		get { return GameStateManager.GetInstance(); }
 	}
-}
+	
+	static public MapManager Map {
+		get { return MapManager.GetInstance(); }
+	}}
