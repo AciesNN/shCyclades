@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UIGamePanel : MonoBehaviour {
+public class UIGamePanel : MonoBehaviour, IUpdateble {
 
 	protected Vector3 showPosition;
 	protected static UIGamePanel activePanel;
@@ -95,6 +95,8 @@ public class UIGamePanel : MonoBehaviour {
 }
 
 public enum PanelType {
+	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
+
 	DEFAULT,
 	
 	AUCTION_TAB_INFO,
@@ -110,6 +112,8 @@ public enum PanelType {
 	
 	CARD_TAB_CARDS,
 	CARD_TAB_INFO
+
+	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
 
 public enum ModelPanelCloseResult {

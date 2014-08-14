@@ -9,6 +9,25 @@ public class UIMapController : MonoBehaviour {
 	public int CellXSize, CellYSize;
 	public Transform ZerroPoint;
 
+	Dictionary<GridLayerType, UIMapLayer> layers = new Dictionary<GridLayerType, UIMapLayer>();
+
+	void Start() {
+		LateInit();
+	}
+
+	public virtual void LateInit() {
+		foreach(UIMapLayer layer in layers.Values) {
+			layer.LateInit();
+		}
+		
+		//SetCenterToDefaultPoint();
+	}
+
+	#region Math, Geometry
+	public virtual Vector2 GetSize() {
+		return new Vector2(CellXSize * XSize, CellYSize * YSize);
+	}
+
 	protected virtual Vector2 GetZerroPoint() {
 		return new Vector2(ZerroPoint.localPosition.x, ZerroPoint.localPosition.y);
 	}
@@ -27,7 +46,9 @@ public class UIMapController : MonoBehaviour {
 	}
 
 	protected Vector2 GetCenter() {
-		return new Vector2(CellXSize * XSize / 2.0f, CellYSize * YSize / 2.0f);
+		Vector2 res = GetSize();
+		res.Scale(new Vector2(0.5f, 0.5f));
+		return res;
 	}
 
 	public void SetCenterToDefaultPoint() {
@@ -36,7 +57,25 @@ public class UIMapController : MonoBehaviour {
 
 		//2. set center to initial zerro point
 		ZerroPoint.localPosition -= new Vector3(center.x, center.y, 0);
-
 	}
 
+	public virtual bool IsCellPossible(GridPosition cell) {
+		return cell.x >= 0 && cell.x < XSize 
+			&& cell.y >= 0 && cell.y < YSize;
+	}
+	#endregion
+
+	#region Layers
+	public void RegisterGridLayer(UIMapLayer layer) {
+		layers[layer.type] = layer;
+	}
+
+	public UIMapLayer GetLayer(GridLayerType type) {
+		return layers[type];
+	}
+
+	public void ActivateLayer(GridLayerType type, bool turnOn) {
+		GetLayer(type).gameObject.SetActive(turnOn);
+	}
+	#endregion
 }

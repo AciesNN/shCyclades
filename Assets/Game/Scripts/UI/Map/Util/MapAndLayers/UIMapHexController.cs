@@ -7,6 +7,7 @@ public class UIMapHexController : UIMapController {
 	public HexGridOrientation HexGridType;
 
 	public override GridPosition WorldPositionToCell(Vector3 pos) {
+
 		Vector2 pos2d = new Vector2(pos.x, pos.y);
 		Vector2 nPos = pos2d - GetZerroPoint();
 		GridPosition res = new GridPosition(nPos.x / CellXSize, nPos.y / CellYSize);
@@ -18,6 +19,7 @@ public class UIMapHexController : UIMapController {
 		}
 
 		return res;
+
 	}
 	
 	public override Vector3 CellToWorldPosition(GridPosition cell) {
