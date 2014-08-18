@@ -68,17 +68,22 @@ public class UIMapPanel : UIGamePanel {
 	public UIMapController MapController;
 
 	MapEventer mapEventer;
-	
+	public MapEventerType type;
+
 	void Awake() {
-		SetEventer(MapEventerType.DEFAULT);
+		SetEventer (MapEventerType.DEFAULT);
 	}
 	
 	public void SetEventer(MapEventerType type) {
+
+		if (this.type == type)
+			return;
+
 		switch(type) {
-		case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
-		case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
-		case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
-		case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
+			case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
+			case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
+			case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
+			case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
 		}
 
 
@@ -92,7 +97,7 @@ public class UIMapPanel : UIGamePanel {
 	#region ViewWidgetsSet
 	public void BuildOnIsland() {
 		Sh.Out.Send("build");
-		SetEventer(MapEventerType.DEFAULT);
+		SetEventer (MapEventerType.DEFAULT); 
 	}
 	
 	public void HighlightIsland(bool active) {

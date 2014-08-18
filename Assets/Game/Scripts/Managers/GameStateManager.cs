@@ -14,8 +14,7 @@ public class GameStateManager : Manager<GameStateManager> {
 
 	bool oldBattleState;
 	public bool battleState;
-
-	MapEventerType oldMapEventerType;
+	
 	public MapEventerType mapEventerType;
 	public UIMapPanel MapPanel;
 
@@ -47,10 +46,8 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public void SetMapEventorType(MapEventerType mapEventerType) {
-		if (mapEventerType != oldMapEventerType) {
-			oldMapEventerType = mapEventerType;
-			MapPanel.SetEventer(mapEventerType);
-		}
+		MapPanel.SetEventer(mapEventerType);
+		mapEventerType = MapPanel.type;
 	}
 
 	void Update () {

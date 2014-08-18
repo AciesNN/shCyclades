@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
-public class UIMapDraggerAndPresser : MonoBehaviour
-{
+public class UIMapDraggerAndPresser : MonoBehaviour {
 	public UIDraggableCamera draggableCamera;
 	public UIMapController MapController;
 	public UIMapPanel MapPanel;
 
+	Vector3 InputPosition {
+		get { return draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; } //волшебное число - scale UIRoot NGUI по-умолчанию
+	}
+
 	void OnClick ()	{
 
-		Vector3 pos = draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; //волшебное число - scale UIRoot NGUI по-умолчанию
-		GridPosition cell = MapController.WorldPositionToCell(pos);
+		GridPosition cell = MapController.WorldPositionToCell(InputPosition);
 		if (MapController.IsCellPossible(cell))
 			MapPanel.OnClickCell(cell); 
 
@@ -26,12 +28,13 @@ public class UIMapDraggerAndPresser : MonoBehaviour
 			draggableCamera.Press(isPressed);
 		}
 	}
+	
+	void LateUpdate() {
 
-	void OnHover() {
-		Vector3 pos = draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; //волшебное число - scale UIRoot NGUI по-умолчанию
-		GridPosition cell = MapController.WorldPositionToCell(pos);
+		GridPosition cell = MapController.WorldPositionToCell(InputPosition);
 		if (MapController.IsCellPossible(cell))
 			MapPanel.OnHoverCell(cell);
+
 	}
 }
 
