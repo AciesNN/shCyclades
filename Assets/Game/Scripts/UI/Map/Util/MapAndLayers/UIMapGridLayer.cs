@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class UIMapGridLayer:  UIMapLayer {
 
-	public GameObject ObjectPrefab;
 	protected new UIMapGridLayerElement [,] elements;
 
 	void Awake() {
@@ -39,9 +38,6 @@ public class UIMapGridLayer:  UIMapLayer {
 			Debug.Log ("У объекта сетки отсутствует компонент UIMapLayerElement");
 		elements[pos.x, pos.y] = el;
 		el.position = pos;
-
-		//sprite.width = MapController.CellXSize;
-		//sprite.height = MapController.CellYSize;
 
 		go.transform.localPosition = MapController.CellToWorldPosition(pos);
 		el.SetDepth(depth);

@@ -22,7 +22,7 @@ public class UIMapPanel : UIGamePanel {
 		}
 		
 		virtual public void OnMapCancel() {
-			parentObject.SetEventer(MapEventerType.DEFAULT);
+			parentObject.SetEventerType(MapEventerType.DEFAULT);
 		}
 		
 	}
@@ -45,8 +45,8 @@ public class UIMapPanel : UIGamePanel {
 			parentObject.HighlightIsland(false);
 		}
 
-		virtual public void OnMapCancel() {
-			parentObject.SetEventer(MapEventerType.DEFAULT);
+		override public void OnMapCancel() {
+			parentObject.SetEventerType(MapEventerType.DEFAULT);
 		}
 	}
 	
@@ -72,18 +72,20 @@ public class UIMapPanel : UIGamePanel {
 	public UIMapController MapController;
 
 	MapEventer mapEventer;
-	public MapEventerType type;
+	MapEventerType type;
 
 	void Awake() {
-		SetEventer_ (MapEventerType.DEFAULT);
+		SetEventer (MapEventerType.DEFAULT);
 	}
 
-	public void SetEventer_(MapEventerType type) {
+	private void SetEventer(MapEventerType type) {
+		this.type = type;
+
 		switch(type) {
-		case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
-		case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
-		case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
-		case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
+			case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
+			case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
+			case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
+			case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
 		}
 			
 		if (type == MapEventerType.DEFAULT)
@@ -92,18 +94,22 @@ public class UIMapPanel : UIGamePanel {
 			this.Show();
 	}
 
-	public void SetEventer(MapEventerType type) {
+	public void SetEventerType(MapEventerType type) {
 
 		if (this.type == type)
 			return;
-		SetEventer_(type);
+		SetEventer(type);
+		Sh.GameState.UpdateMapEventorType(type);
+	}
 
+	public MapEventerType GetEventerType() {
+		return type;
 	}
 	
 	#region ViewWidgetsSet
 	public void BuildOnIsland() {
 		Sh.Out.Send("build");
-		SetEventer (MapEventerType.DEFAULT); 
+		//SetEventerType (MapEventerType.DEFAULT); 
 	}
 	
 	public void HighlightIsland(bool active) {

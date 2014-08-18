@@ -46,8 +46,11 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public void SetMapEventorType(MapEventerType mapEventerType) {
-		MapPanel.SetEventer(mapEventerType);
-		mapEventerType = MapPanel.type;
+		MapPanel.SetEventerType(mapEventerType);
+	}
+
+	public void UpdateMapEventorType(MapEventerType mapEventerType) {
+		this.mapEventerType = mapEventerType;
 	}
 
 	void Update () {

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class UIMapLayer: MonoBehaviour, IUpdateble {
 
+	public GameObject ObjectPrefab; 
 	protected UIMapController MapController;
 
-	protected UIMapLayerElement[] elements;
+	protected List<GameObject> elements = new List<GameObject>();
 
 	public GridLayerType type;
 	public int depth {
@@ -25,8 +26,21 @@ public class UIMapLayer: MonoBehaviour, IUpdateble {
 		Register();
 	}
 
+	protected virtual GameObject CreateElement(Vector3 pos) {
+
+		GameObject go = NGUITools.AddChild(gameObject, ObjectPrefab);
+		elements.Add(go);
+		go.transform.localPosition = pos;
+
+		UIWidget[] ws = go.GetComponentsInChildren<UIWidget>();
+		foreach (UIWidget w in ws)
+			w.depth += depth;
+
+		return go;
+	}
+
 	public virtual void LateInit() {
-		elements = new UIMapLayerElement[]{};
+		//elements = new UIMapLayerElement[]{};
 	}
 }
 
@@ -36,7 +50,8 @@ public enum GridLayerType {
 
 	ERROR,
 	GRID,
-	ISLANDS
+	ISLANDS,
+	SKY
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
@@ -49,7 +64,9 @@ static public class MapLayersDepths {
 
 		{GridLayerType.ISLANDS, 200},
 
-		{GridLayerType.GRID, 1000}
+		{GridLayerType.GRID, 1000},
+
+		{GridLayerType.SKY, 2000}
 
 	};
 	
