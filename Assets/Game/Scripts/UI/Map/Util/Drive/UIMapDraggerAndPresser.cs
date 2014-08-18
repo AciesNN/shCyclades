@@ -4,13 +4,14 @@ public class UIMapDraggerAndPresser : MonoBehaviour
 {
 	public UIDraggableCamera draggableCamera;
 	public UIMapController MapController;
+	public UIMapPanel MapPanel;
 
 	void OnClick ()	{
 
 		Vector3 pos = draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; //волшебное число - scale UIRoot NGUI по-умолчанию
 		GridPosition cell = MapController.WorldPositionToCell(pos);
 		if (MapController.IsCellPossible(cell))
-			NGUIDebug.Log("press cell: " + cell); 
+			MapPanel.OnClickCell(cell); 
 
 	}
 
@@ -24,6 +25,13 @@ public class UIMapDraggerAndPresser : MonoBehaviour
 		if (enabled && NGUITools.GetActive(gameObject) && draggableCamera != null)	{
 			draggableCamera.Press(isPressed);
 		}
+	}
+
+	void OnHover() {
+		Vector3 pos = draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; //волшебное число - scale UIRoot NGUI по-умолчанию
+		GridPosition cell = MapController.WorldPositionToCell(pos);
+		if (MapController.IsCellPossible(cell))
+			MapPanel.OnHoverCell(cell);
 	}
 }
 

@@ -27,7 +27,7 @@ public class UIMapGridLayer:  UIMapLayer {
 		}
 	}
 
-	protected virtual void CreateElement<T>(GridPosition pos) where T: UIMapGridLayerElement {
+	protected virtual T CreateElement<T>(GridPosition pos) where T: UIMapGridLayerElement {
 		if (!MapController.IsCellPossible(pos))
 			Debug.Log ("Попытка создания объекта за пределами сетки");
 
@@ -45,6 +45,12 @@ public class UIMapGridLayer:  UIMapLayer {
 
 		go.transform.localPosition = MapController.CellToWorldPosition(pos);
 		el.SetDepth(depth);
+
+		return el;
+	}
+
+	public virtual T GetElement<T> (GridPosition pos) where T: UIMapGridLayerElement {
+		return elements[pos.x, pos.y] as T;
 	}
 }
 

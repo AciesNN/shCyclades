@@ -74,6 +74,10 @@ public class UIMapController : MonoBehaviour {
 		return layers[type];
 	}
 
+	public T GetLayer<T>(GridLayerType type) where T: UIMapLayer {
+		return layers[type] as T;
+	}
+
 	public void ActivateLayer(GridLayerType type, bool turnOn) {
 		GetLayer(type).gameObject.SetActive(turnOn);
 	}

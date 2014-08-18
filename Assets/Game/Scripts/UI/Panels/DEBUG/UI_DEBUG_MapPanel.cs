@@ -136,9 +136,12 @@ public class UI_DEBUG_MapPanel : UIGamePanel {
 	#endregion
 }
 
+/*
+ * TODO - перенести из дебага
 public enum MapEventerType {
 	DEFAULT,
 	BUILD,
 	PLACEUNIT,
 	MOVEUNIT
 }
+*/

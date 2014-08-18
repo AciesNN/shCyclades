@@ -111,8 +111,9 @@ public enum PanelType {
 	BATTLE_PANEL,
 	
 	CARD_TAB_CARDS,
-	CARD_TAB_INFO
+	CARD_TAB_INFO,
 
+	MAP
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
 

@@ -1,18 +1,23 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
-	public UI_DEBUG_MapPanel MapPanel;
-
 	public UIGamePanelTabs AuctionTabsPanel;
+
 	public string auctionState;
 	public UIGamePanelTabs CardsTabsPanel;
+
 	public bool cardState;
 	public UIGamePanel BattlePanel;
+
 	bool oldBattleState;
 	public bool battleState;
+
+	MapEventerType oldMapEventerType;
+	public MapEventerType mapEventerType;
+	public UIMapPanel MapPanel;
 
 	public void SetAuctionState(string currentGod) {
 		switch (currentGod) {
@@ -41,9 +46,17 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
+	public void SetMapEventorType(MapEventerType mapEventerType) {
+		if (mapEventerType != oldMapEventerType) {
+			oldMapEventerType = mapEventerType;
+			MapPanel.SetEventer(mapEventerType);
+		}
+	}
+
 	void Update () {
 		SetAuctionState(auctionState);
 		SetCardState(cardState);
 		SetBattleState(battleState);
+		SetMapEventorType(mapEventerType);
 	}
 }
