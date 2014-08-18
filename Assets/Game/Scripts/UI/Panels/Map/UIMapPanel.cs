@@ -44,6 +44,10 @@ public class UIMapPanel : UIGamePanel {
 		override public void OnHoverOutCell(GridPosition cell) {
 			parentObject.HighlightIsland(false);
 		}
+
+		virtual public void OnMapCancel() {
+			parentObject.SetEventer(MapEventerType.DEFAULT);
+		}
 	}
 	
 	class PlaceUnitMapEventer : MapEventer {
@@ -71,26 +75,28 @@ public class UIMapPanel : UIGamePanel {
 	public MapEventerType type;
 
 	void Awake() {
-		SetEventer (MapEventerType.DEFAULT);
+		SetEventer_ (MapEventerType.DEFAULT);
 	}
-	
-	public void SetEventer(MapEventerType type) {
 
-		if (this.type == type)
-			return;
-
+	public void SetEventer_(MapEventerType type) {
 		switch(type) {
-			case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
-			case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
-			case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
-			case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
+		case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
+		case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
+		case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
+		case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
 		}
-
-
+			
 		if (type == MapEventerType.DEFAULT)
 			this.Hide();
 		else
 			this.Show();
+	}
+
+	public void SetEventer(MapEventerType type) {
+
+		if (this.type == type)
+			return;
+		SetEventer_(type);
 
 	}
 	
