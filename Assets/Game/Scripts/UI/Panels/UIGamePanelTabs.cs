@@ -7,10 +7,10 @@ public class UIGamePanelTabs : MonoBehaviour {
 	Dictionary<PanelType, UIGamePanel> tabs;
 
 	void Awake() {
-		UIGamePanel[] ps = gameObject.GetComponentsInChildren<UIGamePanel>();
+		UIGamePanel[] ps = gameObject.GetComponentsInChildren<UIGamePanel>(true);
 		tabs = new Dictionary<PanelType, UIGamePanel>();
 		foreach(UIGamePanel p in ps) {
-			if (p.transform.parent == transform)
+			if (p.gameObject != gameObject)
 				tabs[p.panelType] = p;
 		}
 	}

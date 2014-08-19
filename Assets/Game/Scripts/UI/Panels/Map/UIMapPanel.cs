@@ -2,79 +2,19 @@
 using System.Collections;
 
 public class UIMapPanel : UIGamePanel {
-	
-	#region Eventers
-	class MapEventer {
 		
-		protected UIMapPanel parentObject;
-		public MapEventer(UIMapPanel parentObject) {
-			this.parentObject = parentObject;
-		}
-		
-		virtual public void OnClickCell(GridPosition cell) {
-		}
-		
-		virtual public void OnHoverCell(GridPosition cell) {
-		}
-		
-		virtual public void OnHoverOutCell(GridPosition cell) {
-			parentObject.HighlightIsland(false);
-		}
-		
-		virtual public void OnMapCancel() {
-			parentObject.SetEventerType(MapEventerType.DEFAULT);
-		}
-		
-	}
-	
-	class BuildMapEventer : MapEventer {
-		
-		public BuildMapEventer(UIMapPanel parentObject): base(parentObject) {
-		}
-		
-		override public void OnClickCell(GridPosition cell) {
-			parentObject.BuildOnIsland();
-		}
-		
-		override public void OnHoverCell(GridPosition cell) {
-			if (cell.x == 4 && cell.y == 4)
-				parentObject.HighlightIsland(true);
-		}
-
-		override public void OnHoverOutCell(GridPosition cell) {
-			parentObject.HighlightIsland(false);
-		}
-
-		override public void OnMapCancel() {
-			parentObject.SetEventerType(MapEventerType.DEFAULT);
-		}
-	}
-	
-	class PlaceUnitMapEventer : MapEventer {
-		
-		public PlaceUnitMapEventer(UIMapPanel parentObject): base(parentObject) {
-		}
-		
-	}
-	
-	class MoveUnitMapEventer : MapEventer {
-		
-		public MoveUnitMapEventer(UIMapPanel parentObject): base(parentObject) {
-		}
-		
-	}
-	#endregion
-	
 	#region VewWidgets
 
 	#endregion
 
 	public UIMapController MapController;
+	public UIGamePanelTabs tabs;
 
 	MapEventer mapEventer;
 	MapEventerType type;
 
 	void Awake() {
+		tabs = gameObject.GetComponent<UIGamePanelTabs>();
 		SetEventer (MapEventerType.DEFAULT);
 	}
 
@@ -83,7 +23,7 @@ public class UIMapPanel : UIGamePanel {
 
 		switch(type) {
 			case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
-			case MapEventerType.BUILD: 	mapEventer = new BuildMapEventer(this); break;
+			case MapEventerType.BUILD: 		mapEventer = new BuildMapEventer(this); break;
 			case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
 			case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
 		}
@@ -100,6 +40,7 @@ public class UIMapPanel : UIGamePanel {
 			return;
 		SetEventer(type);
 		Sh.GameState.UpdateMapEventorType(type);
+
 	}
 
 	public MapEventerType GetEventerType() {

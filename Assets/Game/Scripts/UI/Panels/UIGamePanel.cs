@@ -94,29 +94,6 @@ public class UIGamePanel : MonoBehaviour, IUpdateble {
 	}
 }
 
-public enum PanelType {
-	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
-
-	DEFAULT,
-	
-	AUCTION_TAB_INFO,
-	AUCTION_TAB_GOD_MARS,
-	AUCTION_TAB_GOD_POSEIDON,
-	AUCTION_TAB_GOD_SOTHIA,
-	AUCTION_TAB_GOD_APPOLON,
-	AUCTION_TAB_GOD_ZEUS,
-
-	AUCTION_PANEL,
-	BUY_CARD_PANEL,
-	BATTLE_PANEL,
-	
-	CARD_TAB_CARDS,
-	CARD_TAB_INFO,
-
-	MAP
-	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
-}
-
 public enum ModelPanelCloseResult {
 	OK,
 	CANCEL
