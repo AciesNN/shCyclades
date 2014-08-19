@@ -51,7 +51,8 @@ public enum GridLayerType {
 	ERROR,
 	GRID,
 	ISLANDS,
-	SKY
+	SKY,
+	BUILDINGS
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
@@ -63,6 +64,7 @@ static public class MapLayersDepths {
 		//{GridLayerType.BACKGROUND, 100},
 
 		{GridLayerType.ISLANDS, 200},
+		{GridLayerType.BUILDINGS, 300},
 
 		{GridLayerType.GRID, 1000},
 

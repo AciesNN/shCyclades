@@ -20,7 +20,7 @@ public static class UIConsts {
 		Color.yellow
 	};
 
-	public static readonly Dictionary<string, Color> buildColors = new  Dictionary<string, Color>
+	public static readonly Dictionary<string, Color> buildColors = new Dictionary<string, Color>
 	{
 		{Cyclades.Game.Constants.buildNone, Color.gray},
 		{Cyclades.Game.Constants.buildMarina, Color.blue},
@@ -29,7 +29,7 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.buildTemple, Color.magenta}
 	};
 
-	public static readonly Dictionary<string, Color> godColors = new  Dictionary<string, Color>
+	public static readonly Dictionary<string, Color> godColors = new Dictionary<string, Color>
 	{
 		{Cyclades.Game.Constants.godNone, Color.black},
 		{Cyclades.Game.Constants.godPoseidon, Color.blue},
@@ -39,7 +39,7 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.godAppolon, Color.white}
 	};
 
-	public static readonly Dictionary<string, string> godSprites = new  Dictionary<string, string>
+	public static readonly Dictionary<string, string> godSprites = new Dictionary<string, string>
 	{
 		{Cyclades.Game.Constants.godNone, Cyclades.Game.Constants.godNone},
 		{Cyclades.Game.Constants.godPoseidon, Cyclades.Game.Constants.godPoseidon},
@@ -47,5 +47,14 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.godSophia, Cyclades.Game.Constants.godSophia},
 		{Cyclades.Game.Constants.godZeus, Cyclades.Game.Constants.godZeus},
 		{Cyclades.Game.Constants.godAppolon, Cyclades.Game.Constants.godAppolon}
+	};
+
+	public static readonly Dictionary<string, string> buildSprites = new Dictionary<string, string>
+	{
+		{Cyclades.Game.Constants.buildNone, "GridSquare"},
+		{Cyclades.Game.Constants.buildMarina, "Port"},
+		{Cyclades.Game.Constants.buildFortres, "Fort"},
+		{Cyclades.Game.Constants.buildUniver, "Univer"},
+		{Cyclades.Game.Constants.buildTemple, "Templ"}
 	};
 }
