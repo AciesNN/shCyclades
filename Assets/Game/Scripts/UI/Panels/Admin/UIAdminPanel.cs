@@ -42,5 +42,28 @@ public class UIAdminPanel : UIGamePanel {
 	public void OnChangeActiveUserNull() {
 		OnChangeActiveUser(-1);
 	}
+
+	/*
+	TAB MODES
+	*/
+	public void SetAuctionMode() {
+		Sh.GameState.auctionState = Cyclades.Game.Constants.godNone;
+	}
+
+	public void SetGodMarsMode() {
+		Sh.GameState.auctionState = Cyclades.Game.Constants.godMars;
+	}
+
+	public void SetCardsMode() {
+		Sh.GameState.cardState = false;
+	}
+	
+	public void SetCardMode() {
+		Sh.GameState.cardState = true;
+	}
+
+	public void OpenBattlePanel() {
+		Sh.GameState.battleState = true;
+	}
 	#endregion
 }

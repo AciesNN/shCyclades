@@ -43,37 +43,3 @@ public class UIMapLayer: MonoBehaviour, IUpdateble {
 		//elements = new UIMapLayerElement[]{};
 	}
 }
-
-#region изменяется в конкретном проекте
-public enum GridLayerType {
-	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
-
-	ERROR,
-	GRID,
-	ISLANDS,
-	SKY,
-	BUILDINGS
-
-	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
-}
-
-static public class MapLayersDepths {
-	static Dictionary<GridLayerType, int> depths = new Dictionary<GridLayerType, int>
-	{
-
-		//{GridLayerType.BACKGROUND, 100},
-
-		{GridLayerType.ISLANDS, 200},
-		{GridLayerType.BUILDINGS, 300},
-
-		{GridLayerType.GRID, 1000},
-
-		{GridLayerType.SKY, 2000}
-
-	};
-	
-	static public int GetDepth(GridLayerType type) {
-		return depths[type];
-	}
-}
-#endregion

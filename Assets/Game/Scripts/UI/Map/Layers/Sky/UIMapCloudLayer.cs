@@ -14,7 +14,7 @@ public class UIMapCloudLayer : UIMapLayer {
 			GameObject go = CreateElement(GeneratePoint.transform.localPosition);
 
 			//random
-			go.transform.localPosition += new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), 0);
+			go.transform.localPosition += new Vector3(0, Random.Range(-400, +600), 0);
 			float rsc = Random.Range(-1.33f, 1.33f);
 			go.transform.localScale += new Vector3(rsc, rsc, 0);
 			UIWidget[] ws = go.GetComponentsInChildren<UIWidget>();

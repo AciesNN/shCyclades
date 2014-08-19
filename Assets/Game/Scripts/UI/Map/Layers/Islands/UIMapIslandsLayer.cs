@@ -12,12 +12,13 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 	public override void CreateGridElements() {
 
 		elements = new UIMapIslandElement[MapController.XSize, MapController.YSize];
-		CreateIsland(debugPoints);
+		CreateIsland(debugPoints, 1);
 	}
 
-	void CreateIsland(GridPosition[] points) {
+	void CreateIsland(GridPosition[] points, int owner) {
 		foreach(GridPosition pos in points) {
 			UIMapIslandElement islandElement = CreateElement<UIMapIslandElement>(pos);
+			islandElement.SetOwner(owner);
 			//тут можно что-нибудь сделать с конкретным элементом, типа настроить картинку
 		}
 	}

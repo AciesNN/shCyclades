@@ -5,7 +5,7 @@ public class UIMapBuildInfoLayer : UIMapGridLayer {
 
 	public override void CreateGridElements() {
 		elements = new UIMapBuildInfoLayerElement[MapController.XSize, MapController.YSize];
-		CreateIsland(new GridPosition(4, 4), 3) ;
+		CreateIsland(new GridPosition(4, 4), 3);
 	}
 
 	void CreateIsland(GridPosition cell, int slots_count) {
