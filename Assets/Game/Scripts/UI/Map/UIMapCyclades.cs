@@ -10,6 +10,7 @@ public class UIMapCyclades : UIMapHexController {
 		YSize = CycladGridY * 2 - 1;
 		XSize = CycladGridX + CycladGridY - 1;
 		HexGridType = HexGridOrientation.HORIZONTAL;
+		odd = (CycladGridY % 2 != 0); //Y потому, что она - горизонтал
 	}
 
 	public override GridPosition WorldPositionToCell(Vector3 pos) {
@@ -40,11 +41,11 @@ public class UIMapCyclades : UIMapHexController {
 	GridPosition CycladesCoordToCell(GridPosition cell) {
 		GridPosition res;
 		
-		// учтем перевернутый ыгрик 
-		res = new GridPosition(cell.x, (CycladGridY - 1) - cell.y); //-1 потому что: например, высота 13, координата 0, надо получить 12, т.к. индексация с нуля
+		// учтем перевернутый ыгрык 
+		res = new GridPosition(cell.x, (YSize - 1) - cell.y); //-1 потому что: например, высота 13, координата 0, надо получить 12, т.к. индексация с нуля
 
 		// учтем разную длину разных линий
-		res = new GridPosition(res.x + System.Math.Abs(cell.y - 5)/2, res.y);
+		res = new GridPosition(res.x + System.Math.Abs(cell.y - CycladGridY + 1) / 2, res.y);
 		
 		return res;
 	}
@@ -52,11 +53,11 @@ public class UIMapCyclades : UIMapHexController {
 	GridPosition CellToCycladesCoord(GridPosition cell) {
 		GridPosition res = cell;
 		
-		// учтем перевернутый ыгрик 
-		res = new GridPosition(res.x, (CycladGridY - 1) - res.y);
+		// учтем перевернутый ыгрык 
+		res = new GridPosition(res.x, (YSize - 1) - res.y);
 		
 		// учтем разную длину разных линий
-		res = new GridPosition(res.x - System.Math.Abs(res.y - 5)/2, res.y);
+		res = new GridPosition(res.x - System.Math.Abs(res.y - CycladGridY + 1) / 2, res.y);
 		
 		return res;
 	}

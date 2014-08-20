@@ -29,7 +29,7 @@ public class UIMapController : MonoBehaviour {
 	}
 
 	protected virtual Vector2 GetZerroPoint() {
-		return new Vector2(ZerroPoint.localPosition.x, ZerroPoint.localPosition.y);
+		return /*new Vector2(0,0);//*/new Vector2(ZerroPoint.localPosition.x, ZerroPoint.localPosition.y);
 	}
 
 	public virtual GridPosition WorldPositionToCell(Vector3 pos) {
@@ -41,7 +41,7 @@ public class UIMapController : MonoBehaviour {
 
 	public virtual Vector3 CellToWorldPosition(GridPosition cell) {
 		Vector2 res = new Vector2((cell.x + 0.5f) * CellXSize, (cell.y + 0.5f) * CellYSize);
-		res += GetZerroPoint();
+		//res += GetZerroPoint();
 		return new Vector3(res.x, res.y, 0);
 	}
 
