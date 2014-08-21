@@ -1,50 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class UIMapPanel : UIGamePanel {
-		
-	#region VewWidgets
+public class UIMapStates : MonoBehaviour {
 
-	#endregion
-
-	public UIMapController MapController;
-	public UIGamePanelTabs tabs;
-
-	MapEventer mapEventer;
-	MapEventerType type;
+	public UIGamePanelTabs Panel;
+	
+	UIMapController MapController;
+	Dictionary<MapEventerType, MapEventer> mapEventers = new Dictionary<MapEventerType, MapEventer>();
+	MapEventerType type = MapEventerType.DEFAULT;
+	MapEventer mapEventer {
+		get { return mapEventers[type]; }
+	}
 
 	void Awake() {
-		tabs = gameObject.GetComponent<UIGamePanelTabs>();
-		SetEventer (MapEventerType.DEFAULT);
+		MapController = GetComponent<UIMapController>();
+		RegisterEventers();
 	}
 
-	private void SetEventer(MapEventerType type) {
-		this.type = type;
-
-		switch(type) {
-			case MapEventerType.DEFAULT: 	mapEventer = new MapEventer(this); break;
-			case MapEventerType.BUILD: 		mapEventer = new BuildMapEventer(this); break;
-			case MapEventerType.PLACEUNIT: 	mapEventer = new PlaceUnitMapEventer(this); break;
-			case MapEventerType.MOVEUNIT: 	mapEventer = new MoveUnitMapEventer(this); break;
+	void RegisterEventers() {
+		MapEventer[] es = GetComponents<MapEventer>();
+		foreach(MapEventer e in es) {
+			mapEventers[e.type] = e;
 		}
-			
-		if (type == MapEventerType.DEFAULT)
-			this.Hide();
-		else
-			this.Show();
 	}
 
-	public void SetEventerType(MapEventerType type) {
+	public void SetType(MapEventerType type) {
 
 		if (this.type == type)
 			return;
-		SetEventer(type);
+		this.type = type;
+		mapEventer.Activate();
 		Sh.GameState.UpdateMapEventorType(type);
 
-	}
-
-	public MapEventerType GetEventerType() {
-		return type;
 	}
 	
 	#region ViewWidgetsSet
@@ -83,11 +71,4 @@ public class UIMapPanel : UIGamePanel {
 		mapEventer.OnMapCancel();
 	}
 	#endregion
-}
-
-public enum MapEventerType {
-	DEFAULT,
-	BUILD,
-	PLACEUNIT,
-	MOVEUNIT
 }

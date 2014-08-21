@@ -3,7 +3,7 @@
 public class UIMapDraggerAndPresser : MonoBehaviour {
 	public UIDraggableCamera draggableCamera;
 	public UIMapController MapController;
-	public UIMapPanel MapPanel;
+	public UIMapStates mapStates;
 
 	Vector3 InputPosition {
 		get { return draggableCamera.camera.ScreenToWorldPoint(Input.mousePosition) / 0.003125f; } //волшебное число - scale UIRoot NGUI по-умолчанию
@@ -13,7 +13,7 @@ public class UIMapDraggerAndPresser : MonoBehaviour {
 
 		GridPosition cell = MapController.WorldPositionToCell(InputPosition);
 		if (MapController.IsCellPossible(cell))
-			MapPanel.OnClickCell(cell); 
+			mapStates.OnClickCell(cell); 
 
 	}
 
@@ -33,7 +33,7 @@ public class UIMapDraggerAndPresser : MonoBehaviour {
 
 		GridPosition cell = MapController.WorldPositionToCell(InputPosition);
 		if (MapController.IsCellPossible(cell))
-			MapPanel.OnHoverCell(cell);
+			mapStates.OnHoverCell(cell);
 
 	}
 }

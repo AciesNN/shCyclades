@@ -1,17 +1,17 @@
 ﻿class BuildMapEventer : MapEventer {
 
-	int activeIsland;
-
-	public BuildMapEventer(UIMapPanel parentObject)
-		: base(parentObject) {
-	}
-
 	#region Events
+	override public void Activate() {
+		mapStates.Panel.SetTab(PanelType.MAP_TAB_BUILD_CHOOSE_PLACE);
+	}
+	
 	override public void OnClickCell(GridPosition cell) {
 		int island = GetIsland(cell);
 		if (island > 0 && true) { //TODO если это остров и он наш...
-			activeIsland = island;
-			parentObject.tabs.SetTab(PanelType.MAP_TAB_BUILD);
+
+			UIMapBuildPanel p = UIGamePanel.GetPanel<UIMapBuildPanel>(PanelType.MAP_TAB_BUILD);
+			p.SetActiveIsland(island);
+			mapStates.Panel.SetTab(PanelType.MAP_TAB_BUILD);
 		}
 
 		//parentObject.BuildOnIsland();
@@ -19,15 +19,15 @@
 
 	override public void OnHoverCell(GridPosition cell) {
 		if (cell.x == 4 && cell.y == 4)
-			parentObject.HighlightIsland(true);
+			mapStates.HighlightIsland(true);
 	}
 
 	override public void OnHoverOutCell(GridPosition cell) {
-		parentObject.HighlightIsland(false);
+		mapStates.HighlightIsland(false);
 	}
 
 	override public void OnMapCancel() {
-		parentObject.SetEventerType(MapEventerType.DEFAULT);
+		mapStates.SetType(MapEventerType.DEFAULT);
 	}
 	#endregion
 

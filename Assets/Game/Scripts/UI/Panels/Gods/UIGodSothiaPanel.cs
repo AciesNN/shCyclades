@@ -7,7 +7,7 @@ public class UIGodSothiaPanel : UIGamePanel {
 	}
 
 	public void OnBuildClick() {
-		Sh.GameState.MapPanel.SetEventerType(MapEventerType.BUILD);
+		Sh.GameState.mapStates.SetType(MapEventerType.BUILD);
 	}
 
 	public void OnEndTurn() {

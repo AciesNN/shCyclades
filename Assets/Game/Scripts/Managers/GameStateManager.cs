@@ -16,7 +16,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	public bool battleState;
 	
 	public MapEventerType mapEventerType;
-	public UIMapPanel MapPanel;
+	public UIMapStates mapStates;
 
 	public void SetAuctionState(string currentGod) {
 		switch (currentGod) {
@@ -46,7 +46,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public void SetMapEventorType(MapEventerType mapEventerType) {
-		MapPanel.SetEventerType(mapEventerType);
+		mapStates.SetType(mapEventerType);
 	}
 
 	public void UpdateMapEventorType(MapEventerType mapEventerType) {

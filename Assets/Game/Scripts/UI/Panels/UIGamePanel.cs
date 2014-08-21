@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class UIGamePanel : MonoBehaviour, IUpdateble {
 
+	public UIGamePanelTabs TabPanel;
+
 	protected Vector3 showPosition;
 	protected static UIGamePanel activePanel;
 	protected static UIGamePanel parentPanel;

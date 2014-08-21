@@ -17,7 +17,7 @@
 	CARD_TAB_CARDS,
 	CARD_TAB_INFO,
 
-	MAP,
+	MAP_TAB_BUILD_CHOOSE_PLACE,
 	MAP_TAB_BUILD
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
