@@ -22,6 +22,7 @@
 	}
 	
 	override protected void OnClickSeaCell(GridPosition cell) {
+		panel.SetInfoPosition(cell);
 		if (lastSeaCell.x == -1 && lastSeaCell.y == -1) {
 			lastSeaCell = cell;
 			panel.SetDescription(lastSeaCell);

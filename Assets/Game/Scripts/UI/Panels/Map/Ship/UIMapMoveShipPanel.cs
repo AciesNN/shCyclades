@@ -4,6 +4,9 @@ using System.Collections;
 public class UIMapMoveShipPanel: UIGamePanel {
 
 	#region ViewWidgets	
+	public UIMapController mapController; //TODO возможно стоит вынести в одиночку
+	public GameObject MapLayerObjects;
+
 	public GameObject unitsRoot;
 	public UISprite[] units;
 	public bool[] isActiveUnit;
@@ -70,7 +73,21 @@ public class UIMapMoveShipPanel: UIGamePanel {
 			}
 		}
 	}
+
+	public void SetInfoPosition(GridPosition cell) {
+		MapLayerObjects.transform.localPosition = mapController.CellToWorldPosition(cell);
+	}
 	#endregion
+
+	public override void Show (){
+		MapLayerObjects.SetActive(true);
+		base.Show();
+	}  
+	
+	public override void Hide() {
+		MapLayerObjects.SetActive(false);
+		base.Hide ();
+	}
 
 	#region Events
 	public void OnCancelButtonClick() {

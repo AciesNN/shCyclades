@@ -4,6 +4,7 @@ using System.Collections;
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
+	public UIMapController mapController;
 	public UIGamePanelTabs AuctionTabsPanel;
 
 	public string auctionState;
