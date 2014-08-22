@@ -5,6 +5,7 @@ public class OutManager : Manager<OutManager> {
 
 	public void Send(string msg) {
 		Debug.Log("send msg: " + msg);
+		NGUIDebug.Log(msg);
 	}
 		
 }

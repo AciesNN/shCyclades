@@ -9,6 +9,7 @@
 
 		panel = UIGamePanel.GetPanel<UIMapMoveUnitPanel>(PanelType.MAP_TAB_MOVE_UNIT);
 		panel.SetDescription(fromIsland);
+		panel.SetUnitsVisible(false);
 
 		mapStates.Panel.SetTab(PanelType.MAP_TAB_MOVE_UNIT);
 	}
@@ -23,8 +24,11 @@
 		if (fromIsland == -1) {
 			fromIsland = island;
 			panel.SetDescription(fromIsland);
+			panel.SetUnitsVisible(true);
+			panel.SetUnitMaxCount(5);
+			panel.SetUnitCount(1);
 		} else {
-			Sh.Out.Send("move unit from island " + fromIsland + " to " + island);
+			Sh.Out.Send("move unit from island " + fromIsland + " to " + island + " " + panel.activeUnitCount + " units");
 			Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
 		}
 	}
