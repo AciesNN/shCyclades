@@ -11,7 +11,7 @@ public class UIGodPoseidonPanel : UIGamePanel {
 	}
 
 	public void OnBuildClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.BUILD);
+		Sh.GameState.mapStates.SetType(MapEventerType.PLACEBUILD);
 	}
 	
 	public void OnEndTurn() {

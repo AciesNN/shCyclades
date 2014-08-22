@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIMapBuildPanel: UIGamePanel {
+public class UIMapSlotBuildPanel: UIGamePanel {
 
 	#region ViewWidgets
 	public UISprite[] slots = new UISprite[4];
@@ -65,7 +65,7 @@ public class UIMapBuildPanel: UIGamePanel {
 	}
 
 	public void OnCancelButtonClick() {
-		TabPanel.SetTab(PanelType.MAP_TAB_BUILD_CHOOSE_PLACE);
+		TabPanel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
 	}
 	#endregion
 }

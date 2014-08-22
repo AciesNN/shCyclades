@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIMapChooseBuildPlacePanel : UIGamePanel {
+public class UIMapPlaceBuildPanel : UIGamePanel {
 
 	public void OnCancelButtonClick() {
 		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);

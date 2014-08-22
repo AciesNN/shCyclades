@@ -3,7 +3,7 @@
 class MapEventer : MonoBehaviour {
 
 	protected UIMapStates mapStates;
-	public MapEventerType type;
+	public MapEventerType type; //значение присваивается в едиторе
 
 	void Awake() {
 		mapStates = GetComponent<UIMapStates>();
@@ -32,7 +32,7 @@ class MapEventer : MonoBehaviour {
 
 public enum MapEventerType {
 	DEFAULT,
-	BUILD,
+	PLACEBUILD,
 	PLACEUNIT,
 	MOVEUNIT
 }

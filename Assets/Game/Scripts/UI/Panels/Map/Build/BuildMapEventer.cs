@@ -2,7 +2,7 @@
 
 	#region Events
 	override public void Activate() {
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_BUILD_CHOOSE_PLACE);
+		mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
 	}
 	#endregion
 
@@ -12,9 +12,9 @@
 	}
 	
 	override protected void OnClickIsland(int island) {
-		UIMapBuildPanel p = UIGamePanel.GetPanel<UIMapBuildPanel>(PanelType.MAP_TAB_BUILD);
+		UIMapSlotBuildPanel p = UIGamePanel.GetPanel<UIMapSlotBuildPanel>(PanelType.MAP_TAB_SLOT_BUILD);
 		p.SetActiveIsland(island);
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_BUILD);
+		mapStates.Panel.SetTab(PanelType.MAP_TAB_SLOT_BUILD);
 	}
 	#endregion
 

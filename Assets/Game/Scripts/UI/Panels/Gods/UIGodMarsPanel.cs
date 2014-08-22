@@ -4,14 +4,14 @@ using System.Collections;
 public class UIGodMarsPanel : UIGamePanel {
 
 	public void OnBuyUnitClick() {
-		Debug.Log("buy unit");
+		Sh.GameState.mapStates.SetType(MapEventerType.PLACEUNIT);
 	}
 
 	public void OnMoveUnitClick() {
 	}
 
 	public void OnBuildClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.BUILD);
+		Sh.GameState.mapStates.SetType(MapEventerType.PLACEBUILD);
 	}
 
 	public void OnEndTurn() {
