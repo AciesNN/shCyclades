@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-abstract class IslandClickMapEventor : MapEventer {
+abstract class IslandClickMapEventer : MapEventer {
 	#region Abstract
 	abstract protected bool IsPossibleIsland(int island);
 

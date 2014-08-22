@@ -4,7 +4,7 @@ using System.Collections;
 public class UIGodPoseidonPanel : UIGamePanel {
 
 	public void OnBuyUnitClick() {
-		Debug.Log("buy unit");
+		Sh.GameState.mapStates.SetType(MapEventerType.PLACESHIP);
 	}
 
 	public void OnMoveUnitClick() {

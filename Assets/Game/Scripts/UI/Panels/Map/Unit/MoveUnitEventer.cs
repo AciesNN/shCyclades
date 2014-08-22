@@ -1,4 +1,4 @@
-﻿class MoveUnitEventor : IslandClickMapEventor {
+﻿class MoveUnitEventer: IslandClickMapEventer {
 	
 	int fromIsland;
 	UIMapMoveUnitPanel panel;

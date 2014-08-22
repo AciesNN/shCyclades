@@ -1,4 +1,4 @@
-﻿class BuildMapEventer : IslandClickMapEventor {
+﻿class BuildMapEventer: IslandClickMapEventer {
 
 	#region Events
 	override public void Activate() {
