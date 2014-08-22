@@ -32,8 +32,8 @@ abstract class SeaClickMapEventer : MapEventer {
 	}
 	#endregion
 	
-	void HighlightSeaCell(GridPosition cell, bool active) {
-		UIMapGridLayer l = mapStates.MapController.GetLayer<UIMapGridLayer>(GridLayerType.GRID);
-		//l.HighlightSeaCell(l.debugPoints, active);
+	protected void HighlightSeaCell(GridPosition cell, bool active) {
+		UIMapGridCellsLayer l = mapStates.MapController.GetLayer<UIMapGridCellsLayer>(GridLayerType.GRID);
+		l.HiglightCell(cell, active);
 	}
 }

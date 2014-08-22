@@ -35,5 +35,6 @@ public enum MapEventerType {
 	PLACEBUILD,
 	PLACEUNIT,
 	MOVEUNIT,
-	PLACESHIP
+	PLACESHIP,
+	MOVESHIP
 }

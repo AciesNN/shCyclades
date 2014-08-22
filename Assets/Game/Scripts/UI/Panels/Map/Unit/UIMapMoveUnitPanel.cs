@@ -9,7 +9,7 @@ public class UIMapMoveUnitPanel: UIGamePanel {
 	public UILabel DesriptionLabel;
 	#endregion
 
-	public int activeUnitCount;
+	[HideInInspector]public int activeUnitCount;
 
 	#region ViewWidgetsSet
 	public void SetDescription(int island) {

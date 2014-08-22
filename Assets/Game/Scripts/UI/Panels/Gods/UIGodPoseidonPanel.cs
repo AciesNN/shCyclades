@@ -8,6 +8,7 @@ public class UIGodPoseidonPanel : UIGamePanel {
 	}
 
 	public void OnMoveUnitClick() {
+		Sh.GameState.mapStates.SetType(MapEventerType.MOVESHIP);
 	}
 
 	public void OnBuildClick() {

@@ -14,6 +14,7 @@
 	override protected void OnClickSeaCell(GridPosition cell) {
 		Sh.Out.Send("place ship on cell " + cell);
 		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		HighlightSeaCell(cell, false);
 	}
 	#endregion
 
