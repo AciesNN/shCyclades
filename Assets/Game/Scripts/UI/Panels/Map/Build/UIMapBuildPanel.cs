@@ -26,7 +26,7 @@ public class UIMapBuildPanel: UIGamePanel {
 
 	public void SetSlotsCount(int count) {
 		for (int i = 0; i < slots.Length; ++i) {
-			slots[i].enabled = (i < count);
+			slots[i].gameObject.SetActive(i < count);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class UIMapBuildPanel: UIGamePanel {
 		metro.enabled = isMetro;
 		if (isMetro) {
 			for (int i = 0; i <= 2; ++i) {
-				slots[i].enabled = false;
+				slots[i].gameObject.SetActive(false);
 			}
 		}
 

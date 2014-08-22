@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class UIMapStates : MonoBehaviour {
 
 	public UIGamePanelTabs Panel;
-	
-	UIMapController MapController;
+	public UIMapController MapController;
+
 	Dictionary<MapEventerType, MapEventer> mapEventers = new Dictionary<MapEventerType, MapEventer>();
 	MapEventerType type = MapEventerType.DEFAULT;
 	MapEventer mapEventer {
@@ -14,7 +14,10 @@ public class UIMapStates : MonoBehaviour {
 	}
 
 	void Awake() {
-		MapController = GetComponent<UIMapController>();
+		if (!MapController)
+			MapController = GetComponent<UIMapController>();
+		if (!MapController)
+			Debug.LogError("Не указан компонент UIMapController");
 		RegisterEventers();
 	}
 
@@ -29,6 +32,8 @@ public class UIMapStates : MonoBehaviour {
 
 		if (this.type == type)
 			return;
+		if(mapEventer)
+			mapEventer.Deactivate();
 		this.type = type;
 		mapEventer.Activate();
 		Sh.GameState.UpdateMapEventorType(type);
@@ -36,15 +41,7 @@ public class UIMapStates : MonoBehaviour {
 	}
 	
 	#region ViewWidgetsSet
-	public void BuildOnIsland() {
-		Sh.Out.Send("build");
-		//SetEventerType (MapEventerType.DEFAULT); 
-	}
-	
-	public void HighlightIsland(bool active) {
-		UIMapIslandsLayer l = MapController.GetLayer<UIMapIslandsLayer>(GridLayerType.ISLANDS);
-		l.HiglightIsland(l.debugPoints, active);
-	}
+
 	#endregion
 	
 	#region Events

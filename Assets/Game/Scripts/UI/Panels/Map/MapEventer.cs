@@ -13,6 +13,9 @@ class MapEventer : MonoBehaviour {
 	virtual public void Activate() {
 	}
 
+	virtual public void Deactivate() {
+	}
+
 	virtual public void OnClickCell(GridPosition cell) {
 	}
 
