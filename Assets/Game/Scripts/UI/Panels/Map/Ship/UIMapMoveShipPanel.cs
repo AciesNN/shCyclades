@@ -8,6 +8,9 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	public UISprite[] units;
 	public bool[] isActiveUnit;
 	public UILabel DesriptionLabel;
+
+	public UISprite cancelButton;
+	public UILabel okButton;
 	#endregion
 
 	[HideInInspector]public int activeUnitCount;
@@ -51,14 +54,31 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	public void SetUnitsVisible(bool visible) {
 		unitsRoot.SetActive(visible);
 	}
+
+	private int countOfMovement;
+	public int CountOfMovement {
+		get { return countOfMovement; }
+		set {
+			countOfMovement = value;
+			if (countOfMovement == 3) {
+				cancelButton.enabled = true;
+				okButton.enabled = false;
+			} else {
+				cancelButton.enabled = false;
+				okButton.enabled = true;
+				okButton.text = "" + countOfMovement;
+			}
+		}
+	}
 	#endregion
 
 	#region Events
 	public void OnCancelButtonClick() {
+		if (countOfMovement < 3)
+			Sh.Out.Send ("ships movements end");
 		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
 	}
-
-
+	
 	//TODO бред с отдельными ф-циями надо прекращать
 	public void OnUnitCount1Click() {
 		SetUnitActive(1);

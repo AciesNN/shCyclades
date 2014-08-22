@@ -28,10 +28,15 @@
 			panel.SetUnitsVisible(true);
 			panel.SetUnitMaxCount(3);
 			panel.SetUnitActiveCount(1);
+			panel.CountOfMovement = 3;
 		} else {
 			Sh.Out.Send("move unit from island (" + lastSeaCell + ") -> (" + cell + ")            " + panel.activeUnitCount + " units");
-			Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
 			lastSeaCell = cell;
+			--panel.CountOfMovement;
+			if (panel.CountOfMovement == 0) {
+				Sh.Out.Send ("ships movements end");
+				Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+			}
 		}
 	}
 	#endregion
