@@ -19,7 +19,8 @@
 
 	MAP_TAB_PLACE_BUILD,
 	MAP_TAB_SLOT_BUILD,
-	MAP_TAB_PLACE_UNIT
+	MAP_TAB_PLACE_UNIT,
+	MAP_TAB_MOVE_UNIT
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }

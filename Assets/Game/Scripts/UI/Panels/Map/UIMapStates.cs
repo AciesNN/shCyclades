@@ -48,7 +48,7 @@ public class UIMapStates : MonoBehaviour {
 	GridPosition oldCell = new GridPosition(-1, -1); //TODO некрасиво
 
 	public void OnClickCell(GridPosition cell) {
-		NGUIDebug.Log("press cell: " + cell);
+		//NGUIDebug.Log("press cell: " + cell);
 		mapEventer.OnClickCell(cell);
 	}
 	

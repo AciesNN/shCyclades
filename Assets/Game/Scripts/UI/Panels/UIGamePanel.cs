@@ -18,11 +18,17 @@ public class UIGamePanel : MonoBehaviour, IUpdateble {
 	static Dictionary <PanelType, UIGamePanel> panels;
 
 	public static T GetPanel<T>(PanelType type) where T: UIGamePanel {
-		return panels[type] as T;
+		T p = panels[type] as T;
+		if (!p)
+			Debug.LogError("Менеджер панелей не смог найти панель с типом: " + type);
+		return p;
 	}
 
 	public static UIGamePanel GetPanel(PanelType type) {
-		return panels[type];
+		UIGamePanel p = panels[type];
+		if (!p)
+			Debug.LogError("Менеджер панелей не смог найти панель с типом: " + type);
+		return p;
 	}
 
 	void Awake() {

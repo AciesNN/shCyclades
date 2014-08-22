@@ -8,6 +8,7 @@ public class UIGodMarsPanel : UIGamePanel {
 	}
 
 	public void OnMoveUnitClick() {
+		Sh.GameState.mapStates.SetType(MapEventerType.MOVEUNIT);
 	}
 
 	public void OnBuildClick() {
