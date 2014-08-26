@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UIMapLayer: MonoBehaviour, IUpdateble {
+public class UIMapLayer: MonoBehaviour {
 
 	public GameObject ObjectPrefab; 
 	protected UIMapController MapController;
@@ -39,7 +39,7 @@ public class UIMapLayer: MonoBehaviour, IUpdateble {
 		return go;
 	}
 
-	public virtual void LateInit() {
+	public virtual void GameContext_LateInit() {
 		//elements = new UIMapLayerElement[]{};
 	}
 }

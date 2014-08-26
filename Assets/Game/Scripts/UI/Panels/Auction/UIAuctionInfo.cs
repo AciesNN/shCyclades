@@ -13,10 +13,9 @@ public class UIAuctionInfo : UIGamePanel {
 	private int players_number { get {return 5;} } //debug
 
 	override protected void Init () {
-		LateInit();
 	}
 
-	override public void LateInit() {
+	override public void GameContext_LateInit() {
 		uiAuctionGods = new List<UIAuctionGod>();
 
 		for (int i = 0; i < players_number; ++i) {
@@ -28,7 +27,6 @@ public class UIAuctionInfo : UIGamePanel {
 
 	#region UpdateData
 	void Update() {
-		UpdateData();
 	}
 
 	public void UpdateData() {

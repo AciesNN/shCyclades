@@ -14,6 +14,8 @@ namespace Shmipl.Base
 
 		long GetLong(string path, params object[] param);
 
+		int GetInt(string path, params object[] param);
+
 		List<object> GetList(string path, params object[] param);
 
 		List<T> GetList<T>(string path, params object[] param);
@@ -37,7 +39,7 @@ namespace Shmipl.Base
 			this.data = new Hashtable();
 		}
 
-        public string ToString() {
+        public override string ToString() {
             return json.dumps(data);
         }
 
@@ -48,6 +50,12 @@ namespace Shmipl.Base
             lock (this) {
                 this.data = json.load(path);
             }
+		}
+
+		public void LoadDataFromText(string text) {
+			lock (this) {
+				this.data = json.loads(text);
+			}
 		}
 
 		//2. get/set
@@ -86,6 +94,11 @@ namespace Shmipl.Base
 			return Get<long>(path, param);
 		}
 
+		public int GetInt(string path, params object[] param) 
+		{
+			return (int)Get<long>(path, param);
+		}
+		
 		public List<object> GetList(string path, params object[] param)
 		{
 			return Get<List<object>>(path, param);

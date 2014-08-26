@@ -10,7 +10,7 @@ public class UIMapGridLayer:  UIMapLayer {
 		Register();
 	}
 
-	public override void LateInit() {
+	public override void GameContext_LateInit() {
 		CreateGridElements();
 	}
 

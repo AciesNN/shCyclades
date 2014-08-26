@@ -38,7 +38,7 @@ public class GameStateManager : Manager<GameStateManager> {
 		if (isBattle != oldBattleState) {
 			oldBattleState = isBattle;
 			if (isBattle) {
-				BattlePanel.LateInit();
+				//BattlePanel.Init();
 				BattlePanel.Show ();
 			} else {
 				BattlePanel.Hide ();

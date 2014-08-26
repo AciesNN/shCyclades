@@ -7,6 +7,7 @@ public class UIAdminPanel : UIGamePanel {
 
 	#region ViewWidgets
 	public GameObject MainContext;
+	public UILabel loadFileName;
 	#endregion
 
 	#region Events
@@ -63,6 +64,12 @@ public class UIAdminPanel : UIGamePanel {
 
 	public void OpenBattlePanel() {
 		Sh.GameState.battleState = !Sh.GameState.battleState;
+	}
+
+	public void OnDataLoad() {
+		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
+		string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
+		Sh.In._LoadContextFromText(text);
 	}
 	#endregion
 }

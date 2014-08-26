@@ -12,16 +12,15 @@ public class UIMapController : MonoBehaviour {
 	Dictionary<GridLayerType, UIMapLayer> layers = new Dictionary<GridLayerType, UIMapLayer>();
 
 	void Start() {
-		LateInit();
 	}
 
-	public virtual void LateInit() {
+	/*public virtual void LateInit() {
 		foreach(UIMapLayer layer in layers.Values) {
 			layer.LateInit();
 		}
 		
 		//SetCenterToDefaultPoint();
-	}
+	}*/
 
 	#region Math, Geometry
 	public virtual Vector2 GetSize() {

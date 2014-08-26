@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UIGamePanel : MonoBehaviour, IUpdateble {
+public class UIGamePanel : MonoBehaviour {
 
 	[HideInInspector]public UIGamePanelTabs TabPanel;
 
@@ -50,7 +50,7 @@ public class UIGamePanel : MonoBehaviour, IUpdateble {
 	}
 
 	/*поздняя инициализация - когда уже есть исходные данные, не вызывается автоматически*/
-	virtual public void LateInit() {
+	virtual public void GameContext_LateInit() {
 	}
 
 	virtual public void Show() {

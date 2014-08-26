@@ -2,19 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Cyclades.Game;
+
 public class UIUsersInfo : UIGamePanel {
 
 	public UIGrid Grid;
 	public GameObject UserInfoWidgetPrefab;
 	public List<UIUserInfoWidget> userInfoWidgets;
 
-	private int players_number { get {return 5;} } //debug
+	private long players_number { get {return Sh.In.GameContext.GetLong("/players_number");} }
 
-	override protected void Init () {
-		LateInit();
-	}
-
-	override public void LateInit() {
+	override public void GameContext_LateInit() {
 		userInfoWidgets = new List<UIUserInfoWidget>();
 
 		for (int i = 0; i < players_number; ++i) {
@@ -22,29 +20,76 @@ public class UIUsersInfo : UIGamePanel {
 		}
 
 		Grid.Reposition();
-
-		SetCurrentUserNumber(1);
 	}
 
 	#region UpdateData
-	void Update() {
-		UpdateData();
-	}
+	public void GameContext_UpdateData() {
 
-	public void UpdateData() {
+		List<long> player_order = GetPlayerInformationOrder();
+		List<string> player_gods_order = GetPlayerGodsInformationOrder(players_number);
 
 		for (int i = 0; i < players_number; ++i) {
 
 			UIUserInfoWidget w = userInfoWidgets[i];
+			long player = player_order[i];
 
-			w.SetUser(i);
-			w.SetGod("");
-			w.SetUserIncome(i);
-			w.SetPhilosothsNumber(i);
-			w.SetIsMetro(i == 2);
+			w.SetUser((int)player);
+			w.SetGod(player_gods_order[i]);
+			w.SetUserIncome(Sh.In.GameContext.GetInt("/markers/income/[{0}]", player));
+			w.SetPhilosothsNumber(Sh.In.GameContext.GetInt("/markers/philosopher/[{0}]", player));
+			w.SetIsMetro(i == 2); //TODO
 		}
 
-		SetCurrentUserNumber(1);
+		SetCurrentUserNumber((int)Library.GetCurrentPlayer(Sh.In.GameContext));
+	}
+
+	List<long> GetPlayerInformationOrder() {
+		Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
+
+		if (phase == Phase.AuctionPhase) {
+			return Sh.In.GameContext.GetList<long>("/auction/start_order");
+		} else if (phase == Phase.TurnPhase) {
+			List<long> res = new List<long>();
+			res.Add(Sh.In.GameContext.Get<long>("/turn/current_player"));
+			res.AddRange(Sh.In.GameContext.GetList<long>("/turn/player_order"));
+			res.AddRange(Sh.In.GameContext.GetList<long>("/auction/player_order"));
+			return res;
+		} else {
+			return null;
+		}
+	}
+
+	List<string> GetPlayerGodsInformationOrder(long players_number) {
+		Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
+
+		if (phase == Phase.AuctionPhase) {
+			List<string> res = new List<string>();
+			for (int i = 0; i < players_number; ++i) {
+				res.Add(Constants.godNone);
+			}
+			return res;
+		} else if (phase == Phase.TurnPhase) {
+			if (Sh.In.GameContext.Get<long>("/turn/current_player") == -1)
+				return null;
+			List<string> res = new List<string>();
+			res.Add(GetGodForPlayer(Sh.In.GameContext.Get<long>("/turn/current_player")));
+			List<long> players_order = Sh.In.GameContext.GetList<long>("/turn/player_order");
+			foreach (long pl in players_order)
+				res.Add(GetGodForPlayer(pl));
+			for (int i = res.Count; i < players_number; ++i) {//остаток набиваем результат черным цветом - знаком того, что это аукционный игрок
+				res.Add(Constants.godNone);
+			}
+			return res;
+		} else {
+			return null;
+		}
+	}
+
+	string GetGodForPlayer(long player) {
+		return Cyclades.Game.Library.Auction_GetGodByNumber(
+			Sh.In.GameContext,
+			Cyclades.Game.Library.Auction_GetCurrentGodBetForPlayer(Sh.In.GameContext, player)
+		);
 	}
 	#endregion
 
