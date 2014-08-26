@@ -29,8 +29,8 @@ public class InManager : Manager<InManager> {
 
 		if (newContext)
 			rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
-		else
-			rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+
+		rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
 	}
 
 	public void UpdateData() {

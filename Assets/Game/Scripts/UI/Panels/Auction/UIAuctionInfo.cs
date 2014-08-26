@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Cyclades.Game;
+
 public class UIAuctionInfo : UIGamePanel {
 
 	#region ViewWidgets
@@ -10,7 +12,7 @@ public class UIAuctionInfo : UIGamePanel {
 	public List<UIAuctionGod> uiAuctionGods;
 	#endregion
 
-	private int players_number { get {return 5;} } //debug
+	private long players_number { get { return Sh.In.GameContext.GetLong("/players_number"); } }
 
 	override protected void Init () {
 	}
@@ -26,17 +28,18 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 
 	#region UpdateData
-	void Update() {
-	}
-
-	public void UpdateData() {
+	public void GameContext_UpdateData() {
 		for (int i = 0; i < players_number; ++i) {
 			
 			UIAuctionGod w = uiAuctionGods[i];
 			
-			w.SetUser(i);
-			w.SetGod("");
-			w.SetBet(i);
+			w.SetUser(Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, i));
+			w.SetGod(Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", i));
+			int player = Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, i);
+			if (player == -1)
+				w.SetBet(0);
+			else
+				w.SetBet((int)Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player));
 		}
 	}
 	#endregion

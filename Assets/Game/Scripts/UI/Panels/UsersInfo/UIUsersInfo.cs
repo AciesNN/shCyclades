@@ -6,9 +6,11 @@ using Cyclades.Game;
 
 public class UIUsersInfo : UIGamePanel {
 
+	#region ViewWidgets
 	public UIGrid Grid;
 	public GameObject UserInfoWidgetPrefab;
 	public List<UIUserInfoWidget> userInfoWidgets;
+	#endregion
 
 	private long players_number { get {return Sh.In.GameContext.GetLong("/players_number");} }
 
