@@ -11,6 +11,10 @@ public class Sh: MonoBehaviour {
 		get { return OutManager.GetInstance(); }
 	}
 	
+	static public InManager In {
+		get { return InManager.GetInstance(); }
+	}
+	
 	static public GameStateManager GameState {
 		get { return GameStateManager.GetInstance(); }
 	}
