@@ -41,12 +41,12 @@ public static class UIConsts {
 
 	public static readonly Dictionary<string, string> godSprites = new Dictionary<string, string>
 	{
-		{Cyclades.Game.Constants.godNone, Cyclades.Game.Constants.godNone},
-		{Cyclades.Game.Constants.godPoseidon, Cyclades.Game.Constants.godPoseidon},
+		{Cyclades.Game.Constants.godNone, ""},
+		{Cyclades.Game.Constants.godPoseidon, "Poseudon"},
 		{Cyclades.Game.Constants.godMars, "Mars"},
-		{Cyclades.Game.Constants.godSophia, Cyclades.Game.Constants.godSophia},
-		{Cyclades.Game.Constants.godZeus, Cyclades.Game.Constants.godZeus},
-		{Cyclades.Game.Constants.godAppolon, Cyclades.Game.Constants.godAppolon}
+		{Cyclades.Game.Constants.godSophia, "Sothia"},
+		{Cyclades.Game.Constants.godZeus, "Zeus"},
+		{Cyclades.Game.Constants.godAppolon, "coin_icon"}
 	};
 
 	public static readonly Dictionary<string, string> buildSprites = new Dictionary<string, string>
