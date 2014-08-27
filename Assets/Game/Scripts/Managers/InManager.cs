@@ -31,6 +31,7 @@ public class InManager : Manager<InManager> {
 			rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
 
 		rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+		Sh.GameState.GameContext_UpdateData();
 	}
 
 	public void UpdateData() {

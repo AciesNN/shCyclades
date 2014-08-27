@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game;
+
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
 	public UIMapController mapController;
 	public UIGamePanelTabs AuctionTabsPanel;
 
-	public string auctionState;
 	public UIGamePanelTabs CardsTabsPanel;
 
 	public bool cardState;
@@ -19,15 +20,22 @@ public class GameStateManager : Manager<GameStateManager> {
 	public MapEventerType mapEventerType;
 	public UIMapStates mapStates;
 
-	public void SetAuctionState(string currentGod) {
-		switch (currentGod) {
-			case Cyclades.Game.Constants.godNone: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO); break;
-			case Cyclades.Game.Constants.godPoseidon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_POSEIDON); break;
-			case Cyclades.Game.Constants.godMars: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_MARS); break;
-			case Cyclades.Game.Constants.godSophia: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_SOTHIA); break;
-			case Cyclades.Game.Constants.godZeus: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_ZEUS); break;
-			case Cyclades.Game.Constants.godAppolon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_APPOLON); break;
-		}			
+	public void SetAuctionState() {
+		Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
+		//TODO есть еще странная фаза
+		if (phase == Cyclades.Game.Phase.AuctionPhase) {
+			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO);
+		} else {
+			string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
+			switch (currentGod) {
+				case Cyclades.Game.Constants.godNone: 		 break;
+				case Cyclades.Game.Constants.godPoseidon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_POSEIDON); break;
+				case Cyclades.Game.Constants.godMars: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_MARS); break;
+				case Cyclades.Game.Constants.godSophia: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_SOTHIA); break;
+				case Cyclades.Game.Constants.godZeus: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_ZEUS); break;
+				case Cyclades.Game.Constants.godAppolon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_APPOLON); break;
+			}
+		}
 	}
 
 	public void SetCardState(bool isConcreteCard) {
@@ -54,8 +62,8 @@ public class GameStateManager : Manager<GameStateManager> {
 		this.mapEventerType = mapEventerType;
 	}
 
-	void Update () {
-		SetAuctionState(auctionState);
+	public void GameContext_UpdateData () {
+		SetAuctionState();
 		SetCardState(cardState);
 		SetBattleState(battleState);
 		SetMapEventorType(mapEventerType);

@@ -48,14 +48,14 @@ public class UIAdminPanel : UIGamePanel {
 	TAB MODES
 	*/
 	public void SetAutionGodMode() {
-		switch (Sh.GameState.auctionState) {
+		/*switch (Sh.GameState.auctionState) {
 			case Cyclades.Game.Constants.godNone: Sh.GameState.auctionState = Cyclades.Game.Constants.godMars; break;
 			case Cyclades.Game.Constants.godMars: Sh.GameState.auctionState = Cyclades.Game.Constants.godPoseidon; break;
 			case Cyclades.Game.Constants.godPoseidon: Sh.GameState.auctionState = Cyclades.Game.Constants.godZeus; break;
 			case Cyclades.Game.Constants.godZeus: Sh.GameState.auctionState = Cyclades.Game.Constants.godSophia; break;
 			case Cyclades.Game.Constants.godSophia: Sh.GameState.auctionState = Cyclades.Game.Constants.godAppolon; break;
 			case Cyclades.Game.Constants.godAppolon: Sh.GameState.auctionState = Cyclades.Game.Constants.godNone; break;
-		}
+		}*/
 	}
 
 	public void SetCardsMode() {
