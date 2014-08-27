@@ -8,6 +8,7 @@ public class UIBuyCardPanel : UIGamePanel {
 	public UISprite CardSprite;
 	public UILabel CardText;
 	public List<GameObject> PriceElements;
+	public int slot;
 	#endregion
 
 	private string card;
@@ -23,13 +24,13 @@ public class UIBuyCardPanel : UIGamePanel {
 	#region ViewWidgetsSet
 	public void SetPrice(int price) {
 		for (int i = 0; i < PriceElements.Capacity; ++i)
-			PriceElements[i].SetActive(i+1 < price);
+			PriceElements[i].SetActive(i < price);
 	}
 	#endregion
 
 	#region Events
 	public void OnPressOKButton() {
-		Sh.Out.Send("buy card");
+		Sh.Out.Send("buy card from slot " + slot);
 		UIGamePanel.CloseActivePanel();
 	}
 
