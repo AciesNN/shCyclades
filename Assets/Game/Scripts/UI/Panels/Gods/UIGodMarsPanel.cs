@@ -7,6 +7,12 @@ public class UIGodMarsPanel : UIGamePanel {
 	public GameObject BuyButtonsStrip;
 	#endregion
 
+	Vector3 pricePos;
+
+	void Awake() {
+		pricePos = BuyButtonsStrip.transform.localPosition;
+	}
+
 	#region Events
 	public void OnBuyUnitClick() {
 		OpenCloseBuyButton(false);
@@ -31,6 +37,30 @@ public class UIGodMarsPanel : UIGamePanel {
 
 	void OpenCloseBuyButton(bool open) {
 		BuyButtonsStrip.SetActive(open);
+		AnimatePricePosition(open);
+	}
+
+	public void OnSelect() {
+		Debug.Log ("...");
 	}
 	#endregion
+
+	void AnimatePricePosition (bool on)
+	{
+		Vector3 target;
+		Vector3 start;
+
+		if (on) {
+			target = pricePos;
+			start = transform.localPosition;
+		} else {
+			target = transform.localPosition;
+			start = pricePos;
+		}
+
+		BuyButtonsStrip.transform.localPosition = start;
+		
+		GameObject go = BuyButtonsStrip.gameObject;
+		TweenPosition.Begin(go, 0.15f, target).method = UITweener.Method.EaseOut;
+	}
 }
