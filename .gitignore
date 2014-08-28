@@ -1,6 +1,6 @@
 /Library
 /obj
-/Out
+/Out/*
 /temp
 /*.userprefs
 /Assembly-CSharp.csproj

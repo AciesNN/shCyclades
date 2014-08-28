@@ -67,9 +67,9 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void OnDataLoad() {
-		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
+		/*string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
 		string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
-		Sh.In._LoadContextFromText(text);
+		Sh.In._LoadContextFromText(text);*/
 	}
 	#endregion
 }

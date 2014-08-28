@@ -1,8 +1,37 @@
-﻿using System;
+﻿#define JSONMINI
+
+using System;
 using System.Collections.Generic;
 using System.Collections;
-using Newtonsoft.Json;
 
+//using Newtonsoft.Json;
+
+#if JSONMINI
+//класс-обертка
+namespace Shmipl.Base {
+    public static class json {
+
+        public static Hashtable loads(string json_str) {
+            object res = MiniJSON.jsonDecode(json_str);
+            return res as Hashtable;
+        }
+
+        public static Hashtable load(string path) {
+			string file_content = ""; //System.IO.File.ReadAllText(path).Replace("\n", " ");
+            return json.loads(file_content);
+        }
+
+        public static string dumps(Hashtable data) {
+            return MiniJSON.jsonEncode(data);
+        }
+
+     }
+}
+
+//old, based on Newtonsoft.Json, JSON.NET
+
+
+#else
 namespace Shmipl.Base
 {
 	public static class json
@@ -74,3 +103,4 @@ namespace Shmipl.Base
 		#endregion
 	}
 }
+#endif
