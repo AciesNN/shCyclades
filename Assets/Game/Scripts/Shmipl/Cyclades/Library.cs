@@ -212,8 +212,12 @@ namespace Cyclades.Game
 			return islands;
 		}
 
+		public static int Map_GetBuildCountAtIsland(IContextGet r, long island, string build_type) {
+			return Map_GetBuildCountAtIsland(r, island, build_type, true);
+		}
+
 		/*определяет кол-во зданий определенного типа на острове*/
-        public static int Map_GetBuildCountAtIsland(IContextGet r, long island, string build_type, bool withMetro = true)
+        public static int Map_GetBuildCountAtIsland(IContextGet r, long island, string build_type, bool withMetro)
 		{
 
 			int res = 0;
@@ -235,8 +239,12 @@ namespace Cyclades.Game
 			return res;
 		}
 
-        /*определяет кол-во зданий определенного типа на островах*/
-        public static int Map_GetBuildCountAtIslands(IContextGet r, List<long> islands, string build_type, bool withMetro = true) {
+		public static int Map_GetBuildCountAtIslands(IContextGet r, List<long> islands, string build_type) {
+			return Map_GetBuildCountAtIslands(r, islands, build_type, true);
+		}
+
+		/*определяет кол-во зданий определенного типа на островах*/
+        public static int Map_GetBuildCountAtIslands(IContextGet r, List<long> islands, string build_type, bool withMetro) {
             int res = 0;
 
             foreach (long island in islands)
@@ -287,6 +295,18 @@ namespace Cyclades.Game
 			}
 
 			return -1;
+		}
+
+		/*возвращает все точки острова*/
+		public static List<List<int>> Map_GetIslandCoords(IContextGet r, int island) {
+			List<List<int>> res = new List<List<int>>();
+			List<object> islands = r.GetList("/map/islands/coords/[{0}]", island);
+			foreach (List<object> coords in islands) {
+				List<int> c = new List<int>();
+				c.Add((int)(long)coords[0]); c.Add((int)(long)coords[1]);
+				res.Add(c);
+			}
+			return res;
 		}
 
 		/*количество кораблей в точке с заданными координатами*/

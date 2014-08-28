@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game;
+
 abstract class IslandClickMapEventer : MapEventer {
 	#region Abstract
 	abstract protected bool IsPossibleIsland(int island);
@@ -36,10 +38,10 @@ abstract class IslandClickMapEventer : MapEventer {
 
 	void HighlightIsland(int island, bool active) {
 		UIMapIslandsLayer l = mapStates.MapController.GetLayer<UIMapIslandsLayer>(GridLayerType.ISLANDS);
-		l.HiglightIsland(l.debugPoints, active);
+		l.HiglightIsland(island, active);
 	}
 
 	int GetIsland(GridPosition cell) {
-		return (cell.x == 4 && cell.y == 4 ? 1 : -1); //TODO
+		return Library.Map_GetIslandByPoint(Sh.In.GameContext, (long)cell.x, (long)cell.y); //TODO
 	}
 }

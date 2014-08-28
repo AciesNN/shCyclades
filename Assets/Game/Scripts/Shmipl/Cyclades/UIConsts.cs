@@ -11,13 +11,14 @@ public struct UIGodConsts {
 
 public static class UIConsts {
 
-	public static readonly List<Color> userColors = new List<Color> 
+	public static readonly Dictionary<int, Color> userColors = new Dictionary<int, Color>
 	{
-		Color.green,
-		Color.red,
-		Color.black,
-		Color.blue,
-		Color.yellow
+		{-1, Color.white},
+		{0, Color.green},
+		{1, Color.red},
+		{2, Color.black},
+		{3, Color.blue},
+		{4, Color.yellow}
 	};
 
 	public static readonly Dictionary<string, Color> buildColors = new Dictionary<string, Color>

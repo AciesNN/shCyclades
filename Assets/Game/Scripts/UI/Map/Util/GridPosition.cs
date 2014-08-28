@@ -5,12 +5,24 @@ public struct GridPosition {
 
 	public int x;
 	public int y;
-	
+
+	public long long_x {
+		get {return (long)x;}
+	}
+	public long long_y {
+		get {return (long)y;}
+	}
+
 	public GridPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
+	public GridPosition(long x, long y) {
+		this.x = (int)x;
+		this.y = (int)y;
+	}
+
 	public GridPosition(float x, float y) {
 		this.x = (int)System.Math.Floor(x);
 		this.y = (int)System.Math.Floor(y);

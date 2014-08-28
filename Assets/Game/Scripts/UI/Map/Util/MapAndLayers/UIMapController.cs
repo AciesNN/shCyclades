@@ -62,6 +62,10 @@ public class UIMapController : MonoBehaviour {
 		return cell.x >= 0 && cell.x < XSize 
 			&& cell.y >= 0 && cell.y < YSize;
 	}
+
+	public virtual bool IsCellPossible(int x, int y) {
+		return IsCellPossible(new GridPosition(x, y));
+	}
 	#endregion
 
 	#region Layers

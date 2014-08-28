@@ -15,6 +15,7 @@ public class UIMapIslandElement : UIMapGridLayerElement {
 
 	public void SetOwner(int user) {
 		owner.color = UIConsts.userColors[user];
+		owner.gameObject.SetActive(user != -1);
 	}
 	#endregion
 }

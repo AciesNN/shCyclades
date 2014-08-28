@@ -8,7 +8,7 @@
 
 	#region Abstract
 	override protected bool IsPossibleIsland(int island) {
-		return island > 0;
+		return island >= 0;
 	}
 	
 	override protected void OnClickIsland(int island) {
