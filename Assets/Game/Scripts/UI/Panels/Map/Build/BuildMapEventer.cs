@@ -7,12 +7,12 @@ class BuildMapEventer: IslandClickMapEventer {
 
 	#region Events
 	override public void Activate() {
+		base.Activate();
+
 		mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
 
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			allowedIslands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);
-		} else {
-			allowedIslands = new List<long>();
 		}
 
 		HighlightIslands(true);

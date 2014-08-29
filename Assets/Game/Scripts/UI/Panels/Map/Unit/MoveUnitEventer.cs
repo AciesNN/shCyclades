@@ -10,6 +10,8 @@ class MoveUnitEventer: IslandClickMapEventer {
 
 	#region Events
 	override public void Activate() {
+		base.Activate();
+
 		fromIsland = -1;
 
 		panel = UIGamePanel.GetPanel<UIMapMoveUnitPanel>(PanelType.MAP_TAB_MOVE_UNIT);
@@ -43,7 +45,6 @@ class MoveUnitEventer: IslandClickMapEventer {
 	#endregion
 
 	void CalculateAllowedIslandsFrom() {
-		allowedIslands = new List<long>();
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			List<long> islands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);
 			foreach(long island in islands) {

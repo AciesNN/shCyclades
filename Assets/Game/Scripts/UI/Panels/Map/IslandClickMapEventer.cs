@@ -13,6 +13,10 @@ abstract class IslandClickMapEventer : MapEventer {
 	#endregion
 
 	#region Events
+	override public void Activate() {
+		allowedIslands = new List<long>();
+	}
+
 	override public void Deactivate() {
 		DeHighlightAllIslands();
 	}

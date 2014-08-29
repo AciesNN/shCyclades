@@ -10,6 +10,10 @@ abstract class SeaClickMapEventer : MapEventer {
 	#endregion
 	
 	#region Events
+	override public void Activate() {
+		allowedCells = new List<GridPosition>();
+	}
+
 	override public void Deactivate() {
 		DeHighlightAllSeaCells();
 	}

@@ -24,7 +24,17 @@ public class UIMapGridCellsLayer : UIMapGridLayer {
 	}
 
 	public void HiglightCell(GridPosition cell, bool isHighLight) {
-		elements[cell.x, cell.y].GetComponent<UISprite>().alpha = (isHighLight ? highLightAlfa : normalAlfa);
+		if (cell.x == -1 && cell.y == -1) {//TODO спорный момент - не очень красиво передавать -1, если надо сбросить выделение со всех
+			for(int x = 0; x < MapController.XSize; ++ x) {
+				for(int y = 0; y < MapController.XSize; ++ y) {
+					GridPosition c = new GridPosition(x, y);
+					if (MapController.IsCellPossible(c))
+						HiglightCell(c, isHighLight);
+				}
+			}
+		} else {
+			elements[cell.x, cell.y].GetComponent<UISprite>().alpha = (isHighLight ? highLightAlfa : normalAlfa);
+		}
 	}
 
 }
