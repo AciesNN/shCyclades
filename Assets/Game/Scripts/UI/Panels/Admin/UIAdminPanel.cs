@@ -66,9 +66,13 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void OnDataLoad() {
+		#if UNITY_WEBPLAYER
+		Sh.In._LoadContextFromCash(text);
+		#else
 		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
 		string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
 		Sh.In._LoadContextFromText(text);
+		#endif
 	}
 	#endregion
 }
