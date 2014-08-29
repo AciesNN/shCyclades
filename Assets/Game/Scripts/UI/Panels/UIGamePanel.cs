@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class UIGamePanel : MonoBehaviour {
 
+	const float UI_DELAY = 10.75f;
+
 	[HideInInspector]public UIGamePanelTabs TabPanel;
 
 	protected Vector3 showPosition;
@@ -54,7 +56,7 @@ public class UIGamePanel : MonoBehaviour {
 	}
 
 	virtual public void Show() {
-		content.SetActive(true);
+		StartCoroutine(DoShow());
 		if (IsModal) //???
 			activePanel = this;
 	}
@@ -67,7 +69,7 @@ public class UIGamePanel : MonoBehaviour {
 	}
 
 	virtual public void Hide() {
-		content.SetActive(false);
+		StartCoroutine(DoHide());
 	}
 
 	virtual public bool IsActive() {
@@ -99,6 +101,22 @@ public class UIGamePanel : MonoBehaviour {
 	public static void CloseActivePanel(string methodName, ModelPanelCloseResult result) {
 		parentPanel.SendMessage(methodName, result);
 		CloseActivePanel();
+	}
+
+	virtual protected IEnumerator DoHide() {
+		if (!content.activeSelf)
+			yield break;
+		//iTween.FadeTo(content, 0, UI_DELAY);
+		//yield return new WaitForSeconds(UI_DELAY / 3.0f);
+		content.SetActive (false);
+	}
+
+	virtual protected IEnumerator DoShow() {
+		if (content.activeSelf)
+			yield break;
+		//yield return new WaitForSeconds(UI_DELAY / 3.0f);
+		content.SetActive (true);
+		//iTween.FadeFrom(content, 1, UI_DELAY);
 	}
 }
 

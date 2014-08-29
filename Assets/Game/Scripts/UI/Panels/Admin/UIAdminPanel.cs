@@ -3,7 +3,7 @@ using System.Collections;
 
 public class UIAdminPanel : UIGamePanel {
 
-	public int curUser = -2;
+	static public readonly int toggleGroupe = 2;
 
 	#region ViewWidgets
 	public GameObject MainContext;
@@ -16,12 +16,11 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	void OnChangeActiveUser(int curUser) {
-		UIToggle t = UIToggle.GetActiveToggle(2); //волшебное число - номер группы радиобаттаннов "текущий юзверь"
-		if (t && t.name != "" + curUser) 
+		UIToggle t = UIToggle.GetActiveToggle(toggleGroupe); //волшебное число - номер группы радиобаттаннов "текущий юзверь"
+		if (t && t.name != "" + Sh.GameState.currentUser) 
 			return;
-		if (this.curUser != curUser) {
-			this.curUser = curUser;
-			Debug.Log("cur user set: " + curUser);
+		if (Sh.GameState.currentUser != curUser) {
+			Sh.GameState.currentUser = curUser;
 		}
 	}
 

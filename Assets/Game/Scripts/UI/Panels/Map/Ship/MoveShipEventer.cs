@@ -17,10 +17,6 @@
 	#endregion
 
 	#region Abstract
-	override protected bool IsPossibleSeaCell(GridPosition cell) {
-		return cell.x == 3 && cell.y == 3;
-	}
-	
 	override protected void OnClickSeaCell(GridPosition cell) {
 		panel.SetInfoPosition(cell);
 		if (lastSeaCell.x == -1 && lastSeaCell.y == -1) {

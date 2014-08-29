@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Shmipl.Base;
+using Cyclades.Game;
 
 public class InManager : Manager<InManager> {
 
@@ -31,6 +32,9 @@ public class InManager : Manager<InManager> {
 
 		Context c = GameContext as Context;
 		c.LoadDataFromText(text);
+
+		//TODO исключительно код для отладки (и то не всегда нужен)
+		Sh.GameState.currentUser = (int)Library.GetCurrentPlayer(GameContext);
 
 		if (newContext)
 			rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);

@@ -6,6 +6,16 @@ using Cyclades.Game;
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
+	int CurrentUser;
+	public int currentUser {
+		get { return CurrentUser; }
+		set {
+			CurrentUser = value;
+			NGUIDebug.Log ("current user: " + CurrentUser);
+			//UIToggle.GetActiveToggle(UIAdminPanel.toggleGroupe). = CurrentUser;
+		}
+	}
+
 	public UIMapController mapController;
 	public UIGamePanelTabs AuctionTabsPanel;
 
@@ -19,6 +29,10 @@ public class GameStateManager : Manager<GameStateManager> {
 	
 	public MapEventerType mapEventerType;
 	public UIMapStates mapStates;
+
+	protected override void Init() {
+		currentUser = -1;
+	}
 
 	public void SetAuctionState() {
 		Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);

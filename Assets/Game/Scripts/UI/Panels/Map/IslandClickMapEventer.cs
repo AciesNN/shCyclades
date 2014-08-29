@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using Cyclades.Game;
 
 abstract class IslandClickMapEventer : MapEventer {
-	#region Abstract
-	abstract protected bool IsPossibleIsland(int island);
 
+	protected List<long> allowedIslands;
+
+	#region Abstract
 	abstract protected void OnClickIsland(int island);
 	#endregion
 
 	#region Events
 	override public void Deactivate() {
-		HighlightIsland(-1, false);
+		DeHighlightAllIslands();
 	}
 
 	override public void OnClickCell(GridPosition cell) {
@@ -22,19 +24,28 @@ abstract class IslandClickMapEventer : MapEventer {
 	}
 	
 	override public void OnHoverCell(GridPosition cell) {
-		int island = GetIsland(cell);
+		/*int island = GetIsland(cell);
 		if (IsPossibleIsland(island))
-			HighlightIsland(island, true);
+			HighlightIsland(island, true);*/
 	}
 	
 	override public void OnHoverOutCell(GridPosition cell) {
-		HighlightIsland(-1, false);
+		/*HighlightIsland(-1, false);*/
 	}
 	
 	override public void OnMapCancel() {
-		mapStates.SetType(MapEventerType.DEFAULT); //? возможно такая реакция по-умолчанию вредна?
+		mapStates.SetType(MapEventerType.DEFAULT); //todo возможно такая реакция по-умолчанию вредна?
 	}
 	#endregion
+
+	protected void HighlightIslands(bool active) {
+		foreach (long island in allowedIslands) 
+			HighlightIsland((int)island, active);
+	}
+
+	protected void DeHighlightAllIslands() {
+		HighlightIsland(-1, false);
+	}
 
 	void HighlightIsland(int island, bool active) {
 		UIMapIslandsLayer l = mapStates.MapController.GetLayer<UIMapIslandsLayer>(GridLayerType.ISLANDS);
@@ -42,6 +53,10 @@ abstract class IslandClickMapEventer : MapEventer {
 	}
 
 	int GetIsland(GridPosition cell) {
-		return Library.Map_GetIslandByPoint(Sh.In.GameContext, (long)cell.x, (long)cell.y); //TODO
+		return Library.Map_GetIslandByPoint(Sh.In.GameContext, (long)cell.x, (long)cell.y);
+	}
+
+	protected bool IsPossibleIsland(int island) {
+		return allowedIslands.Contains((long)island);
 	}
 }
