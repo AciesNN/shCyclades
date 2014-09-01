@@ -9,7 +9,7 @@ public class UIMapStates : MonoBehaviour {
 
 	Dictionary<MapEventerType, MapEventer> mapEventers = new Dictionary<MapEventerType, MapEventer>();
 	MapEventerType type = MapEventerType.DEFAULT;
-	MapEventer mapEventer {
+	public MapEventer eventer {
 		get { return mapEventers[type]; }
 	}
 
@@ -28,18 +28,25 @@ public class UIMapStates : MonoBehaviour {
 		}
 	}
 
-	public void SetType(MapEventerType type) {
+	public void SetEventorType(MapEventerType type) {
 
 		if (this.type == type)
 			return;
-		if(mapEventer)
-			mapEventer.Deactivate();
+		if(eventer)
+			eventer.Deactivate();
 		this.type = type;
-		mapEventer.Activate();
-		Sh.GameState.UpdateMapEventorType(type);
+		eventer.Activate();
 
 	}
-	
+
+	public MapEventerType GetEventorType() {
+		return type;
+	}
+
+	public MapEventer GetEventorByType(MapEventerType type) {
+		return mapEventers[type];
+	}
+
 	#region ViewWidgetsSet
 
 	#endregion
@@ -49,7 +56,7 @@ public class UIMapStates : MonoBehaviour {
 
 	public void OnClickCell(GridPosition cell) {
 		//NGUIDebug.Log("press cell: " + cell);
-		mapEventer.OnClickCell(cell);
+		eventer.OnClickCell(cell);
 	}
 	
 	public void OnHoverCell(GridPosition cell) {
@@ -57,15 +64,15 @@ public class UIMapStates : MonoBehaviour {
 			OnHoverOutCell(oldCell);
 			oldCell = new GridPosition(cell.x, cell.y);
 		}
-		mapEventer.OnHoverCell(cell);
+		eventer.OnHoverCell(cell);
 	}
 	
 	public void OnHoverOutCell(GridPosition cell) {
-		mapEventer.OnHoverOutCell(cell);
+		eventer.OnHoverOutCell(cell);
 	}
 	
 	public void OnMapCancel() {
-		mapEventer.OnMapCancel();
+		eventer.OnMapCancel();
 	}
 	#endregion
 }

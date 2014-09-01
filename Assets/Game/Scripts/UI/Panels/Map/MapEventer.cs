@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class MapEventer : MonoBehaviour {
+public class MapEventer : MonoBehaviour {
 
 	protected UIMapStates mapStates;
 	public MapEventerType type; //значение присваивается в едиторе
@@ -31,10 +31,17 @@ class MapEventer : MonoBehaviour {
 }
 
 public enum MapEventerType {
+	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
+
 	DEFAULT,
 	PLACEBUILD,
 	PLACEUNIT,
 	MOVEUNIT,
 	PLACESHIP,
-	MOVESHIP
+	MOVESHIP,
+	PLACEMETRO,
+	RETREATSHIP,
+	RETREATUNIT
+
+	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }

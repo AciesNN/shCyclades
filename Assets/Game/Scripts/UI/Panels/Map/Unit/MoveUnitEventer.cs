@@ -39,7 +39,7 @@ class MoveUnitEventer: IslandClickMapEventer {
 			HighlightIslands(true);
 		} else {
 			Sh.Out.Send("move unit from island " + fromIsland + " to " + island + " " + panel.activeUnitCount + " units");
-			Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+			Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 		}
 	}
 	#endregion

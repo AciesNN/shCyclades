@@ -7,6 +7,7 @@ class PlaceShipMapEventer: SeaClickMapEventer {
 
 	#region Events
 	override public void Activate() {
+		base.Activate();
 		mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_SHIP);
 		
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
@@ -33,7 +34,7 @@ class PlaceShipMapEventer: SeaClickMapEventer {
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
 		Sh.Out.Send("place ship on cell " + cell);
-		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion
 

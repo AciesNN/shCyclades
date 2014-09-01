@@ -46,7 +46,7 @@ class MoveShipEventer: SeaClickMapEventer {
 			--panel.CountOfMovement;
 			if (panel.CountOfMovement == 0) {
 				Sh.Out.Send ("ships movements end");
-				Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+				Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 			} else {
 				HighlightSeaCells(false);
 				CalculateAllowedCellsTo();

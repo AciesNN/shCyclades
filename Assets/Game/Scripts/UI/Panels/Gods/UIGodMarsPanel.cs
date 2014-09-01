@@ -16,15 +16,15 @@ public class UIGodMarsPanel : UIGamePanel {
 	#region Events
 	public void OnBuyUnitClick() {
 		OpenCloseBuyButton(false);
-		Sh.GameState.mapStates.SetType(MapEventerType.PLACEUNIT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEUNIT);
 	}
 
 	public void OnMoveUnitClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.MOVEUNIT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.MOVEUNIT);
 	}
 
 	public void OnBuildClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.PLACEBUILD);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEBUILD);
 	}
 
 	public void OnEndTurn() {

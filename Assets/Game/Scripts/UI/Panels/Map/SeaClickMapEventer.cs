@@ -33,7 +33,7 @@ abstract class SeaClickMapEventer : MapEventer {
 	}
 	
 	override public void OnMapCancel() {
-		mapStates.SetType(MapEventerType.DEFAULT); //todo возможно такая реакция по-умолчанию вредна?
+		mapStates.SetEventorType(MapEventerType.DEFAULT); //todo возможно такая реакция по-умолчанию вредна?
 	}
 	#endregion
 	

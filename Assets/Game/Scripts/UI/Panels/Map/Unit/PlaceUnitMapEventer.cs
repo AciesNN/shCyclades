@@ -22,7 +22,7 @@ class PlaceUnitMapEventer : IslandClickMapEventer {
 	#region Abstract
 	override protected void OnClickIsland(int island) {
 		Sh.Out.Send("place unit on island " + island);
-		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion
 

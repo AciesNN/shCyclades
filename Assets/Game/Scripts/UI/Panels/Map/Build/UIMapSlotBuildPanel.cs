@@ -45,7 +45,7 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 	#region Events
 	void OnSlotClick(int slot) {
 		Sh.Out.Send("build on island " + activeIsland + " on slot " + slot);
-		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 
 	public void OnSlot0Click() {

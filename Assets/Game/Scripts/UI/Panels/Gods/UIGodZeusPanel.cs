@@ -4,7 +4,7 @@ using System.Collections;
 public class UIGodZeusPanel : UIGamePanel {
 	
 	public void OnBuildClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.PLACEBUILD);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEBUILD);
 	}
 	
 	public void OnManClick() {

@@ -21,11 +21,7 @@ public class GameStateManager : Manager<GameStateManager> {
 
 	public UIGamePanelTabs CardsTabsPanel;
 
-	public bool cardState;
 	public UIGamePanel BattlePanel;
-
-	bool oldBattleState;
-	public bool battleState;
 	
 	public MapEventerType mapEventerType;
 	public UIMapStates mapStates;
@@ -56,30 +52,31 @@ public class GameStateManager : Manager<GameStateManager> {
 		CardsTabsPanel.SetTab( isConcreteCard ? PanelType.CARD_TAB_INFO : PanelType.CARD_TAB_CARDS );		
 	}
 
-	public void SetBattleState(bool isBattle) {
-		if (isBattle != oldBattleState) {
-			oldBattleState = isBattle;
-			if (isBattle) {
-				//BattlePanel.Init();
-				BattlePanel.Show ();
-			} else {
-				BattlePanel.Hide ();
+	public void SetBattleState() {
+		if (Sh.In.GameContext.GetBool("/fight/army/fight") || Sh.In.GameContext.GetBool("/fight/navy/fight")) {
+			BattlePanel.Show();		
+		} else {
+			if (BattlePanel.IsActive()) {
+				BattlePanel.Hide();
 			}
 		}
 	}
 
-	public void SetMapEventorType(MapEventerType mapEventerType) {
-		mapStates.SetType(mapEventerType);
-	}
-
-	public void UpdateMapEventorType(MapEventerType mapEventerType) {
-		this.mapEventerType = mapEventerType;
+	public void SetMetroBuildState() {
+		string cur_state = Sh.In.GameContext.GetStr("/cur_state");
+		if (cur_state == "Turn.PlaceMetroPhilosopher" || cur_state == "Turn.PlaceMetroBuilding") {
+			mapStates.SetEventorType(MapEventerType.PLACEMETRO);
+		} else {
+			if (mapStates.GetEventorType() == MapEventerType.PLACEMETRO) {
+				mapStates.SetEventorType(MapEventerType.DEFAULT);
+			}
+		}
 	}
 
 	public void GameContext_UpdateData () {
 		SetAuctionState();
-		SetCardState(cardState);
-		SetBattleState(battleState);
-		SetMapEventorType(mapEventerType);
+		//SetCardState();
+		SetBattleState();
+		SetMetroBuildState();
 	}
 }

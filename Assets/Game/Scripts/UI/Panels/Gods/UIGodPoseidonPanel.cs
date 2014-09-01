@@ -9,15 +9,15 @@ public class UIGodPoseidonPanel : UIGamePanel {
 	
 	#region Events
 	public void OnBuyUnitClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.PLACESHIP);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACESHIP);
 	}
 
 	public void OnMoveUnitClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.MOVESHIP);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.MOVESHIP);
 	}
 
 	public void OnBuildClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.PLACEBUILD);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEBUILD);
 	}
 	
 	public void OnEndTurn() {

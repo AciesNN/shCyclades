@@ -58,11 +58,11 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void SetCardsMode() {
-		Sh.GameState.cardState = !Sh.GameState.cardState;
+		//Sh.GameState.cardState = !Sh.GameState.cardState;
 	}
 
 	public void OpenBattlePanel() {
-		Sh.GameState.battleState = !Sh.GameState.battleState;
+		//Sh.GameState.battleState = !Sh.GameState.battleState;
 	}
 
 	public void OnDataLoad() {

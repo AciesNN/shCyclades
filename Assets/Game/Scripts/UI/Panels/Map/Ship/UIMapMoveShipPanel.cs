@@ -93,7 +93,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	public void OnCancelButtonClick() {
 		if (countOfMovement < 3)
 			Sh.Out.Send ("ships movements end");
-		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	
 	//TODO бред с отдельными ф-циями надо прекращать

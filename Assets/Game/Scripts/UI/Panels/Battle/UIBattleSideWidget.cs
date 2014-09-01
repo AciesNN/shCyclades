@@ -33,11 +33,11 @@ public class UIBattleSideWidget : MonoBehaviour {
 
 	#region Events
 	public void OnRetreamentClick() {
-		Sh.Out.Send("Retreate in battle");
+		parentPanel.OnRetreatClick(isAttack);
 	}
 
 	public void OnMoveButtleOnClick() {
-		Sh.Out.Send("Move on battle");
+		parentPanel.OnMoveButtleOnClick(isAttack);
 	}
 	#endregion
 }

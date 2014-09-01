@@ -39,7 +39,7 @@ public class UIMapMoveUnitPanel: UIGamePanel {
 
 	#region Events
 	public void OnCancelButtonClick() {
-		Sh.GameState.mapStates.SetType(MapEventerType.DEFAULT);
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 
 
