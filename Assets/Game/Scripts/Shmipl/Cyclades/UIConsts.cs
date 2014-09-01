@@ -58,4 +58,28 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.buildUniver, "Univer"},
 		{Cyclades.Game.Constants.buildTemple, "Templ"}
 	};
+
+	public static readonly Dictionary<string, string> cardIconSprites = new Dictionary<string, string>
+	{
+		{Cyclades.Game.Constants.cardNone, "empty"},
+		{Cyclades.Game.Constants.cardChimera, "chimera"},
+		{Cyclades.Game.Constants.cardDryads, "dryad"},
+		{Cyclades.Game.Constants.cardSphinx, "sphinx"},
+		{Cyclades.Game.Constants.cardKraken, "kraken"},
+		{Cyclades.Game.Constants.cardGorgon, "medusa"},
+
+		{Cyclades.Game.Constants.cardMermaid, "empty"},
+		{Cyclades.Game.Constants.cardPegus, "empty"},
+		{Cyclades.Game.Constants.cardGigant, "empty"},
+		{Cyclades.Game.Constants.cardCyclope, "empty"},
+		{Cyclades.Game.Constants.cardSylph, "empty"},
+		{Cyclades.Game.Constants.cardHarpy, "empty"},
+		{Cyclades.Game.Constants.cardGriffon, "empty"},
+		{Cyclades.Game.Constants.cardMoyra, "empty"},
+		{Cyclades.Game.Constants.cardSatyr, "empty"},
+		{Cyclades.Game.Constants.cardMinotaur, "empty"},
+		{Cyclades.Game.Constants.cardChiron, "empty"},
+		{Cyclades.Game.Constants.cardPolypheme, "empty"}
+
+	};
 }

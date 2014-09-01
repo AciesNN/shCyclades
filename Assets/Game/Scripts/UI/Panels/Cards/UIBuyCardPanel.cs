@@ -16,7 +16,7 @@ public class UIBuyCardPanel : UIGamePanel {
 		get { return card; }
 		set {
 			card = value;
-			//CardSprite.spriteName = "";
+			CardSprite.spriteName =  "card-" + UIConsts.cardIconSprites[card];
 			//CardText.text = "";
 		}
 	}
@@ -38,4 +38,12 @@ public class UIBuyCardPanel : UIGamePanel {
 		UIGamePanel.CloseActivePanel();
 	}
 	#endregion
+
+	override protected void OnPanelClose() {
+		(parentPanel as UICardPanel).SetHighlightCardIcon(slot, false);
+	}
+
+	override protected void OnPanelOpen() {
+		(parentPanel as UICardPanel).SetHighlightCardIcon(slot, true);
+	}
 }

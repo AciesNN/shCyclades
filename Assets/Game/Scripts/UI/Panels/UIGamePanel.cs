@@ -106,6 +106,7 @@ public class UIGamePanel : MonoBehaviour {
 	virtual protected IEnumerator DoHide() {
 		if (!content.activeSelf)
 			yield break;
+		OnPanelClose();
 		//iTween.FadeTo(content, 0, UI_DELAY);
 		//yield return new WaitForSeconds(UI_DELAY / 3.0f);
 		content.SetActive (false);
@@ -114,9 +115,16 @@ public class UIGamePanel : MonoBehaviour {
 	virtual protected IEnumerator DoShow() {
 		if (content.activeSelf)
 			yield break;
+		OnPanelOpen();
 		//yield return new WaitForSeconds(UI_DELAY / 3.0f);
 		content.SetActive (true);
 		//iTween.FadeFrom(content, 1, UI_DELAY);
+	}
+
+	virtual protected void OnPanelOpen() {
+	}
+
+	virtual protected void OnPanelClose() {
 	}
 }
 
