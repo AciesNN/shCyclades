@@ -29,7 +29,6 @@ public class UIUsersInfo : UIGamePanel {
 
 		List<long> player_order = GetPlayerInformationOrder();
 		List<string> player_gods_order = GetPlayerGodsInformationOrder(players_number);
-		int current_user_position = -1;
 
 		for (int i = 0; i < players_number; ++i) {
 			UIUserInfoWidget w = userInfoWidgets[i];

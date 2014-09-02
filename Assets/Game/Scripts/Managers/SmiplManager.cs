@@ -17,7 +17,7 @@ public class SmiplManager : Manager<SmiplManager> {
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 
 		Shmipl.Base.Log.PrintDebug = Debug.Log;
-		Cyclades.Program.project_path = @"D:\Acies\shmipl\pic2\cs\Cyclades\";	
+		Cyclades.Program.project_path = @"D:\Acies\shmipl\pic2\cs\Cyclades\"; //TODO для веба конечно не пойдет (надо вообще внедрять возможность передачи всех настроек не из файлов)	
 		Cyclades.Program.Start();
 	}
 

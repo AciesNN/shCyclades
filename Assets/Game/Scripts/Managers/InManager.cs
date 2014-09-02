@@ -83,7 +83,8 @@ public class InManager : Manager<InManager> {
 
 		try {
 			//TODO тут используется вредная серверная функция - надо придумывать, как обходить
-			if(Cyclades.Program.srv.GetFSM(name).IsStateStable( context.GetStr("/cur_state") ))
+			string cur_state = context.GetStr("/cur_state");
+			if(Cyclades.Program.srv.GetFSM(name).IsStateStable( cur_state ))
 				return true;
 		} catch {
 			return false;
