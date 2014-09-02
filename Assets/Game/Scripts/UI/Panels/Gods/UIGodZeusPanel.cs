@@ -10,6 +10,7 @@ public class UIGodZeusPanel : UIGamePanel {
 	}
 	
 	public void OnManClick() {
+		Sh.Out.Send( Messanges.BuyPriest() );
 	}
 	
 	public void OnCardChangeClick() {

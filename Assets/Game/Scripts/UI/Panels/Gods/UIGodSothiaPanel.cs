@@ -4,8 +4,9 @@ using System.Collections;
 using Cyclades.Game.Client;
 
 public class UIGodSothiaPanel : UIGamePanel {
-	
+
 	public void OnManClick() {
+		Sh.Out.Send( Messanges.BuyPhilosopher() );
 	}
 
 	public void OnBuildClick() {

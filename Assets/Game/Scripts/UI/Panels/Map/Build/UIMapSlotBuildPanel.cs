@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using Cyclades.Game.Client;
 
@@ -14,11 +15,12 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 
 	public void SetActiveIsland(int island) {
 		activeIsland = island;
-		//TODO - тут отрисовать текущие слоты
-		//типа: 
-		SetSlotsCount(3);
-		SetBuildInSlot(1, Cyclades.Game.Constants.buildUniver);
-		SetMetro(false);
+
+		List<object> slots = Sh.In.GameContext.GetList ("/map/islands/buildings/[{0}]", island);
+		SetSlotsCount(slots.Count);
+		for(int i = 0; i < slots.Count; ++i)
+			SetBuildInSlot(i, (string)slots[i]);
+		SetMetro(Sh.In.GameContext.GetBool ("/map/islands/is_metro/[{0}]", island));
 	}
 
 	#region ViewWidgetsSet

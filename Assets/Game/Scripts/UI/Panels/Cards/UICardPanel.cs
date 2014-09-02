@@ -40,6 +40,7 @@ public class UICardPanel : UIGamePanel {
 			p.disabledSprite = p.normalSprite;
 
 			b.target.spriteName = b.normalSprite;	
+			p.target.spriteName = p.normalSprite;	
 		}
 	}
 
