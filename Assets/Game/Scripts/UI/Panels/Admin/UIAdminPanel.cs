@@ -53,6 +53,7 @@ public class UIAdminPanel : UIGamePanel {
 		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
 		string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
 		Sh.In._LoadContextFromText(text);
+		NGUIDebug.Log("" + Shmipl.Base.json.dumps( Cyclades.Program.srv.GetContext("Game").data));
 		#endif
 	}
 	#endregion

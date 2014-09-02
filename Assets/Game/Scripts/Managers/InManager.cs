@@ -35,7 +35,7 @@ public class InManager : Manager<InManager> {
 			if (Cyclades.Game.Client.Messanges.cur_player >= 0)
 				res = Cyclades.Program.clnts[(int)Cyclades.Game.Client.Messanges.cur_player].GetContext("Game");
 			else 
-				res = Cyclades.Program.srv.GetContext("Game"); //TODO это бред явный
+				res = null;
 			return res; 
 		} 
 	}
@@ -49,7 +49,8 @@ public class InManager : Manager<InManager> {
 	}
 
 	public void _LoadContextFromText(string text) {
-		Cyclades.Program.srv.Deserialize("Game", Shmipl.Base.json.loads(text));
+		Hashtable msg = Shmipl.Base.json.loads(text);
+		Cyclades.Program.srv.Deserialize("Game", msg);
 		UpdateGameData();
 	}
 
