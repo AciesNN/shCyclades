@@ -28,8 +28,10 @@ public class UIUserInfoWidget : MonoBehaviour {
 		}	
 	}
 
-	public void SetUserIncome(int income) {
+	public void SetUserIncome(int income, int gold) {
 		IncomeLabel.text = "+" + income;
+		if (gold != -1)
+			IncomeLabel.text += " / " + gold;
 	}
 
 	public void SetPhilosothsNumber(int phNumber) {

@@ -29,20 +29,21 @@ public class UIUsersInfo : UIGamePanel {
 
 		List<long> player_order = GetPlayerInformationOrder();
 		List<string> player_gods_order = GetPlayerGodsInformationOrder(players_number);
+		int current_user_position = -1;
 
 		for (int i = 0; i < players_number; ++i) {
-
 			UIUserInfoWidget w = userInfoWidgets[i];
 			long player = player_order[i];
 
+			bool is_current_user = (player == Library.GetCurrentPlayer(Sh.In.GameContext));
+			w.SetIsCurrentUser(is_current_user);
+
 			w.SetUser((int)player);
 			w.SetGod(player_gods_order[i]);
-			w.SetUserIncome(Sh.In.GameContext.GetInt("/markers/income/[{0}]", player));
+			w.SetUserIncome(Sh.In.GameContext.GetInt("/markers/income/[{0}]", player), (is_current_user ? Sh.In.GameContext.GetInt("/markers/gold/[{0}]", player) : -1 ));
 			w.SetPhilosothsNumber(Sh.In.GameContext.GetInt("/markers/philosopher/[{0}]", player));
-			w.SetIsMetro(i == 2); //TODO
+			//w.SetIsMetro(i == 2); //TODO
 		}
-
-		SetCurrentUserNumber((int)Library.GetCurrentPlayer(Sh.In.GameContext));
 	}
 
 	List<long> GetPlayerInformationOrder() {
@@ -103,10 +104,10 @@ public class UIUsersInfo : UIGamePanel {
 	}
 	
 	#region Widgets
-	public void SetCurrentUserNumber(int currentUserNumber) {
+	/*public void SetCurrentUserNumber(int currentUserNumber) {
 		foreach(UIUserInfoWidget uiw in userInfoWidgets)
 			uiw.SetIsCurrentUser(false);
 		userInfoWidgets[currentUserNumber].SetIsCurrentUser(true);
-	}
+	}*/
 	#endregion
 }

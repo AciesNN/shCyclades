@@ -12,6 +12,7 @@ public class GameStateManager : Manager<GameStateManager> {
 		set {
 			CurrentUser = value;
 			NGUIDebug.Log ("current user: " + CurrentUser);
+			Cyclades.Game.Client.Messanges.cur_player = CurrentUser;
 			//UIToggle.GetActiveToggle(UIAdminPanel.toggleGroupe). = CurrentUser;
 		}
 	}
@@ -27,6 +28,8 @@ public class GameStateManager : Manager<GameStateManager> {
 	public UIMapStates mapStates;
 
 	protected override void Init() {
+		base.Init ();
+
 		currentUser = -1;
 	}
 
@@ -75,7 +78,7 @@ public class GameStateManager : Manager<GameStateManager> {
 
 	public void GameContext_UpdateData () {
 		SetAuctionState();
-		//SetCardState();
+		SetCardState(false);
 		SetBattleState();
 		SetMetroBuildState();
 	}

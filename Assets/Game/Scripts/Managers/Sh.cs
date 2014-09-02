@@ -19,4 +19,7 @@ public class Sh: MonoBehaviour {
 		get { return GameStateManager.GetInstance(); }
 	}
 
+	static public SmiplManager Smipl {
+		get { return SmiplManager.GetInstance(); }
+	}
 }

@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Shmipl.Base;
-using Cyclades.Game;
 
 public class InManager : Manager<InManager> {
 
 	Dictionary<string, string> _testDataCash = new Dictionary<string, string> {
-		{"0", "{\"random_seed\":0,\"players_number\":5,\"turn\":{\"Zeus\":{\"buyPriestByTurn\":0},\"Sophia\":{\"buyPhilosopherByTurn\":0},\"Appolo\":{\"getHorn\":0},\"Mars\":{\"buyArmyByTurn\":0},\"current_god\":\"M\",\"current_player\":3,\"player_order\":[0,1,4,2],\"Poseidon\":{\"buyNavyByTurn\":0}},\"counter\":233,\"cards\":{\"trash\":[],\"open_card_number\":-1,\"open\":[\"Gor\",\"Pol\"],\"stack\":[\"Mer\",\"Peg\",\"Gig\",\"Chm\",\"Cyc\",\"Sph\",\"Syl\",\"Har\",\"Gri\",\"Moy\",\"Sat\",\"Dry\",\"Kra\",\"Min\",\"Chr\"],\"need_refresh_stack\":false},\"fight\":{\"army\":{\"fight\":true,\"attacker\":{\"retreat_way\":true,\"island\":0,\"player\":0,\"units\":4},\"deffender\":{\"retreat_way\":false,\"fortress\":1,\"island\":0,\"player\":0,\"units\":3}},\"navy\":{\"fight\":false,\"last_coords\":[-1,-1],\"deffender\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0},\"move\":0,\"attacker\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0}}},\"markers\":{\"income\":[3,2,2,3,2],\"philosopher\":[0,2,0,0,0],\"priest\":[0,0,1,0,0],\"gold\":[10,2,6,5,5]},\"map\":{\"islands\":{\"horn\":[2,0,1,1,1,2,1,2,0,0,2,0,0],\"is_metro\":[false,false,false,false,false,false,false,false,false,false,false,false,false],\"coords\":[[[3,0],[4,1]],[[0,1],[1,1],[0,2],[1,2]],[[3,3],[4,4]],[[5,3],[6,3]],[[8,3],[8,4]],[[1,4]],[[3,5],[3,6]],[[6,5]],[[0,6],[0,7],[1,7]],[[9,6],[8,7],[7,8],[6,9]],[[6,7]],[[2,8],[1,9],[2,9]],[[4,8],[4,9],[4,10]]],\"owners\":[0,1,2,3,3,4,-1,1,3,4,-1,0,2],\"buildings\":[[\"\",\"\"],[\"\",\"\",\"\",\"\"],[\"\",\"\"],[\"\",\"\"],[\"\",\"M\"],[\"\"],[\"\",\"\"],[\"\"],[\"\",\"\"],[\"P\",\"\",\"\",\"\"],[\"\"],[\"\",\"\",\"\"],[\"\",\"Z\",\"\"]],\"army\":[1,1,1,1,0,1,0,1,1,1,0,1,1]},\"size_x\":6,\"size_y\":6,\"seas\":{\"horns\":[[0,0],[5,0],[0,5],[10,5],[0,10],[5,10]],\"ships\":{\"coords\":[[5,2],[0,10],[2,1],[6,4],[4,5],[5,10],[7,3],[0,5],[2,5],[8,6]],\"owners\":[0,0,1,1,2,2,3,3,4,4]}}},\"auction\":{\"start_order\":[0,2,1,3,4],\"player_order\":[],\"gods_order\":[\"P\",\"M\",\"S\",\"Z\",\"A\"],\"bets\":[[0,0,0,1,0],[1,0,0,0,0],[0,1,0,0,0],[0,0,0,0,1],[0,0,1,0,0]],\"current_player\":4},\"cur_state\":\"Turn.PlaceBuild\",\"creatures\":{\"Polypheme\":{\"island\":-1,\"player\":-1},\"Gorgon\":{\"island\":-1,\"player\":-1},\"Kraken\":{\"coords\":[-1,-1]},\"Chiron\":{\"island\":-1,\"player\":-1},\"Minotaur\":{\"island\":-1,\"player\":-1}}}"},
+		{"0", "{\"random_seed\":0,\"players_number\":5,\"turn\":{\"Zeus\":{\"buyPriestByTurn\":0},\"Sophia\":{\"buyPhilosopherByTurn\":0},\"Appolo\":{\"getHorn\":0},\"Mars\":{\"buyArmyByTurn\":0},\"current_god\":\"M\",\"current_player\":3,\"player_order\":[0,1,4,2],\"Poseidon\":{\"buyNavyByTurn\":0}},\"counter\":233,\"cards\":{\"trash\":[],\"open_card_number\":-1,\"open\":[\"Gor\",\"Pol\"],\"stack\":[\"Mer\",\"Peg\",\"Gig\",\"Chm\",\"Cyc\",\"Sph\",\"Syl\",\"Har\",\"Gri\",\"Moy\",\"Sat\",\"Dry\",\"Kra\",\"Min\",\"Chr\"],\"need_refresh_stack\":false},\"fight\":{\"army\":{\"fight\":false,\"attacker\":{\"retreat_way\":true,\"island\":0,\"player\":0,\"units\":4},\"deffender\":{\"retreat_way\":false,\"fortress\":1,\"island\":0,\"player\":0,\"units\":3}},\"navy\":{\"fight\":false,\"last_coords\":[-1,-1],\"deffender\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0},\"move\":0,\"attacker\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0}}},\"markers\":{\"income\":[3,2,2,3,2],\"philosopher\":[0,2,0,0,0],\"priest\":[0,0,1,0,0],\"gold\":[10,2,6,5,5]},\"map\":{\"islands\":{\"horn\":[2,0,1,1,1,2,1,2,0,0,2,0,0],\"is_metro\":[false,false,false,false,false,false,false,false,false,false,false,false,false],\"coords\":[[[3,0],[4,1]],[[0,1],[1,1],[0,2],[1,2]],[[3,3],[4,4]],[[5,3],[6,3]],[[8,3],[8,4]],[[1,4]],[[3,5],[3,6]],[[6,5]],[[0,6],[0,7],[1,7]],[[9,6],[8,7],[7,8],[6,9]],[[6,7]],[[2,8],[1,9],[2,9]],[[4,8],[4,9],[4,10]]],\"owners\":[0,1,2,3,3,4,-1,1,3,4,-1,0,2],\"buildings\":[[\"\",\"\"],[\"\",\"\",\"\",\"\"],[\"\",\"\"],[\"\",\"\"],[\"\",\"M\"],[\"\"],[\"\",\"\"],[\"\"],[\"\",\"\"],[\"P\",\"\",\"\",\"\"],[\"\"],[\"\",\"\",\"\"],[\"\",\"Z\",\"\"]],\"army\":[1,1,1,1,0,1,0,1,1,1,0,1,1]},\"size_x\":6,\"size_y\":6,\"seas\":{\"horns\":[[0,0],[5,0],[0,5],[10,5],[0,10],[5,10]],\"ships\":{\"coords\":[[5,2],[0,10],[2,1],[6,4],[4,5],[5,10],[7,3],[0,5],[2,5],[8,6]],\"owners\":[0,0,1,1,2,2,3,3,4,4]}}},\"auction\":{\"start_order\":[0,2,1,3,4],\"player_order\":[],\"gods_order\":[\"P\",\"M\",\"S\",\"Z\",\"A\"],\"bets\":[[0,0,0,1,0],[1,0,0,0,0],[0,1,0,0,0],[0,0,0,0,1],[0,0,1,0,0]],\"current_player\":4},\"cur_state\":\"Turn.PlaceBuild\",\"creatures\":{\"Polypheme\":{\"island\":-1,\"player\":-1},\"Gorgon\":{\"island\":-1,\"player\":-1},\"Kraken\":{\"coords\":[-1,-1]},\"Chiron\":{\"island\":-1,\"player\":-1},\"Minotaur\":{\"island\":-1,\"player\":-1}}}"},
 		{"1", "{\"random_seed\":0,\"players_number\":5,\"turn\":{\"Zeus\":{\"buyPriestByTurn\":0},\"Sophia\":{\"buyPhilosopherByTurn\":0},\"Appolo\":{\"getHorn\":0},\"Mars\":{\"buyArmyByTurn\":0},\"current_god\":\"P\",\"current_player\":3,\"player_order\":[0,1,4,2],\"Poseidon\":{\"buyNavyByTurn\":0}},\"counter\":233,\"cards\":{\"trash\":[],\"open_card_number\":-1,\"open\":[\"Gor\",\"Pol\"],\"stack\":[\"Mer\",\"Peg\",\"Gig\",\"Chm\",\"Cyc\",\"Sph\",\"Syl\",\"Har\",\"Gri\",\"Moy\",\"Sat\",\"Dry\",\"Kra\",\"Min\",\"Chr\"],\"need_refresh_stack\":false},\"fight\":{\"army\":{\"fight\":false,\"attacker\":{\"retreat_way\":false,\"island\":0,\"player\":0,\"units\":0},\"deffender\":{\"retreat_way\":false,\"fortress\":0,\"island\":0,\"player\":0,\"units\":0}},\"navy\":{\"fight\":false,\"last_coords\":[-1,-1],\"deffender\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0},\"move\":0,\"attacker\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0}}},\"markers\":{\"income\":[3,2,2,3,2],\"philosopher\":[0,2,0,0,0],\"priest\":[0,0,1,0,0],\"gold\":[10,2,6,5,5]},\"map\":{\"islands\":{\"horn\":[2,0,1,1,1,2,1,2,0,0,2,0,0],\"is_metro\":[false,false,false,false,false,false,false,false,false,false,false,false,false],\"coords\":[[[3,0],[4,1]],[[0,1],[1,1],[0,2],[1,2]],[[3,3],[4,4]],[[5,3],[6,3]],[[8,3],[8,4]],[[1,4]],[[3,5],[3,6]],[[6,5]],[[0,6],[0,7],[1,7]],[[9,6],[8,7],[7,8],[6,9]],[[6,7]],[[2,8],[1,9],[2,9]],[[4,8],[4,9],[4,10]]],\"owners\":[0,1,2,3,3,4,-1,1,3,4,-1,0,2],\"buildings\":[[\"M\",\"\"],[\"\",\"S\",\"\",\"\"],[\"\",\"\"],[\"P\",\"\"],[\"\",\"M\"],[\"\"],[\"\",\"\"],[\"\"],[\"\",\"\"],[\"P\",\"\",\"\",\"\"],[\"\"],[\"\",\"\",\"\"],[\"\",\"Z\",\"\"]],\"army\":[1,1,1,1,0,1,0,1,1,1,0,1,1]},\"size_x\":6,\"size_y\":6,\"seas\":{\"horns\":[[0,0],[5,0],[0,5],[10,5],[0,10],[5,10]],\"ships\":{\"coords\":[[5,2],[0,10],[2,1],[6,4],[4,5],[5,10],[7,3],[0,5],[2,5],[8,6]],\"owners\":[0,0,1,1,2,2,3,3,4,4]}}},\"auction\":{\"start_order\":[0,2,1,3,4],\"player_order\":[],\"gods_order\":[\"P\",\"M\",\"S\",\"Z\",\"A\"],\"bets\":[[0,0,0,1,0],[1,0,0,0,0],[0,1,0,0,0],[0,0,0,0,1],[0,0,1,0,0]],\"current_player\":4},\"cur_state\":\"Turn.PlaceBuild\",\"creatures\":{\"Polypheme\":{\"island\":-1,\"player\":-1},\"Gorgon\":{\"island\":-1,\"player\":-1},\"Kraken\":{\"coords\":[-1,-1]},\"Chiron\":{\"island\":-1,\"player\":-1},\"Minotaur\":{\"island\":-1,\"player\":-1}}}"},
 		{"2", "{\"random_seed\":0,\"players_number\":5,\"turn\":{\"Zeus\":{\"buyPriestByTurn\":0},\"Appolo\":{\"getHorn\":0},\"player_order\":[0,3],\"Mars\":{\"buyArmyByTurn\":0},\"current_god\":\"S\",\"current_player\":1,\"Sophia\":{\"buyPhilosopherByTurn\":1},\"Poseidon\":{\"buyNavyByTurn\":1}},\"counter\":418,\"cards\":{\"trash\":[],\"open_card_number\":-1,\"open\":[\"Chr\",\"Gor\",\"Pol\"],\"stack\":[\"Mer\",\"Peg\",\"Gig\",\"Chm\",\"Cyc\",\"Sph\",\"Syl\",\"Har\",\"Gri\",\"Moy\",\"Sat\",\"Dry\",\"Kra\",\"Min\"],\"need_refresh_stack\":false},\"fight\":{\"army\":{\"fight\":false,\"attacker\":{\"retreat_way\":false,\"island\":0,\"player\":0,\"units\":0},\"deffender\":{\"retreat_way\":false,\"fortress\":0,\"island\":0,\"player\":0,\"units\":0}},\"navy\":{\"fight\":false,\"last_coords\":[-1,-1],\"deffender\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0},\"move\":0,\"attacker\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0}}},\"markers\":{\"income\":[3,2,3,3,2],\"philosopher\":[0,-4,0,0,0],\"priest\":[0,0,1,0,1],\"gold\":[10,3,7,6,1]},\"map\":{\"islands\":{\"horn\":[2,0,2,1,1,2,1,2,0,0,2,0,0],\"is_metro\":[false,true,false,false,false,false,false,false,false,false,false,false,false],\"coords\":[[[3,0],[4,1]],[[0,1],[1,1],[0,2],[1,2]],[[3,3],[4,4]],[[5,3],[6,3]],[[8,3],[8,4]],[[1,4]],[[3,5],[3,6]],[[6,5]],[[0,6],[0,7],[1,7]],[[9,6],[8,7],[7,8],[6,9]],[[6,7]],[[2,8],[1,9],[2,9]],[[4,8],[4,9],[4,10]]],\"owners\":[0,1,2,3,3,4,4,1,3,4,-1,0,2],\"buildings\":[[\"M\",\"\"],[\"\",\"\",\"\",\"\"],[\"P\",\"\"],[\"P\",\"\"],[\"\",\"M\"],[\"\"],[\"\",\"\"],[\"\"],[\"\",\"\"],[\"P\",\"Z\",\"M\",\"\"],[\"\"],[\"\",\"\",\"\"],[\"\",\"Z\",\"\"]],\"army\":[1,1,1,1,0,0,1,1,1,1,0,1,1]},\"size_x\":6,\"size_y\":6,\"seas\":{\"horns\":[[0,0],[5,0],[0,5],[10,5],[0,10],[5,10]],\"ships\":{\"coords\":[[5,2],[0,10],[2,1],[6,4],[4,5],[5,10],[7,3],[0,5],[2,5],[8,6],[4,3]],\"owners\":[0,0,1,1,2,2,3,3,4,4,2]}}},\"auction\":{\"start_order\":[2,4,1,0,3],\"player_order\":[4,2],\"gods_order\":[\"P\",\"M\",\"S\",\"Z\",\"A\"],\"bets\":[[0,0,2,0,0],[0,0,0,0,1],[0,1,0,0,0],[1,0,0,0,0],[0,0,0,1,0]],\"current_player\":3},\"cur_state\":\"Turn.Turn\",\"creatures\":{\"Polypheme\":{\"island\":-1,\"player\":-1},\"Gorgon\":{\"island\":-1,\"player\":-1},\"Kraken\":{\"coords\":[-1,-1]},\"Chiron\":{\"island\":-1,\"player\":-1},\"Minotaur\":{\"island\":-1,\"player\":-1}}}"},
 		{"3", "{\"random_seed\":0,\"players_number\":5,\"turn\":{\"Zeus\":{\"buyPriestByTurn\":0},\"Appolo\":{\"getHorn\":0},\"player_order\":[1,2],\"Mars\":{\"buyArmyByTurn\":0},\"current_god\":\"S\",\"current_player\":4,\"Sophia\":{\"buyPhilosopherByTurn\":0},\"Poseidon\":{\"buyNavyByTurn\":0}},\"counter\":699,\"cards\":{\"trash\":[\"Pol\",\"Gor\"],\"open_card_number\":-1,\"open\":[\"Kra\",\"Min\",\"Chr\"],\"stack\":[\"Mer\",\"Peg\",\"Gig\",\"Chm\",\"Cyc\",\"Sph\",\"Syl\",\"Har\",\"Gri\",\"Moy\",\"Sat\",\"Dry\"],\"need_refresh_stack\":false},\"fight\":{\"army\":{\"fight\":false,\"attacker\":{\"retreat_way\":false,\"island\":0,\"player\":0,\"units\":0},\"deffender\":{\"retreat_way\":false,\"fortress\":0,\"island\":0,\"player\":0,\"units\":0}},\"navy\":{\"fight\":false,\"last_coords\":[-1,-1],\"deffender\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0},\"move\":0,\"attacker\":{\"retreat_way\":false,\"marines\":0,\"coords\":[],\"player\":0,\"units\":0}}},\"markers\":{\"income\":[3,2,4,4,3],\"philosopher\":[0,-4,0,2,0],\"priest\":[1,0,1,0,2],\"gold\":[12,4,15,7,3]},\"map\":{\"islands\":{\"horn\":[2,0,3,2,1,2,1,2,0,0,2,0,0],\"is_metro\":[false,true,false,false,false,false,false,false,false,false,false,false,false],\"coords\":[[[3,0],[4,1]],[[0,1],[1,1],[0,2],[1,2]],[[3,3],[4,4]],[[5,3],[6,3]],[[8,3],[8,4]],[[1,4]],[[3,5],[3,6]],[[6,5]],[[0,6],[0,7],[1,7]],[[9,6],[8,7],[7,8],[6,9]],[[6,7]],[[2,8],[1,9],[2,9]],[[4,8],[4,9],[4,10]]],\"owners\":[0,1,2,3,3,4,4,1,3,4,-1,0,2],\"buildings\":[[\"M\",\"Z\"],[\"\",\"\",\"\",\"\"],[\"P\",\"\"],[\"P\",\"\"],[\"S\",\"M\"],[\"\"],[\"\",\"Z\"],[\"\"],[\"\",\"\"],[\"P\",\"Z\",\"M\",\"\"],[\"\"],[\"\",\"\",\"\"],[\"\",\"Z\",\"\"]],\"army\":[1,1,1,1,0,0,1,1,1,1,0,2,1]},\"size_x\":6,\"size_y\":6,\"seas\":{\"horns\":[[0,0],[5,0],[0,5],[10,5],[0,10],[5,10]],\"ships\":{\"coords\":[[5,2],[0,10],[2,1],[6,4],[4,5],[5,10],[7,3],[0,5],[2,5],[8,6],[4,3],[6,6]],\"owners\":[0,0,1,1,2,2,3,3,4,4,2,1]}}},\"auction\":{\"start_order\":[2,4,3,0,1],\"player_order\":[0,3],\"gods_order\":[\"P\",\"M\",\"S\",\"Z\",\"A\"],\"bets\":[[0,0,0,1,0],[1,0,0,0,0],[0,0,0,0,1],[0,1,0,0,0],[0,0,2,0,0]],\"current_player\":1},\"cur_state\":\"Turn.Turn\",\"creatures\":{\"Polypheme\":{\"island\":-1,\"player\":-1},\"Gorgon\":{\"island\":-1,\"player\":-1},\"Kraken\":{\"coords\":[-1,-1]},\"Chiron\":{\"island\":-1,\"player\":-1},\"Minotaur\":{\"island\":-1,\"player\":-1}}}"},
@@ -18,18 +17,27 @@ public class InManager : Manager<InManager> {
 
 	public GameObject rootUI;
 
-	Dictionary<string, IContextGet> _test_contexts = new Dictionary<string,IContextGet>();
+	bool _is_init_game_context = false;
 
 	override protected void Init() {
-		//TODO подписаться на события контекстов - для обновления
+		base.Init();
+
+		Shmipl.Base.Messenger.AddListener("UnityShmipl.UpdateView", UpdateGameData);
 	}
 
 	void Start() {
-		_LoadContextFromCash("0");
+		//_LoadContextFromCash("0");
 	}
 
 	public IContextGet GameContext {
-		get { return _test_contexts["Game"]; } 
+		get { 
+			IContextGet res;
+			if (Cyclades.Game.Client.Messanges.cur_player >= 0)
+				res = Cyclades.Program.clnts[(int)Cyclades.Game.Client.Messanges.cur_player].GetContext("Game");
+			else 
+				res = Cyclades.Program.srv.GetContext("Game"); //TODO это бред явный
+			return res; 
+		} 
 	}
 
 	public void _LoadContextFromCash(string cashNumber) {
@@ -41,29 +49,45 @@ public class InManager : Manager<InManager> {
 	}
 
 	public void _LoadContextFromText(string text) {
-		bool newContext = !_test_contexts.ContainsKey("Game");
-		if (newContext) {
-			_test_contexts["Game"] = new Context();
+		Cyclades.Program.srv.Deserialize("Game", Shmipl.Base.json.loads(text));
+	}
+
+	public void UpdateGameData() {
+		lock(GameContext) {
+			if(!isContextReady(GameContext, "Game"))
+				return;
+
+			if (!_is_init_game_context) {
+				_is_init_game_context = true;
+				rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+			}
+
+			//TODO исключительно код для отладки (и то не всегда нужен)
+			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
+
+			Sh.GameState.GameContext_UpdateData();
+			rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+		}
+	}
+
+	bool isContextReady(IContextGet context, string name) {
+		if (context == null)
+			return false;
+		try {
+			if (context.Get<long>("/counter") == 0)
+				return false;
+		} catch {
+			return false;
 		}
 
-		Context c = GameContext as Context;
-		c.LoadDataFromText(text);
+		try {
+			//TODO тут используется вредная серверная функция - надо придумывать, как обходить
+			if(Cyclades.Program.srv.GetFSM(name).IsStateStable( context.GetStr("/cur_state") ))
+				return true;
+		} catch {
+			return false;
+		}
 
-		//TODO исключительно код для отладки (и то не всегда нужен)
-		Sh.GameState.currentUser = (int)Library.GetCurrentPlayer(GameContext);
-
-		if (newContext)
-			rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
-
-		rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
-		Sh.GameState.GameContext_UpdateData();
+		return true;
 	}
-
-	public void UpdateData() {
-		//TODO тут можно проанализировать - есть ли данные, если есть то подготовлены ли для рассылки (FSM) и т.д.
-		//залочить данные 
-		//рассылка
-		rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
-	}
-
 }
