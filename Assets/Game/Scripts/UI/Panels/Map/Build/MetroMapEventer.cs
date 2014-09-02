@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class MetroMapEventer: IslandClickMapEventer {
 
@@ -25,7 +26,7 @@ class MetroMapEventer: IslandClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
-		Sh.Out.Send("build Metro on " + island); //TODO слоты уничтожаемых зданий
+		Sh.Out.Send(Messanges.PlaceMetro4Buildings(island, new List<object>())); //TODO слоты уничтожаемых зданий //TODO - два вида покупки метрополии - по зданиям и философам
 		mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIMapMoveShipPanel: UIGamePanel {
 
 	#region ViewWidgets	
@@ -92,7 +94,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	#region Events
 	public void OnCancelButtonClick() {
 		if (countOfMovement < 3)
-			Sh.Out.Send ("ships movements end");
+			Sh.Out.Send (Messanges.CancelMoveNavy());
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	

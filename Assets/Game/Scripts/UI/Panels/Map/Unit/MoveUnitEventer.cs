@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class MoveUnitEventer: IslandClickMapEventer {
 	
@@ -38,7 +39,7 @@ class MoveUnitEventer: IslandClickMapEventer {
 			CalculateAllowedIslandsTo();
 			HighlightIslands(true);
 		} else {
-			Sh.Out.Send("move unit from island " + fromIsland + " to " + island + " " + panel.activeUnitCount + " units");
+			Sh.Out.Send(Messanges.MoveArmy(fromIsland, island, panel.activeUnitCount));
 			Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 		}
 	}

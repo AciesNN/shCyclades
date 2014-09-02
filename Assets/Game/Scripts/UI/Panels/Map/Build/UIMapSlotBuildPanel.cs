@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIMapSlotBuildPanel: UIGamePanel {
 
 	#region ViewWidgets
@@ -44,7 +46,7 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 
 	#region Events
 	void OnSlotClick(int slot) {
-		Sh.Out.Send("build on island " + activeIsland + " on slot " + slot);
+		Sh.Out.Send(Messanges.BuyBuild(activeIsland, slot));
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 

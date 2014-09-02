@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Cyclades.Game.Client;
+
 public class UIBuyCardPanel : UIGamePanel {
 
 	#region ViewWidgets
@@ -30,7 +32,7 @@ public class UIBuyCardPanel : UIGamePanel {
 
 	#region Events
 	public void OnPressOKButton() {
-		Sh.Out.Send("buy card from slot " + slot);
+		Sh.Out.Send(Messanges.BuyCard(slot));
 		UIGamePanel.CloseActivePanel();
 	}
 

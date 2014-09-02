@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIGodMarsPanel : UIGamePanel {
 	
 	#region ViewWidgets
@@ -28,7 +30,7 @@ public class UIGodMarsPanel : UIGamePanel {
 	}
 
 	public void OnEndTurn() {
-		Sh.Out.Send("end turn");
+		Sh.Out.Send(Messanges.EndPlayerTurn());
 	}
 
 	public void OnBuyUnitsClick() {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 public class UIAuctionInfo : UIGamePanel {
 
@@ -60,7 +61,7 @@ public class UIAuctionInfo : UIGamePanel {
 	public void OnBetPanelClose(ModelPanelCloseResult res) {
 		UIAuctionPanel panel = UIGamePanel.GetPanel<UIAuctionPanel>(PanelType.AUCTION_PANEL);
 		if (res == ModelPanelCloseResult.OK)
-			Sh.Out.Send("make bet " + panel.CurrentBet + "; god: <" + panel.GodName + ">");
+			Sh.Out.Send(Messanges.MakeBet(panel.CurrentBet, panel.GodName));
 	}
 
 	public void OnConreteAuctionGodClick(int number) {

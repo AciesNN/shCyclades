@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIGodAppoloPanel : UIGamePanel {
 
 	public void OnPlaceHorn() {
-		Debug.Log("buy unit");
+		Debug.Log("buy horn");
 	}
 
 	public void OnEndTurn() {
-		Sh.Out.Send("end turn");
+		Sh.Out.Send(Messanges.EndPlayerTurn());
 	}
 }

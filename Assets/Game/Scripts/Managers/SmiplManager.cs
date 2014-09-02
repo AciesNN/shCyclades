@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SmiplManager : Manager<SmiplManager> {
 
+	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
+
 	protected override void Init ()	{		
 		base.Init ();
 

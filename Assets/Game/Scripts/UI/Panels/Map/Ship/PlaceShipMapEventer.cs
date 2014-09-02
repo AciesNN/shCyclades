@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class PlaceShipMapEventer: SeaClickMapEventer {
 
@@ -33,7 +34,7 @@ class PlaceShipMapEventer: SeaClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
-		Sh.Out.Send("place ship on cell " + cell);
+		Sh.Out.Send(Messanges.BuyNavy(cell.x, cell.y));
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

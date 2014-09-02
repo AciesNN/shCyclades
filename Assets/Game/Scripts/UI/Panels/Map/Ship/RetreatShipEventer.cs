@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class RetreatShipEventer: SeaClickMapEventer {
 	
@@ -28,7 +29,7 @@ class RetreatShipEventer: SeaClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
-		Sh.Out.Send("retreat ships to cell" + cell);
+		Sh.Out.Send(Messanges.PassFightNavy(cell.x, cell.y));
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

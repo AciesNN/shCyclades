@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class PlaceUnitMapEventer : IslandClickMapEventer {
 
@@ -21,7 +22,7 @@ class PlaceUnitMapEventer : IslandClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
-		Sh.Out.Send("place unit on island " + island);
+		Sh.Out.Send(Messanges.BuyArmy(island));
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class RetreatUnitEventer: IslandClickMapEventer {
 	
@@ -28,7 +29,7 @@ class RetreatUnitEventer: IslandClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
-		Sh.Out.Send("retreat units to island " + island);
+		Sh.Out.Send(Messanges.PassFightArmy(island));
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

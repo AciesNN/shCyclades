@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Cyclades.Game.Client;
+
 public class UIBattlePanel : UIGamePanel {
 
 	#region ViewWidgets
@@ -86,7 +88,7 @@ public class UIBattlePanel : UIGamePanel {
 	}
 
 	public void OnMoveButtleOnClick(bool isAttack) {
-		Sh.Out.Send("move battle on " + (isAttack ? "attacker": "deffender"));
+		Sh.Out.Send(Messanges.Fight());
 	}
 
 	string GetDataPath(bool isAttacker) {

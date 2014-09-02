@@ -50,6 +50,7 @@ public class InManager : Manager<InManager> {
 
 	public void _LoadContextFromText(string text) {
 		Cyclades.Program.srv.Deserialize("Game", Shmipl.Base.json.loads(text));
+		UpdateGameData();
 	}
 
 	public void UpdateGameData() {

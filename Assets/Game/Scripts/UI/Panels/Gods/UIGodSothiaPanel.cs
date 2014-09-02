@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIGodSothiaPanel : UIGamePanel {
 	
 	public void OnManClick() {
@@ -11,6 +13,6 @@ public class UIGodSothiaPanel : UIGamePanel {
 	}
 
 	public void OnEndTurn() {
-		Sh.Out.Send("end turn");
+		Sh.Out.Send(Messanges.EndPlayerTurn());
 	}
 }

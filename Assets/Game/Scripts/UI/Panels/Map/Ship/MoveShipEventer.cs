@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class MoveShipEventer: SeaClickMapEventer {
 	
-	GridPosition lastSeaCell;
+	GridPosition lastSeaCell; //TODO это надо брать из контекста, а не кешировать
 	UIMapMoveShipPanel panel;
 
 	#region Events
@@ -41,11 +42,13 @@ class MoveShipEventer: SeaClickMapEventer {
 			CalculateAllowedCellsTo();
 			HighlightSeaCells(true);
 		} else {
-			Sh.Out.Send("move unit from island (" + lastSeaCell + ") -> (" + cell + ")            " + panel.activeUnitCount + " units");
+			if (panel.CountOfMovement == 3)
+				Sh.Out.Send(Messanges.StartMoveNavy());
+			Sh.Out.Send(Messanges.MoveNavy(lastSeaCell.x, lastSeaCell.y, cell.x, cell.y, panel.activeUnitCount));;
 			lastSeaCell = cell;
 			--panel.CountOfMovement;
 			if (panel.CountOfMovement == 0) {
-				Sh.Out.Send ("ships movements end");
+				Sh.Out.Send (Messanges.CancelMoveNavy());
 				Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 			} else {
 				HighlightSeaCells(false);

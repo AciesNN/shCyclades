@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game.Client;
+
 public class UIGodZeusPanel : UIGamePanel {
 	
 	public void OnBuildClick() {
@@ -14,6 +16,6 @@ public class UIGodZeusPanel : UIGamePanel {
 	}
 	
 	public void OnEndTurn() {
-		Sh.Out.Send("end turn");
+		Sh.Out.Send(Messanges.EndPlayerTurn());
 	}
 }
