@@ -42,7 +42,7 @@ public class SmiplManager : Manager<SmiplManager> {
 	}
 	
 	private void OnError(object to, Hashtable msg) {
-		NGUIDebug.Log("\tERROR: " + Shmipl.Base.json.dumps(msg));
+		Shmipl.Base.ThreadSafeMessenger.SendEvent(() => NGUIDebug.Log("\tERROR: " + Shmipl.Base.json.dumps(msg)));
 	}
 	
 	private void OnAddContext(object to, string fsm_name) {

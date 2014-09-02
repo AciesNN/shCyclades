@@ -29,6 +29,7 @@ public abstract class Manager <T> : MonoBehaviour where T : Manager <T> {
 		GameObject go = new GameObject();
 		go.name = typeof(T).Name;
 		manager = (T) go.AddComponent(typeof(T));
+		Debug.LogError("Create new manager " + go.name);
 	}
 	
 	/**

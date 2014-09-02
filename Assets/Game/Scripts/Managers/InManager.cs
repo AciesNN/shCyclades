@@ -55,6 +55,7 @@ public class InManager : Manager<InManager> {
 
 	public void UpdateGameData() {
 		lock(GameContext) {
+			//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
 			if(!isContextReady(GameContext, "Game"))
 				return;
 
@@ -63,14 +64,15 @@ public class InManager : Manager<InManager> {
 				rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
 			}
 
-			//TODO исключительно код для отладки (и то не всегда нужен)
-			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
-
 			Sh.GameState.GameContext_UpdateData();
 			rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
 		}
-	}
+		//Debug.Log ("--------------- lock ----------------------");
 
+		//TODO исключительно код для отладки (и то не всегда нужен)
+		Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
+	}
+	
 	bool isContextReady(IContextGet context, string name) {
 		if (context == null)
 			return false;
@@ -84,8 +86,8 @@ public class InManager : Manager<InManager> {
 		try {
 			//TODO тут используется вредная серверная функция - надо придумывать, как обходить
 			string cur_state = context.GetStr("/cur_state");
-			if(Cyclades.Program.srv.GetFSM(name).IsStateStable( cur_state ))
-				return true;
+			if(!Cyclades.Program.srv.GetFSM(name).IsStateStable( cur_state ))
+				return false;
 		} catch {
 			return false;
 		}

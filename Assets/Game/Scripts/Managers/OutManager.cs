@@ -9,5 +9,5 @@ public class OutManager : Manager<OutManager> {
 		//NGUIDebug.Log(msg);
 		Cyclades.Program.SendToSrv(msg);
 	}
-		
+
 }

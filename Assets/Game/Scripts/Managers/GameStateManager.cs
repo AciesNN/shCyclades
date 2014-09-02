@@ -30,7 +30,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	protected override void Init() {
 		base.Init ();
 
-		currentUser = -1;
+		currentUser = 0;
 	}
 
 	public void SetAuctionState() {

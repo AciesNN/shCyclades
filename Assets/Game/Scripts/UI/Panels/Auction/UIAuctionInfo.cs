@@ -39,8 +39,13 @@ public class UIAuctionInfo : UIGamePanel {
 			int player = Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, i);
 			if (player == -1)
 				w.SetBet(0);
-			else
-				w.SetBet((int)Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player));
+			else {
+				int bet = (int)Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player);
+				if (bet < 0)
+					w.SetBet(0);
+				else
+					w.SetBet(bet);
+			}
 		}
 	}
 	#endregion
@@ -69,8 +74,8 @@ public class UIAuctionInfo : UIGamePanel {
 
 		panel.MinBet = 0;
 		panel.MaxBet = 10;
-		panel.GodName = Cyclades.Game.Constants.godMars;
-		panel.CurrentBet = number;
+		panel.GodName = Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", number);
+		panel.CurrentBet = panel.MinBet;
 
 		UIGamePanel.ShowPanel(PanelType.AUCTION_PANEL, this);
 	}
