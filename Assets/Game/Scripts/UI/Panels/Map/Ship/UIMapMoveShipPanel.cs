@@ -38,8 +38,12 @@ public class UIMapMoveShipPanel: UIGamePanel {
 
 	public void SetUnitActive(int number, bool active) {
 
-		if (isActiveUnit[number] != active)
-			activeUnitCount += (active ? +1 : -1);
+		if (isActiveUnit[number] != active) {
+			int d_ac = (active ? +1 : -1);
+			if (activeUnitCount == 1 && d_ac == -1) //we can't move 0 ships
+				return;
+			activeUnitCount += d_ac;
+		}
 		isActiveUnit[number] = active;
 		units[number].color = (active ? Color.white : Color.black);
 

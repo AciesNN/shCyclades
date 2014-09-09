@@ -16,7 +16,7 @@ class MoveShipEventer: SeaClickMapEventer {
 		lastSeaCell = new GridPosition(-1, -1);
 
 		panel = UIMapMoveShipPanel.GetPanel<UIMapMoveShipPanel>(PanelType.MAP_TAB_MOVE_SHIP);
-		panel.CountOfMovement = 3;
+		panel.CountOfMovement = (int)Cyclades.Game.Constants.navyMove;
 		panel.ReInit();
 		panel.SetDescription(lastSeaCell);
 		panel.SetUnitsVisible(false);
@@ -35,20 +35,21 @@ class MoveShipEventer: SeaClickMapEventer {
 			lastSeaCell = cell;
 			panel.SetDescription(lastSeaCell);
 			panel.SetUnitsVisible(true);
-			panel.SetUnitMaxCount(3);
+			panel.SetUnitMaxCount( Library.Map_GetShipCountByPoint(Sh.In.GameContext, cell.x, cell.y) );
 			panel.SetUnitActiveCount(1);
 
 			HighlightSeaCells(false);
 			CalculateAllowedCellsTo();
 			HighlightSeaCells(true);
 		} else {
-			if (panel.CountOfMovement == 3)
+			if (panel.CountOfMovement == Cyclades.Game.Constants.navyMove)
 				Sh.Out.Send(Messanges.StartMoveNavy());
 			Sh.Out.Send(Messanges.MoveNavy(lastSeaCell.x, lastSeaCell.y, cell.x, cell.y, panel.activeUnitCount));;
 			lastSeaCell = cell;
+			panel.SetUnitMaxCount( Library.Map_GetShipCountByPoint(Sh.In.GameContext, cell.x, cell.y) );
 			--panel.CountOfMovement;
 			if (panel.CountOfMovement == 0) {
-				Sh.Out.Send (Messanges.CancelMoveNavy());
+				//Sh.Out.Send (Messanges.CancelMoveNavy());
 				Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 			} else {
 				HighlightSeaCells(false);

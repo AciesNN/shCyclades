@@ -58,11 +58,13 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void OnDataSave() {
+		string text = Sh.In._gameContext.ToString();
 		#if UNITY_WEBPLAYER
-		Sh.In._testDataCash[loadFileName.text] = Sh.In._gameContext.ToString();
+		Sh.In._testDataCash[loadFileName.text] = text;
 		#else
 		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
-		System.IO.File.WriteAllText(path, Sh.In._gameContext.ToString());
+		System.IO.File.WriteAllText(path, text);
+		Debug.Log (text);
 		#endif
 	}
 	#endregion
