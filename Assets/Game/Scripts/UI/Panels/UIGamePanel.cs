@@ -99,7 +99,8 @@ public class UIGamePanel : MonoBehaviour {
 	}
 
 	public static void CloseActivePanel(string methodName, ModelPanelCloseResult result) {
-		parentPanel.SendMessage(methodName, result);
+		if (parentPanel)
+			parentPanel.SendMessage(methodName, result);
 		CloseActivePanel();
 	}
 

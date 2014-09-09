@@ -41,7 +41,8 @@ public enum MapEventerType {
 	MOVESHIP,
 	PLACEMETRO,
 	RETREATSHIP,
-	RETREATUNIT
+	RETREATUNIT,
+	PLACEHORN
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }

@@ -6,7 +6,7 @@ using Cyclades.Game.Client;
 public class UIGodAppoloPanel : UIGamePanel {
 
 	public void OnPlaceHorn() {
-		Debug.Log("buy horn");
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEHORN);
 	}
 
 	public void OnEndTurn() {
