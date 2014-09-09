@@ -15,7 +15,9 @@ public class UIUserInfoWidget : MonoBehaviour {
 
 	#region ViewWidgetsSet
 	public void SetUser(int userNumber) {
-		UserNumberLabel.text = "" + userNumber;
+		UserNumberLabel.text = "";
+		if (userNumber >=0 )
+			UserNumberLabel.text = "" + userNumber;
 		UserColorSprite.color = UIConsts.userColors[userNumber];
 	}
 

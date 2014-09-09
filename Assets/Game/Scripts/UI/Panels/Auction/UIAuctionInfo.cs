@@ -70,14 +70,30 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 
 	public void OnConreteAuctionGodClick(int number) {
+		if (number == Library.Auction_GetCurrentGodBetForPlayer(Sh.In.GameContext, Sh.GameState.currentUser))
+			return;
+
 		UIAuctionPanel panel = UIGamePanel.GetPanel<UIAuctionPanel>(PanelType.AUCTION_PANEL);
 
-		panel.MinBet = 0;
-		panel.MaxBet = 10;
-		panel.GodName = Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", number);
-		panel.CurrentBet = panel.MinBet;
+		if (number < players_number-1) { // not appolon
+			int player = Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, number);
+			if (player >= 0)
+				panel.MinBet = Sh.In.GameContext.GetInt("/auction/bets/[{0}]/[{1}]", number, player);
+			else
+				panel.MinBet = 0;
+			panel.MaxBet = Sh.In.GameContext.GetInt("/markers/gold/[{0}]", Sh.GameState.currentUser) + Sh.In.GameContext.GetInt("/markers/priest/[{0}]", Sh.GameState.currentUser);
+		} else { //Appolo
+			int bet = Library.Auction_GetAllOrderBetPlayersForGod(Sh.In.GameContext, number).Count + 1;
+			panel.MinBet = bet;
+			panel.MaxBet = bet;
+		}
 
-		UIGamePanel.ShowPanel(PanelType.AUCTION_PANEL, this);
+		if (panel.MaxBet >= panel.MinBet) {
+			panel.GodName = Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", number);
+			panel.CurrentBet = panel.MinBet;
+
+			UIGamePanel.ShowPanel(PanelType.AUCTION_PANEL, this);
+		}
 	}
 	#endregion
 }
