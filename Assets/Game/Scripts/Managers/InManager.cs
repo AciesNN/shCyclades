@@ -22,7 +22,7 @@ public class InManager : Manager<InManager> {
 	override protected void Init() {
 		base.Init();
 
-		Shmipl.Base.Messenger.AddListener("UnityShmipl.UpdateView", UpdateGameData);
+		Shmipl.Base.Messenger<Hashtable, bool>.AddListener("UnityShmipl.UpdateView", UpdateGameData);
 	}
 
 	void Start() {
@@ -51,27 +51,35 @@ public class InManager : Manager<InManager> {
 	public void _LoadContextFromText(string text) {
 		Hashtable msg = Shmipl.Base.json.loads(text);
 		Cyclades.Program.srv.Deserialize("Game", msg);
-		UpdateGameData();
+		UpdateGameData(null, true);
 	}
 
-	public void UpdateGameData() {
-		lock(GameContext) {
-			//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
-			if(!isContextReady(GameContext, "Game"))
-				return;
+	public void UpdateGameData(Hashtable msg, bool deserialize) {
+		//будем обновлять в двух случаях: это десериализация, или это установка стабильного состояния 
+		if (deserialize
+		    ||
+		    msg.ContainsKey("macros") && (string)msg["macros"] == "SET"
+		    && msg.ContainsKey("path") && (string)msg["path"] == "/cur_state"
+		    && msg.ContainsKey("stable") && (bool)msg["stable"]) {
 
-			if (!_is_init_game_context) {
-				_is_init_game_context = true;
-				rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+			lock(GameContext) {
+				//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
+				if(!isContextReady(GameContext, "Game"))
+					return;
+
+				if (!_is_init_game_context) {
+					_is_init_game_context = true;
+					rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+				}
+
+				Sh.GameState.GameContext_UpdateData();
+				rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
 			}
+			//Debug.Log ("--------------- lock ----------------------");
 
-			Sh.GameState.GameContext_UpdateData();
-			rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+			//TODO исключительно код для отладки (и то не всегда нужен)
+			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 		}
-		//Debug.Log ("--------------- lock ----------------------");
-
-		//TODO исключительно код для отладки (и то не всегда нужен)
-		Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 	}
 	
 	bool isContextReady(IContextGet context, string name) {
