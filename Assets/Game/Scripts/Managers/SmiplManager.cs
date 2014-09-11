@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,10 +18,14 @@ public class SmiplManager : Manager<SmiplManager> {
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 
-		Shmipl.Base.Log.PrintDebug = Debug.Log;
+		#if UNITY_WEBPLAYER
+			Shmipl.Base.Log.inFile = false;
+			Shmipl.Base.Log.inConsole = false;
+		#else
+			Shmipl.Base.Log.PrintDebug = Debug.Log;
+		#endif
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load (path, typeof(TextAsset))).text;
 		Cyclades.Program.Start();
-		//Cyclades.Program.srv
 	}
 
 	void OnDestroy() {
