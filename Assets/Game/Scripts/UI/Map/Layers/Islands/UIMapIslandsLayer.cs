@@ -25,13 +25,29 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 	}
 
 	void CreateIsland(int island) {
+
 		GridPosition[] points = islandsCells[island];
-		int owner = Sh.In.GameContext.GetInt("/map/islands/owners/[{0}]", island);
 		foreach(GridPosition pos in points) {
 			UIMapIslandElement islandElement = CreateElement<UIMapIslandElement>(pos);
-			islandElement.SetOwner(owner);
 			//тут можно что-нибудь сделать с конкретным элементом, типа настроить картинку
 		}
+
+	}
+
+	public void GameContext_UpdateData() {
+
+		List<object> islands = Sh.In.GameContext.GetList ("/map/islands/coords");
+		for(int i = 0; i < islands.Count; ++i) {
+
+			GridPosition[] points = islandsCells[i];
+			int owner = Sh.In.GameContext.GetInt("/map/islands/owners/[{0}]", i);
+
+			foreach(GridPosition pos in points) {
+				UIMapIslandElement islandElement = CreateElement<UIMapIslandElement>(pos);
+				islandElement.SetOwner(owner);
+			}
+		}
+
 	}
 
 	public void HiglightIsland(int island, bool isHighlight) {
