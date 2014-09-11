@@ -1,0 +1,164 @@
+0	None	None	GameInit	Auction.0
+
+
+
+
+######################	АУКЦИОН ###########################################
+Auction.0	None	None	Auction_Init	Auction.PreBet
+
+Auction.PreBet	None	None	Auction_PreBet	Auction.Bet
+
+Auction.Bet	MakeBet	Test_Auction_MakeBet	Auction_MakeBet	Auction.PostBet
+
+Auction.PostBet	None	Test_Auction_Ending	Auction_Ending	Auction.-1
+Auction.PostBet	None	None	None	Auction.PreBet
+
+Auction.-1	None	None	None	Turn.0
+
+
+
+
+######################	ХОД      ###########################################
+Turn.0	None	None	Turn_PreTurn	Turn.PreTurn
+
+Turn.PreTurn	None	None	Turn_PrePlayerTurn	Turn.Turn
+
+Turn.ReInitTurn	None	None	Turn_ReInitTurn	Turn.Turn
+
+#философы и метрополия
+Turn.Turn	BuyPhilosopher	Test_Turn_BuyPhilosopher	Turn_BuyPhilosopher	Turn.PostBuyPhilosopher
+Turn.PostBuyPhilosopher	None	Test_Turn_BuyMetro4Philosopher	Turn_BuyMetro4Philosopher	Turn.PrePlaceMetroPhilosopher
+Turn.PostBuyPhilosopher	None	None	None	Turn.Turn
+Turn.PrePlaceMetroPhilosopher	None	Test_Turn_PrePlaceMetro	None	Turn.PlaceMetroPhilosopher
+Turn.PrePlaceMetroPhilosopher	None	None	None	Turn.Turn
+Turn.PlaceMetroPhilosopher	PlaceMetro4Philosopher	Test_Turn_PlaceMetro4Philosopher	Turn_PlaceMetro4Philosopher	Turn.ReInitTurn
+
+
+#здания и метрополии
+Turn.Turn	BuyBuild	Test_Turn_BuyBuild	Turn_BuyBuild	Turn.PostPlaceBuilding	#Turn.PlaceBuild
+#Turn.PlaceBuild	PlaceBuilding	Test_Turn_PlaceBuilding	Turn_PlaceBuilding	Turn.PostPlaceBuilding
+Turn.PostPlaceBuilding	None	Test_Turn_BuyMetro4Buildings	None	Turn.PlaceMetroBuilding
+Turn.PostPlaceBuilding	None	None	None	Turn.Turn
+Turn.PlaceMetroBuilding	PlaceMetro4Buildings	Test_Turn_PlaceMetro4Buildings	Turn_PlaceMetro4Buildings	Turn.ReInitTurn
+
+
+#покупки и расстановки
+Turn.Turn	BuyPriest	Test_Turn_BuyPriest	Turn_BuyPriest	Turn.Turn
+
+Turn.Turn	ChangeCard	Test_Turn_Card_ChangeCard	Turn_Card_ChangeCard	Turn.Turn
+
+Turn.Turn	BuyArmy	Test_Turn_BuyArmy	Turn_BuyArmy	Turn.Turn	#Turn.PlaceArmy
+#Turn.PlaceArmy	PlaceArmy	Test_Turn_PlaceArmy	Turn_PlaceArmy	Turn.Turn
+
+Turn.Turn	BuyNavy	Test_Turn_BuyNavy	Turn_BuyNavy	Turn.Turn	#Turn.PlaceNavy
+#Turn.PlaceNavy	PlaceNavy	Test_Turn_PlaceNavy	Turn_PlaceNavy	Turn.Turn
+
+Turn.Turn	PlaceHorn	Test_Turn_PlaceHorn	Turn_PlaceHorn	Turn.Turn
+
+
+#передвижение и бой армии
+Turn.Turn	MoveArmy	Test_Turn_MoveArmy	Turn_MoveArmy	Turn.Fight.PreFightArmy
+Turn.Fight.PreFightArmy	None	Test_Turn_Fight_NoArmyFight	None	Turn.ReInitTurn
+Turn.Fight.PreFightArmy	None	None	None	Turn.Fight.FightArmy
+Turn.Fight.FightArmy	None	None	Turn_Fight_FightArmy	Turn.Fight.PostFightArmy
+Turn.Fight.PostFightArmy	None	Test_Turn_Fight_EndArmyFight	Turn_Fight_EndArmyFight	Turn.ReInitTurn
+Turn.Fight.PostFightArmy	None	None	None	Turn.Fight.PreWaitArmyDeffender
+Turn.Fight.PreWaitArmyDeffender	None	Test_Turn_FightDeffenderArmyCanRetreat	None	Turn.Fight.ArmyWaitDeffender
+Turn.Fight.PreWaitArmyDeffender	None	None	None	Turn.Fight.PreWaitArmyAttacker
+Turn.Fight.ArmyWaitDeffender	Fight	Test_Turn_Fight_ArmyDeffenderFight	None	Turn.Fight.PreWaitArmyAttacker
+Turn.Fight.ArmyWaitDeffender	PassFight	Test_Turn_Fight_ArmyDeffenderPassFight	Turn_Fight_ArmyDeffenderPassFight	Turn.Fight.PostFightArmy
+Turn.Fight.PreWaitArmyAttacker	None	Test_Turn_FightAttackerArmyCanRetreat	None	Turn.Fight.ArmyWaitAttacker
+Turn.Fight.PreWaitArmyDeffender	None	None	None	Turn.Fight.FightArmy
+Turn.Fight.ArmyWaitAttacker	Fight	Test_Turn_Fight_ArmyAttackerFight	None	Turn.Fight.FightArmy
+Turn.Fight.ArmyWaitAttacker	PassFight	Test_Turn_Fight_ArmyAttackerPassFight	Turn_Fight_ArmyAttackerPassFight	Turn.Fight.PostFightArmy
+
+#передвижение и бой флота
+Turn.Turn	StartMoveNavy	Test_Turn_StartMoveNavy	Turn_StartMoveNavy	Turn.MoveNavy
+Turn.MoveNavy	CancelMoveNavy	Test_Turn_CancelMoveNavy	None	Turn.ReInitTurn
+Turn.MoveNavy	MoveNavy	Test_Turn_MoveNavy	Turn_MoveNavy	Turn.Fight.PreFightNavy
+Turn.Fight.PreFightNavy	None	Test_Turn_Fight_NoNavyFight	None	Turn.PostMoveNavy
+Turn.PostMoveNavy	None	Test_Turn_EndNavyMove	None	Turn.ReInitTurn
+Turn.PostMoveNavy	None	None	None	Turn.MoveNavy
+Turn.Fight.PreFightNavy	None	None	None	Turn.Fight.FightNavy
+Turn.Fight.FightNavy	None	None	Turn_Fight_FightNavy	Turn.Fight.PostFightNavy
+Turn.Fight.PostFightNavy	None	Test_Turn_Fight_EndNavyFight	Turn_Fight_EndNavyFight	Turn.Turn
+Turn.Fight.PostFightNavy	None	None	None	Turn.Fight.PreWaitNavyDeffender
+Turn.Fight.PreWaitNavyDeffender	None	Test_Turn_FightDeffenderNavyCanRetreat	None	Turn.Fight.NavyWaitDeffender
+Turn.Fight.PreWaitNavyDeffender	None	None	None	Turn.Fight.PreWaitNavyAttacker
+Turn.Fight.NavyWaitDeffender	Fight	Test_Turn_Fight_NavyDeffenderFight	None	Turn.Fight.PreWaitNavyAttacker
+Turn.Fight.NavyWaitDeffender	PassFight	Test_Turn_Fight_NavyDeffenderPassFight	Turn_Fight_NavyDeffenderPassFight	Turn.Fight.PostFightNavy
+Turn.Fight.PreWaitNavyAttacker	None	Test_Turn_FightAttackerNavyCanRetreat	None	Turn.Fight.NavyWaitAttacker
+Turn.Fight.PreWaitNavyAttacker	None	None	None	Turn.Fight.FightNavy
+Turn.Fight.NavyWaitAttacker	Fight	Test_Turn_Fight_NavyAttackerFight	None	Turn.Fight.FightNavy
+Turn.Fight.NavyWaitAttacker	PassFight	Test_Turn_Fight_NavyAttackerPassFight	Turn_Fight_NavyAttackerPassFight	Turn.Fight.PostFightNavy
+
+
+#карты
+Turn.Turn	BuyCard	Test_Turn_Card_BuyCard	Turn_Card_BuyCard	Turn.Card.Use
+Turn.Card.Use	PassCard	Test_Turn_Card_PassCard	None	Turn.ReInitTurn
+
+#cardMermaid = "Mer";
+Turn.Card.Use	UseCardMer	Test_Turn_Card_Mer	Turn_Card_Mer	Turn.ReInitTurn
+
+#cardPegus = "Peg";
+Turn.Card.Use	UseCardPeg	Test_Turn_Card_Peg	Turn_MoveArmy	Turn.Fight.PreFightArmy
+
+#cardGigant = "Gig";
+Turn.Card.Use	UseCardGig	Test_Turn_Card_Gig	Turn_Card_Gig	Turn.ReInitTurn
+
+#cardChimera = "Chm";
+Turn.Card.Use	UseCardChm	Test_Turn_Card_Chm	Turn_Card_Chm	Turn.Card.Use
+
+#cardCyclope = "Cyc";
+Turn.Card.Use	UseCardCyc	Test_Turn_Card_Cyc	Turn_Card_Cyc	Turn.PostPlaceBuilding
+
+#cardSphinx = "Sph";
+Turn.Card.Use	UseCardSphSellArmy	Test_Turn_Card_SphSellArmy	Turn_Card_SphSellArmy	Turn.Card.Use
+Turn.Card.Use	UseCardSphSellNavy	Test_Turn_Card_SphSellNavy	Turn_Card_SphSellNavy	Turn.Card.Use
+Turn.Card.Use	UseCardSphSellPriest	Test_Turn_Card_SphSellPriest	Turn_Card_SphSellPriest	Turn.Card.Use
+Turn.Card.Use	UseCardSphSellPhilosopher	Test_Turn_Card_SphSellPhilosopher	Turn_Card_SphSellPhilosopher	Turn.Card.Use
+
+#cardSylph = "Syl";
+Turn.Card.Use	UseCardSyl	Test_Turn_Card_Syl	Turn_Card_Syl	Turn.MoveNavy
+
+#cardHarpy = "Har";
+Turn.Card.Use	UseCardHar	Test_Turn_Card_Har	Turn_Card_Har	Turn.ReInitTurn
+
+#cardGriffon = "Gri";
+Turn.Card.Use	UseCardGri	Test_Turn_Card_Gri	Turn_Card_Gri	Turn.ReInitTurn
+
+#cardMoyra = "Moy";
+Turn.Card.Use	UseCardMoy	Test_Turn_Card_Moy	Turn_Card_Moy	Turn.ReInitTurn
+
+#cardSatyr = "Sat";
+Turn.Card.Use	UseCardSat	Test_Turn_Card_Sat	Turn_Card_Sat	Turn.PostBuyPhilosopher
+
+#cardDryads = "Dry";
+Turn.Card.Use	UseCardDry	Test_Turn_Card_Dry	Turn_Card_Dry	Turn.ReInitTurn
+
+#cardKraken = "Kra";
+Turn.Card.Use	UseCardKra	Test_Turn_Card_Kra	Turn_Card_Kra	Turn.ReInitTurn
+
+#cardMinotaur = "Min";
+Turn.Card.Use	UseCardMin	Test_Turn_Card_Min	Turn_Card_Min	Turn.ReInitTurn
+
+#cardChiron = "Chr";
+Turn.Card.Use	UseCardChr	Test_Turn_Card_Chr	Turn_Card_Chr	Turn.ReInitTurn
+
+#cardGorgon = "Gor";
+Turn.Card.Use	UseCardGor	Test_Turn_Card_Gor	Turn_Card_Gor	Turn.ReInitTurn
+
+#cardPolypheme = "Pol";
+Turn.Card.Use	UseCardPol	Test_Turn_Card_Pol	Turn_Card_Pol	Turn.ReInitTurn
+
+#конец
+Turn.Turn	EndPlayerTurn	Test_Turn_EndPlayerTurn	Turn_PostTurn	Turn.PostTurn
+
+Turn.PostTurn	None	Test_Turn_EndTurn	None	Turn.-1
+Turn.PostTurn	None	None	None	Turn.PreTurn
+
+Turn.-1	None	Test_EndGame	EndGame	-1
+Turn.-1	None	None	None	Auction.0
+
+
+######################	...      ###########################################

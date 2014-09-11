@@ -1,0 +1,170 @@
+{
+	"random_seed": 0,
+	
+	"players_number": 0,
+	
+	"cards":
+	{
+		"stack": [],
+		"trash": [],
+		"open": [],
+		
+		"open_card_number": -1,
+		"need_refresh_stack": false
+	},
+	
+	"auction": 
+	{
+		"player_order": [],
+		"current_player": -1,
+		
+		"gods_order": [],
+		"bets": [],
+		
+		"start_order": []
+	},
+	
+	"markers":
+	{
+		"gold": [],
+		"priest": [],
+		"philosopher": [],
+		"income": []
+	},
+	
+	"turn":
+	{
+		"player_order": [],
+		"current_player": -1,
+		
+		"current_god": "",
+		"Mars":
+		{
+			"buyArmyByTurn": 0
+		},
+		"Poseidon":
+		{
+			"buyNavyByTurn": 0
+		},
+		"Sophia":
+		{
+			"buyPhilosopherByTurn": 0
+		},
+		"Zeus":
+		{
+			"buyPriestByTurn": 0
+		},
+		"Appolo":
+		{
+			"getHorn": 0
+		}
+	}, 
+	
+	"map":
+	{
+		"size_x": 0,
+		"size_y": 0,
+		
+		"islands":
+		{
+			"coords": [],
+			"owners": [],
+			"buildings": [],
+			"is_metro": [],
+			"horn": [],
+			"army": []
+		},
+		
+		"seas":
+		{
+			"horns": [],
+			"ships":
+			{
+				"owners": [],
+				"coords": []
+			}
+		}
+	},
+	
+	"fight":
+	{
+		"army":
+		{
+			"fight": false,
+
+			"attacker":
+			{
+				"player": 0,
+				"units": 0,
+				"island": 0,
+				"retreat_way": false
+			},
+			
+			"deffender":
+			{
+				"player": 0,
+				"units": 0,
+				"fortress": 0,
+				"island": 0,
+				"retreat_way": false
+			}
+		},
+	
+		"navy":
+		{
+			"move": 0,
+			"last_coords": [-1, -1],
+			"fight": false,
+			
+			"attacker":
+			{
+				"player": 0,
+				"units": 0,
+				"marines": 0,
+				"coords": [],
+				"retreat_way": false
+			},
+			
+			"deffender":
+			{
+				"player": 0,
+				"units": 0,
+				"marines": 0,
+				"coords": [],
+				"retreat_way": false
+			}
+		}
+	},
+	
+	"creatures":
+	{
+		"Kraken":
+		{
+			"coords": [-1, -1]
+		},
+		
+		"Minotaur":
+		{
+			"island": -1,
+			"player": -1
+		},
+		
+		"Chiron":
+		{
+			"island": -1,
+			"player": -1
+		},
+
+		"Gorgon":
+		{
+			"island": -1,
+			"player": -1
+		},
+
+		"Polypheme":
+		{
+			"island": -1,
+			"player": -1
+		}
+	}
+}
