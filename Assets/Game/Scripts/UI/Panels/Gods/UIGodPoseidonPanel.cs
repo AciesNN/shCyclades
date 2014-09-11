@@ -15,7 +15,7 @@ public class UIGodPoseidonPanel : UIGamePanel {
 	}
 
 	public void OnMoveUnitClick() {
-		Sh.GameState.mapStates.SetEventorType(MapEventerType.MOVESHIP);
+		Sh.Out.Send(Messanges.StartMoveNavy());
 	}
 
 	public void OnBuildClick() {

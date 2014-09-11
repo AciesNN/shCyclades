@@ -29,7 +29,8 @@ public class UIMapStates : MonoBehaviour {
 	}
 
 	public void SetEventorType(MapEventerType type) {
-
+		if (this.type != MapEventerType.DEFAULT && type != MapEventerType.DEFAULT) //возможно, не самое красивое решение - оно не дает всем кнопкам подряд ставить свой тип евентора, когда другой уже работает
+			return;
 		if (this.type == type)
 			return;
 		if(eventer)
@@ -52,7 +53,7 @@ public class UIMapStates : MonoBehaviour {
 	#endregion
 	
 	#region Events
-	GridPosition oldCell = new GridPosition(-1, -1); //TODO некрасиво
+	GridPosition oldCell = GridPosition.LessThanZero(); //TODO некрасиво
 
 	public void OnClickCell(GridPosition cell) {
 		//NGUIDebug.Log("press cell: " + cell);

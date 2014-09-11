@@ -18,13 +18,13 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public UIMapController mapController;
+
 	public UIGamePanelTabs AuctionTabsPanel;
 
 	public UIGamePanelTabs CardsTabsPanel;
 
 	public UIGamePanel BattlePanel;
 	
-	public MapEventerType mapEventerType;
 	public UIMapStates mapStates;
 
 	protected override void Init() {
@@ -33,7 +33,7 @@ public class GameStateManager : Manager<GameStateManager> {
 		currentUser = 0;
 	}
 
-	public void SetAuctionState() {
+	void SetAuctionState() {
 		Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
 		//TODO есть еще странная фаза
 		if (phase == Cyclades.Game.Phase.AuctionPhase) {
@@ -51,11 +51,11 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
-	public void SetCardState(bool isConcreteCard) {
+	void SetCardState(bool isConcreteCard) {
 		CardsTabsPanel.SetTab( isConcreteCard ? PanelType.CARD_TAB_INFO : PanelType.CARD_TAB_CARDS );		
 	}
 
-	public void SetBattleState() {
+	void SetBattleState() {
 		if (Sh.In.GameContext.GetBool("/fight/army/fight") || Sh.In.GameContext.GetBool("/fight/navy/fight")) {
 			BattlePanel.Show();		
 		} else {
@@ -65,7 +65,7 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
-	public void SetMetroBuildState() {
+	void SetMetroBuildState() {
 		string cur_state = Sh.In.GameContext.GetStr("/cur_state");
 		if (cur_state == "Turn.PlaceMetroPhilosopher" || cur_state == "Turn.PlaceMetroBuilding") {
 			mapStates.SetEventorType(MapEventerType.PLACEMETRO);
@@ -76,10 +76,31 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
+	void SetMapEventorType() {
+		string cur_state = Sh.In.GameContext.GetStr("/cur_state");
+		switch (cur_state) {
+			case "Turn.MoveNavy": {
+				SetMapEventorType(MapEventerType.MOVESHIP);
+				break;
+			}
+		}
+	}
+
 	public void GameContext_UpdateData () {
 		SetAuctionState();
 		SetCardState(false);
 		SetBattleState();
 		SetMetroBuildState();
+
+		SetMapEventorType();
+	}
+
+	void SetMapEventorType(MapEventerType type) {
+		if (mapStates.GetEventorType() == type)
+			return;
+		if (mapStates.GetEventorType() != MapEventerType.DEFAULT)
+			mapStates.SetEventorType(MapEventerType.DEFAULT); //todo связано с тем, что новый евентер не будет иначе принят (защита от других кнопок, которую следует удалить)
+		if(type != MapEventerType.DEFAULT)
+			mapStates.SetEventorType(type);
 	}
 }

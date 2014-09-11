@@ -43,7 +43,7 @@ abstract class SeaClickMapEventer : MapEventer {
 	}
 	
 	protected void DeHighlightAllSeaCells() {
-		HighlightSeaCell(new GridPosition(-1, -1), false);
+		HighlightSeaCell(GridPosition.LessThanZero(), false);
 	}
 
 	protected void HighlightSeaCell(GridPosition cell, bool active) {

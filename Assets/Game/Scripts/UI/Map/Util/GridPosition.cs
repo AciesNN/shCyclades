@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public struct GridPosition {
 
@@ -23,9 +24,32 @@ public struct GridPosition {
 		this.y = (int)y;
 	}
 
+	public GridPosition(List<object> coords) {
+		this.x = (int)(long)coords[0];
+		this.y = (int)(long)coords[1];
+	}
+
+	public GridPosition(List<long> coords) {
+		this.x = (int)coords[0];
+		this.y = (int)coords[1];
+	}
+
+	public GridPosition(List<int> coords) {
+		this.x = coords[0];
+		this.y = coords[1];
+	}
+
 	public GridPosition(float x, float y) {
 		this.x = (int)System.Math.Floor(x);
 		this.y = (int)System.Math.Floor(y);
+	}
+
+	public bool IsLessThanZero() {
+		return x < 0 || y < 0;
+	}
+
+	public static GridPosition LessThanZero() {
+		return new GridPosition(-1, -1);
 	}
 
 	public static GridPosition operator +(GridPosition g1, GridPosition g2)	{

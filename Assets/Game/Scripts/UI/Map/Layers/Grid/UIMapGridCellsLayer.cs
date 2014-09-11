@@ -24,7 +24,7 @@ public class UIMapGridCellsLayer : UIMapGridLayer {
 	}
 
 	public void HiglightCell(GridPosition cell, bool isHighLight) {
-		if (cell.x == -1 && cell.y == -1) {//TODO спорный момент - не очень красиво передавать -1, если надо сбросить выделение со всех
+		if (cell.IsLessThanZero()) {//TODO спорный момент - не очень красиво передавать -1, если надо сбросить выделение со всех
 			for(int x = 0; x < MapController.XSize; ++ x) {
 				for(int y = 0; y < MapController.XSize; ++ y) {
 					GridPosition c = new GridPosition(x, y);

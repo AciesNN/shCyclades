@@ -27,7 +27,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	}
 
 	public void SetDescription(GridPosition cell) {
-		DesriptionLabel.text = (cell.x == -1 && cell.y == -1 ? "Выберите свой корабль для перемещения": "Выберите соседнюю клетку моря, куда хотите переместиться (подоректируйте кол-во кораблей, ели нужно)");
+		DesriptionLabel.text = (cell.IsLessThanZero() ? "Выберите свой корабль для перемещения": "Выберите соседнюю клетку моря, куда хотите переместиться (подоректируйте кол-во кораблей, ели нужно)");
 	}
 
 	public void SetUnitMaxCount(int maxCount) {
@@ -69,7 +69,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 		get { return countOfMovement; }
 		set {
 			countOfMovement = value;
-			if (countOfMovement == 3) {
+			if (countOfMovement == 3 || countOfMovement == 0) {
 				cancelButton.enabled = true;
 				okButton.enabled = false;
 			} else {
@@ -81,7 +81,8 @@ public class UIMapMoveShipPanel: UIGamePanel {
 	}
 
 	public void SetInfoPosition(GridPosition cell) {
-		MapLayerObjects.transform.localPosition = mapController.CellToWorldPosition(cell);
+		if (cell.x != -1 && cell.y != -1)
+			MapLayerObjects.transform.localPosition = mapController.CellToWorldPosition(cell);
 	}
 	#endregion
 
