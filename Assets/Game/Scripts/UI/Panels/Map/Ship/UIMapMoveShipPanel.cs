@@ -22,8 +22,8 @@ public class UIMapMoveShipPanel: UIGamePanel {
 
 	#region ViewWidgetsSet
 	public void ReInit() {
-		activeUnitCount = 0;
 		isActiveUnit = new bool[units.Length]; //по умолчанию же все false?
+		activeUnitCount = 0;
 	}
 
 	public void SetDescription(GridPosition cell) {
@@ -40,7 +40,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 
 		if (isActiveUnit[number] != active) {
 			int d_ac = (active ? +1 : -1);
-			if (activeUnitCount == 1 && d_ac == -1) //we can't move 0 ships
+			if (activeUnitCount <= 1 && d_ac == -1) //we can't move 0 ships
 				return;
 			activeUnitCount += d_ac;
 		}
@@ -69,7 +69,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 		get { return countOfMovement; }
 		set {
 			countOfMovement = value;
-			if (countOfMovement == 3 || countOfMovement == 0) {
+			if (countOfMovement == 3) {
 				cancelButton.enabled = true;
 				okButton.enabled = false;
 			} else {
@@ -98,9 +98,7 @@ public class UIMapMoveShipPanel: UIGamePanel {
 
 	#region Events
 	public void OnCancelButtonClick() {
-		if (countOfMovement < 3)
-			Sh.Out.Send (Messanges.CancelMoveNavy());
-		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
+		Sh.Out.Send ( Messanges.CancelMoveNavy() );
 	}
 	
 	//TODO бред с отдельными ф-циями надо прекращать

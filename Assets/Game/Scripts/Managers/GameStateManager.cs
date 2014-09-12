@@ -83,6 +83,10 @@ public class GameStateManager : Manager<GameStateManager> {
 				SetMapEventorType(MapEventerType.MOVESHIP);
 				break;
 			}
+			default: {
+				SetMapEventorType(MapEventerType.DEFAULT);
+				break;
+			}
 		}
 	}
 
@@ -96,8 +100,10 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	void SetMapEventorType(MapEventerType type) {
-		if (mapStates.GetEventorType() == type)
+		if (mapStates.GetEventorType() == type) {
+			mapStates.ReActivate();
 			return;
+		}
 		if (mapStates.GetEventorType() != MapEventerType.DEFAULT)
 			mapStates.SetEventorType(MapEventerType.DEFAULT); //todo связано с тем, что новый евентер не будет иначе принят (защита от других кнопок, которую следует удалить)
 		if(type != MapEventerType.DEFAULT)

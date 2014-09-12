@@ -9,13 +9,15 @@ class MoveShipEventer: SeaClickMapEventer {
 	UIMapMoveShipPanel panel;
 	bool isFirstCall;
 	GridPosition firstCell;
+	int lastCount;
 
 	GridPosition _lastSeaCell {
-		get {
-			if (isFirstCall) {
+		get {	
+			GridPosition cell = new GridPosition( Sh.In.GameContext.GetList("/fight/navy/last_coords") );
+			if (cell.IsLessThanZero()) {
 				return firstCell;
 			} else {
-				return new GridPosition( Sh.In.GameContext.GetList("/fight/navy/last_coords") );
+				return cell;
 			}
 		}
 	}
@@ -24,20 +26,26 @@ class MoveShipEventer: SeaClickMapEventer {
 	override public void Activate() {
 		base.Activate();
 		isFirstCall = true;
+		lastCount = 1;
 		firstCell = GridPosition.LessThanZero();
 		ReInit();
+	}
+
+	override public void ReActivate() {
+		ReInit ();
 	}
 	#endregion
 
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
 		if (isFirstCall) {
+			isFirstCall = false;
 			firstCell = cell;
 			ReInit();
-			isFirstCall = false;
 		} else {
 			GridPosition lastSeaCell = _lastSeaCell;
 			Sh.Out.Send(Messanges.MoveNavy(lastSeaCell.x, lastSeaCell.y, cell.x, cell.y, panel.activeUnitCount));
+			lastCount = panel.activeUnitCount;
 		}
 	}
 	#endregion
@@ -47,14 +55,18 @@ class MoveShipEventer: SeaClickMapEventer {
 		GridPosition lastSeaCell = _lastSeaCell;
 		panel = UIMapMoveShipPanel.GetPanel<UIMapMoveShipPanel>(PanelType.MAP_TAB_MOVE_SHIP);
 
-		if (!lastSeaCell.IsLessThanZero())
-			panel.SetUnitMaxCount(Library.Map_GetShipCountByPoint(Sh.In.GameContext, lastSeaCell.x, lastSeaCell.y));
-		else
+		if (!lastSeaCell.IsLessThanZero()) {
 			panel.ReInit();
+			int max_units_count = Library.Map_GetShipCountByPoint(Sh.In.GameContext, lastSeaCell.x, lastSeaCell.y);
+			panel.SetUnitMaxCount(max_units_count);
+			
+			for (int i = 0; i < max_units_count; ++i)
+				panel.SetUnitActive(i, i < lastCount);
+		}
 
 		panel.CountOfMovement = Sh.In.GameContext.GetInt("/fight/navy/move");
 		panel.SetDescription(lastSeaCell);
-		panel.SetUnitsVisible(false);
+		panel.SetUnitsVisible(!isFirstCall);
 
 		mapStates.Panel.SetTab(PanelType.MAP_TAB_MOVE_SHIP);
 

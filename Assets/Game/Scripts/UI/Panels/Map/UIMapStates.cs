@@ -48,6 +48,9 @@ public class UIMapStates : MonoBehaviour {
 		return mapEventers[type];
 	}
 
+	public void ReActivate() {
+		eventer.ReActivate();
+	}
 	#region ViewWidgetsSet
 
 	#endregion
