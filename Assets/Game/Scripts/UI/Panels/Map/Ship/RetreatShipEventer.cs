@@ -23,13 +23,13 @@ class RetreatShipEventer: SeaClickMapEventer {
 
 	public override void Deactivate() {
 		base.Deactivate();
-		battlePanel.SetShowContextVisible(true);
 	}
 	#endregion
 
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
 		Sh.Out.Send(Messanges.PassFightNavy(cell.x, cell.y));
+		battlePanel.SetShowContextVisible(true);
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

@@ -23,13 +23,13 @@ class RetreatUnitEventer: IslandClickMapEventer {
 
 	public override void Deactivate() {
 		base.Deactivate();
-		battlePanel.SetShowContextVisible(true);
 	}
 	#endregion
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
 		Sh.Out.Send(Messanges.PassFightArmy(island));
+		battlePanel.SetShowContextVisible(true);
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
 	}
 	#endregion

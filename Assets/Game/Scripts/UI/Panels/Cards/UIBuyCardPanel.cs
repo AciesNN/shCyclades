@@ -33,11 +33,11 @@ public class UIBuyCardPanel : UIGamePanel {
 	#region Events
 	public void OnPressOKButton() {
 		Sh.Out.Send(Messanges.BuyCard(slot));
-		UIGamePanel.CloseActivePanel();
+		Hide();
 	}
 
 	public void OnPressCancelButton() {
-		UIGamePanel.CloseActivePanel();
+		Hide();
 	}
 	#endregion
 

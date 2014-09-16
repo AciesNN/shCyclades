@@ -40,11 +40,11 @@ public class UIAuctionPanel : UIGamePanel {
 
 	#region Events
 	public void OnPressOKButton() {
-		UIGamePanel.CloseActivePanel("OnBetPanelClose", ModelPanelCloseResult.OK);
+		UIGamePanel.CloseActivePanel("OnBetPanelClose", ModelPanelCloseResult.OK); //TODO надо избавляться от CloseActivePanel вместо этого надо применять применять параметры метода Hide
 	}
 	
 	public void OnPressCancelButton() {
-		UIGamePanel.CloseActivePanel("OnBetPanelClose", ModelPanelCloseResult.CANCEL);
+		UIGamePanel.CloseActivePanel("OnBetPanelClose", ModelPanelCloseResult.CANCEL); //TODO надо избавляться от CloseActivePanel вместо этого надо применять применять параметры метода Hide
 	}
 
 	public void IncressBet() {

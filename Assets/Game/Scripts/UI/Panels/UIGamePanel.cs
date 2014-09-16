@@ -69,6 +69,8 @@ public class UIGamePanel : MonoBehaviour {
 	}
 
 	virtual public void Hide() {
+		if(IsModal && activePanel == this)
+			activePanel = null;
 		StartCoroutine(DoHide());
 	}
 
