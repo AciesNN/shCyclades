@@ -24,7 +24,7 @@ public class UIMapBuildInfoLayer : UIMapGridLayer {
 	void CreateIsland(int island) {
 		int slots_count = Sh.In.GameContext.GetList("/map/islands/buildings/[{0}]", island).Count;
 		List<object> coords = Sh.In.GameContext.GetList ("/map/islands/coords/[{0}]/[0]", island);
-		GridPosition cell = new GridPosition((int)(long)coords[0], (int)(long)coords[1]);
+		GridPosition cell = new GridPosition(coords);
 
 		UIMapBuildInfoLayerElement el = CreateElement<UIMapBuildInfoLayerElement>(cell);
 		el.SetSlotsCount(slots_count);
@@ -33,10 +33,11 @@ public class UIMapBuildInfoLayer : UIMapGridLayer {
 	void UpdateIsland(int island) {
 		List<object> slots = Sh.In.GameContext.GetList("/map/islands/buildings/[{0}]", island);
 		List<object> coords = Sh.In.GameContext.GetList ("/map/islands/coords/[{0}]/[0]", island);
-		GridPosition cell = new GridPosition((int)(long)coords[0], (int)(long)coords[1]);
+		bool isMetro = Sh.In.GameContext.GetBool("/map/islands/is_metro/[{0}]", island);
+		GridPosition cell = new GridPosition(coords);
 		
 		UIMapBuildInfoLayerElement el = elements[cell.x, cell.y] as UIMapBuildInfoLayerElement;
-		el.SetMetro(false);
+		el.SetMetro(isMetro, Library.Map_IslandMetroSize(Sh.In.GameContext, island) );
 		for (int i = 0; i < slots.Count; ++i)
 			el.SetBuildInSlot(i, slots[i] as string);
 	}

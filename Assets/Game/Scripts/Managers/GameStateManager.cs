@@ -65,22 +65,19 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
-	void SetMetroBuildState() {
-		string cur_state = Sh.In.GameContext.GetStr("/cur_state");
-		if (cur_state == "Turn.PlaceMetroPhilosopher" || cur_state == "Turn.PlaceMetroBuilding") {
-			mapStates.SetEventorType(MapEventerType.PLACEMETRO);
-		} else {
-			if (mapStates.GetEventorType() == MapEventerType.PLACEMETRO) {
-				mapStates.SetEventorType(MapEventerType.DEFAULT);
-			}
-		}
-	}
-
 	void SetMapEventorType() {
 		string cur_state = Sh.In.GameContext.GetStr("/cur_state");
 		switch (cur_state) {
 			case "Turn.MoveNavy": {
 				SetMapEventorType(MapEventerType.MOVESHIP);
+				break;
+			}
+			case "Turn.PlaceMetroPhilosopher": {
+				SetMapEventorType(MapEventerType.PLACEMETRO);
+				break;
+			}
+			case "Turn.PlaceMetroBuilding": {
+				SetMapEventorType(MapEventerType.PLACEMETRO);
 				break;
 			}
 			default: {
@@ -94,7 +91,6 @@ public class GameStateManager : Manager<GameStateManager> {
 		SetAuctionState();
 		SetCardState(false);
 		SetBattleState();
-		SetMetroBuildState();
 
 		SetMapEventorType();
 	}

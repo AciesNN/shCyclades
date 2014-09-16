@@ -19,11 +19,11 @@ public class UIMapBuildInfoLayerElement : UIMapGridLayerElement {
 		}
 	}
 
-	public void SetMetro(bool isMetro) {
-
+	public void SetMetro(bool isMetro, int metroSize) {
+		
 		metro.enabled = isMetro;
 		if (isMetro) {
-			for(int i = 0; i <= 2; ++i) {
+			for(int i = 0; i < metroSize; ++i) {
 				slots[i].enabled = false;
 			}
 		}

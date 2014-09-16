@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Cyclades.Game.Client;
+using Cyclades.Game;
 
 public class UIMapSlotBuildPanel: UIGamePanel {
 
@@ -20,7 +21,7 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 		SetSlotsCount(slots.Count);
 		for(int i = 0; i < slots.Count; ++i)
 			SetBuildInSlot(i, (string)slots[i]);
-		SetMetro(Sh.In.GameContext.GetBool ("/map/islands/is_metro/[{0}]", island));
+		SetMetro(Sh.In.GameContext.GetBool ("/map/islands/is_metro/[{0}]", island), Library.Map_IslandMetroSize(Sh.In.GameContext, island));
 	}
 
 	#region ViewWidgetsSet
@@ -34,11 +35,11 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 		}
 	}
 
-	public void SetMetro(bool isMetro) {
+	public void SetMetro(bool isMetro, int metroSize) {
 
 		metro.enabled = isMetro;
 		if (isMetro) {
-			for (int i = 0; i <= 2; ++i) {
+			for (int i = 0; i < metroSize; ++i) {
 				slots[i].gameObject.SetActive(false);
 			}
 		}

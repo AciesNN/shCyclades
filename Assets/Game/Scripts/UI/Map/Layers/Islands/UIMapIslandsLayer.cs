@@ -43,7 +43,7 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 			int owner = Sh.In.GameContext.GetInt("/map/islands/owners/[{0}]", i);
 
 			foreach(GridPosition pos in points) {
-				UIMapIslandElement islandElement = CreateElement<UIMapIslandElement>(pos);
+				UIMapIslandElement islandElement = elements[pos.x, pos.y] as UIMapIslandElement;
 				islandElement.SetOwner(owner);
 			}
 		}
