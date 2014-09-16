@@ -48,12 +48,12 @@ class MetroMapEventer: IslandClickMapEventer {
 		List<string> buildings = new List<string>();
 
 		List<object> owners = Sh.In.GameContext.GetList ("/map/islands/owners");
-		for(int island = 0; island < buildings.Count; ++island) {
+		for(int island = 0; island < owners.Count; ++island) {
 			if ((int)(long)owners[island] == Sh.GameState.currentUser) {
 				List<object> slots = Sh.In.GameContext.GetList ("/map/islands/buildings/[{0}]", island);
 				for(int s = 0; s < slots.Count; ++s) {
 					string slot = slots[s] as string;
-					if (slot != Cyclades.Game.Constants.buildNone && buildings.IndexOf(slot) >= 0) {
+					if (slot != Cyclades.Game.Constants.buildNone && buildings.IndexOf(slot) < 0) {
 						buildings.Add (slot);
 						slots_and_islands.Add ( new List<object> {island, s} );
 					}
