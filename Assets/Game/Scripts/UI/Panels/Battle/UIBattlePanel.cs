@@ -25,7 +25,7 @@ public class UIBattlePanel : UIGamePanel {
 
 	}
 	
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData() { //TODO апдейт вызывается даже тогда, когда битвы нет, тоже касается очевидно и других объектов (возможно, надо проверять на активность контекст)
 		UpdateSide(attackSideWidget);
 		UpdateSide(deffenceSideWidget);
 	}

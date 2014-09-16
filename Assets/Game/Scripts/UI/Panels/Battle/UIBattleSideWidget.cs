@@ -22,12 +22,12 @@ public class UIBattleSideWidget : MonoBehaviour {
 
 	public void SetUnitsCount(int unitCount) {
 		for (int i = 0; i < UnitsElements.Capacity; ++i)
-			UnitsElements[i].SetActive(i+1 < unitCount);
+			UnitsElements[i].SetActive(i < unitCount);
 	}
 
 	public void SetBuildingsCount(int buildingsCount) {
 		for (int i = 0; i < BuildingsElements.Capacity; ++i)
-			BuildingsElements[i].SetActive(i+1 < buildingsCount);
+			BuildingsElements[i].SetActive(i < buildingsCount);
 	}
 	#endregion
 
