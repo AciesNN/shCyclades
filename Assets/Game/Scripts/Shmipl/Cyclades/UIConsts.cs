@@ -89,20 +89,21 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.cardSylph, MapEventerType.CARDSYL},
 		{Cyclades.Game.Constants.cardPolypheme, MapEventerType.CARDPOL},
 		{Cyclades.Game.Constants.cardPegus, MapEventerType.CARDPEG},
+		{Cyclades.Game.Constants.cardMinotaur, MapEventerType.CARDMIN},
+		{Cyclades.Game.Constants.cardChiron, MapEventerType.CARDCHR},
+		{Cyclades.Game.Constants.cardKraken, MapEventerType.CARDKRA},
+		{Cyclades.Game.Constants.cardGorgon, MapEventerType.CARDGOR},
 
 		{Cyclades.Game.Constants.cardChimera, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardDryads, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardSphinx, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardKraken, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardGorgon, MapEventerType.DEFAULT},		
 		{Cyclades.Game.Constants.cardMermaid, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardGigant, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardCyclope, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardHarpy, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardGriffon, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardMoyra, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardSatyr, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardMinotaur, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardChiron, MapEventerType.DEFAULT}		
+		{Cyclades.Game.Constants.cardSatyr, MapEventerType.DEFAULT}
+
 	};
 }

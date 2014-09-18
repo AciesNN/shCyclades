@@ -84,6 +84,8 @@ public class GameStateManager : Manager<GameStateManager> {
 			case "Turn.Card.Use": {
 				string card = Sh.In.GameContext.GetStr("/cards/open/[{0}]", Sh.In.GameContext.GetLong("/cards/open_card_number"));
 				MapEventerType type = UIConsts.cardsMapEventors[card];
+				if (type == MapEventerType.DEFAULT)
+					Debug.LogError("Для карты " + card + " не определен Map eventor");
 
 				SetMapEventorType(type);
 				break;
