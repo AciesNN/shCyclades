@@ -12,7 +12,8 @@ public enum GridLayerType {
 	BUILDINGS,
 	UNITS,
 	SHIPS,
-	HORNS
+	HORNS,
+	CREATURES
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
@@ -30,7 +31,8 @@ static public class MapLayersDepths {
 		
 		{GridLayerType.HORNS, 300},
 		{GridLayerType.SHIPS, 400},
-		
+		{GridLayerType.CREATURES, 400},
+
 		{GridLayerType.GRID, 1000},
 
 		{GridLayerType.SKY, 2000}

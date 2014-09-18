@@ -36,6 +36,25 @@ public class UIMapGridLayer:  UIMapLayer {
 		return el;
 	}
 
+	protected virtual T CreateSingleElement<T>(GridPosition pos) where T: UIMapGridLayerElement {
+		GameObject go = NGUITools.AddChild(gameObject, ObjectPrefab);
+		go.name = pos.ToString();
+		
+		T el = go.GetComponent<T>();
+		if (!el)
+			Debug.Log ("У объекта сетки отсутствует компонент UIMapLayerElement");
+		el.position = pos;
+		
+		MoveSingleElementToPos(el, pos);
+		el.SetDepth(depth);
+		
+		return el;
+	}
+
+	protected void MoveSingleElementToPos(UIMapGridLayerElement el, GridPosition pos) {
+		el.gameObject.transform.localPosition = MapController.CellToWorldPosition(pos);
+	}
+
 	public virtual T GetElement<T> (GridPosition pos) where T: UIMapGridLayerElement {
 		return elements[pos.x, pos.y] as T;
 	}
