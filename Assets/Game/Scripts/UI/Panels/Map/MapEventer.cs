@@ -53,7 +53,8 @@ public enum MapEventerType {
 	CARDMIN,
 	CARDCHR,
 	CARDGOR,
-	CARDKRA
+	CARDKRA,
+	CARDHAR
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }

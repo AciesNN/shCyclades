@@ -93,6 +93,7 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.cardChiron, MapEventerType.CARDCHR},
 		{Cyclades.Game.Constants.cardKraken, MapEventerType.CARDKRA},
 		{Cyclades.Game.Constants.cardGorgon, MapEventerType.CARDGOR},
+		{Cyclades.Game.Constants.cardHarpy, MapEventerType.CARDHAR},
 
 		{Cyclades.Game.Constants.cardChimera, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardDryads, MapEventerType.DEFAULT},
@@ -100,7 +101,6 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.cardMermaid, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardGigant, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardCyclope, MapEventerType.DEFAULT},
-		{Cyclades.Game.Constants.cardHarpy, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardGriffon, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardMoyra, MapEventerType.DEFAULT},
 		{Cyclades.Game.Constants.cardSatyr, MapEventerType.DEFAULT}
