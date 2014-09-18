@@ -55,6 +55,14 @@ public class UIGamePanel : MonoBehaviour {
 	virtual public void GameContext_LateInit() {
 	}
 
+	public void GameContext_UpdateData() {
+		if(IsActive())
+			GameContext_UpdateData_Panel();
+	}
+
+	virtual protected void GameContext_UpdateData_Panel() {
+	}
+
 	virtual public void Show() {
 		StartCoroutine(DoShow());
 		if (IsModal) //???

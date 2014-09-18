@@ -29,7 +29,7 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 
 	#region UpdateData
-	public void GameContext_UpdateData() {
+	override protected void GameContext_UpdateData_Panel() {
 		for (int i = 0; i < players_number; ++i) {
 			
 			UIAuctionGod w = uiAuctionGods[i];

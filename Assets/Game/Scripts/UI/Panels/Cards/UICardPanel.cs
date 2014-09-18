@@ -5,49 +5,49 @@ using System.Collections.Generic;
 using Cyclades.Game;
 
 public class UICardPanel : UIGamePanel {
-	public List<GameObject> cards;
-	List<UIImageButtonSh> icons = new List<UIImageButtonSh>();
-	List<UIImageButtonSh> prices = new List<UIImageButtonSh>();
+
+	#region ViewWidgets
+	public UIGrid grid;
+	public GameObject cardWidgetPrefub;
+	List<CardButtonWidget> cardWidgets;
+	#endregion
 
 	override protected void Init() {
-		if(cards.Count != 3)
-			Debug.LogError("не заданы объекты иконок карт");
-
-		foreach(GameObject go in cards) {
-			UIImageButtonSh[] imbs = go.GetComponents<UIImageButtonSh>();
-			icons.Add (imbs[0]);
-			prices.Add(imbs[1]);
-		}
+		cardWidgets = new List<CardButtonWidget>();
+		for (int i = 0; i < 3; ++i)
+			AddCardButtonWidget(i);
+		grid.Reposition();
 	}
 
-	public void GameContext_UpdateData() {
-		for(int i = 0; i < cards.Count; ++i) {
-			string c = GetSlotCard(i);
-			int price = (c == Constants.cardNone ? 0 : GetSlotPrice(i));
+	private CardButtonWidget AddCardButtonWidget(int w_number) {
+		GameObject w_go = (GameObject) NGUITools.AddChild(grid.gameObject, cardWidgetPrefub);
+		w_go.name = "" + w_number + ". " + w_go.name;
+		CardButtonWidget w = w_go.GetComponent<CardButtonWidget>();
+		
+		w.parentPanel = this;
+		w.number = w_number;
+		w.LateInit();
 
-			UIImageButtonSh b = icons[i];
-			UIImageButtonSh p = prices[i];
+		cardWidgets.Add (w);
+		return w;
+	}
 
-			b.normalSprite = "card-button-" + UIConsts.cardIconSprites[c] + (UIConsts.cardIconSprites[c] == "empty" ? "" : "1");
-			b.hoverSprite = "card-button-" +  UIConsts.cardIconSprites[c] + (UIConsts.cardIconSprites[c] == "empty" ? "" : "2");
-			b.pressedSprite = b.hoverSprite;
-			b.disabledSprite = b.normalSprite;
-				
+	#region UpdateData
+	override protected void GameContext_UpdateData_Panel() {
 
-			p.normalSprite = "price-card" + price + "a";
-			p.hoverSprite = "price-card" + price + "b";
-			p.pressedSprite = p.hoverSprite;
-			p.disabledSprite = p.normalSprite;
+		for(int i = 0; i < 3; ++i) {
+			string card = GetSlotCard(i);
+			int price = (card == Constants.cardNone ? 0 : GetSlotPrice(i));
 
-			b.target.spriteName = b.normalSprite;	
-			p.target.spriteName = p.normalSprite;	
+			cardWidgets[i].SetIcon(card);
+			cardWidgets[i].SetPrice(price);
 		}
 	}
 
 	public void SetHighlightCardIcon(int slot, bool on) {
-		icons[slot].isHighlight = on;
-		prices[slot].isHighlight = on;
+		cardWidgets[slot].SetHighlight(on);
 	}
+	#endregion
 
 	#region Events
 	public void OnCardClick(int slot) {
@@ -62,16 +62,6 @@ public class UICardPanel : UIGamePanel {
 		panel.SetPrice(GetSlotPrice(slot));
 
 		UIGamePanel.ShowPanel(PanelType.BUY_CARD_PANEL, this);
-	}
-
-	public void OnCard1Click() {
-		OnCardClick(0);
-	}
-	public void OnCard2Click() {
-		OnCardClick(1);
-	}
-	public void OnCard3Click() {
-		OnCardClick(2);
 	}
 	#endregion
 
