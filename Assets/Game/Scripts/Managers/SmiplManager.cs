@@ -25,7 +25,7 @@ public class SmiplManager : Manager<SmiplManager> {
 			Shmipl.Base.Log.PrintDebug = Debug.Log;
 		#endif
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load (path, typeof(TextAsset))).text;
-		Cyclades.Program.Start();
+		Cyclades.Program.Start(5, (int)System.DateTime.Now.Ticks, true);
 	}
 
 	void OnDestroy() {
