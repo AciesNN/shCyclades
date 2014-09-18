@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Cyclades.Game;
 using Cyclades.Game.Client;
 
-class MoveUnitEventer: IslandClickMapEventer {
+class CardPegEventer: IslandClickMapEventer {
 	
 	int fromIsland;
 	UIMapMoveUnitPanel panel;
@@ -39,7 +39,7 @@ class MoveUnitEventer: IslandClickMapEventer {
 			CalculateAllowedIslandsTo();
 			HighlightIslands(true);
 		} else {
-			Sh.Out.Send(Messanges.MoveArmy(fromIsland, island, panel.activeUnitCount));
+			Sh.Out.Send(Messanges.UseCardPeg(fromIsland, island, panel.activeUnitCount));
 		}
 	}
 	#endregion
@@ -55,6 +55,11 @@ class MoveUnitEventer: IslandClickMapEventer {
 	}
 
 	void CalculateAllowedIslandsTo() {
-		allowedIslands = Library.Map_GetBridgetIslands(Sh.In.GameContext, fromIsland, Sh.GameState.currentUser);
+		//все острова, кроме того, с которого перемещаемся
+		int c = Sh.In.GameContext.GetList ("/map/islands/owner").Count;
+		allowedIslands = new List<long>();
+		for (long i = 0; i < c; ++i)
+			if (i != fromIsland)
+				allowedIslands.Add(i);		
 	}
 }

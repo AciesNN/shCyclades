@@ -80,6 +80,7 @@ public class GameStateManager : Manager<GameStateManager> {
 				SetMapEventorType(MapEventerType.PLACEMETRO);
 				break;
 			}
+			//case "Turn":
 			default: {
 				SetMapEventorType(MapEventerType.DEFAULT);
 				break;

@@ -45,7 +45,11 @@ public enum MapEventerType {
 	PLACEMETRO,
 	RETREATSHIP,
 	RETREATUNIT,
-	PLACEHORN
+	PLACEHORN,
+
+	CARDPEG,
+	CARDSYL,
+	CARDPOL
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
