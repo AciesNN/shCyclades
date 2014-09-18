@@ -35,8 +35,7 @@ Turn.PlaceMetroPhilosopher	PlaceMetro4Philosopher	Test_Turn_PlaceMetro4Philosoph
 
 
 #здания и метрополии
-Turn.Turn	BuyBuild	Test_Turn_BuyBuild	Turn_BuyBuild	Turn.PostPlaceBuilding	#Turn.PlaceBuild
-#Turn.PlaceBuild	PlaceBuilding	Test_Turn_PlaceBuilding	Turn_PlaceBuilding	Turn.PostPlaceBuilding
+Turn.Turn	BuyBuild	Test_Turn_BuyBuild	Turn_BuyBuild	Turn.PostPlaceBuilding
 Turn.PostPlaceBuilding	None	Test_Turn_BuyMetro4Buildings	None	Turn.PlaceMetroBuilding
 Turn.PostPlaceBuilding	None	None	None	Turn.Turn
 Turn.PlaceMetroBuilding	PlaceMetro4Buildings	Test_Turn_PlaceMetro4Buildings	Turn_PlaceMetro4Buildings	Turn.ReInitTurn
@@ -45,13 +44,9 @@ Turn.PlaceMetroBuilding	PlaceMetro4Buildings	Test_Turn_PlaceMetro4Buildings	Turn
 #покупки и расстановки
 Turn.Turn	BuyPriest	Test_Turn_BuyPriest	Turn_BuyPriest	Turn.Turn
 
-Turn.Turn	ChangeCard	Test_Turn_Card_ChangeCard	Turn_Card_ChangeCard	Turn.Turn
+Turn.Turn	BuyArmy	Test_Turn_BuyArmy	Turn_BuyArmy	Turn.Turn
 
-Turn.Turn	BuyArmy	Test_Turn_BuyArmy	Turn_BuyArmy	Turn.Turn	#Turn.PlaceArmy
-#Turn.PlaceArmy	PlaceArmy	Test_Turn_PlaceArmy	Turn_PlaceArmy	Turn.Turn
-
-Turn.Turn	BuyNavy	Test_Turn_BuyNavy	Turn_BuyNavy	Turn.Turn	#Turn.PlaceNavy
-#Turn.PlaceNavy	PlaceNavy	Test_Turn_PlaceNavy	Turn_PlaceNavy	Turn.Turn
+Turn.Turn	BuyNavy	Test_Turn_BuyNavy	Turn_BuyNavy	Turn.Turn
 
 Turn.Turn	PlaceHorn	Test_Turn_PlaceHorn	Turn_PlaceHorn	Turn.Turn
 
@@ -96,6 +91,7 @@ Turn.Fight.NavyWaitAttacker	PassFight	Test_Turn_Fight_NavyAttackerPassFight	Turn
 #карты
 Turn.Turn	BuyCard	Test_Turn_Card_BuyCard	Turn_Card_BuyCard	Turn.Card.Use
 Turn.Card.Use	PassCard	Test_Turn_Card_PassCard	None	Turn.ReInitTurn
+Turn.Card.Use	ChangeCard	Test_Card_ChangeCard	Card_ChangeCard	Turn.Card.Use
 
 #cardMermaid = "Mer";
 Turn.Card.Use	UseCardMer	Test_Turn_Card_Mer	Turn_Card_Mer	Turn.ReInitTurn

@@ -77,6 +77,9 @@ public class InManager : Manager<InManager> {
 		    && msg.ContainsKey("stable") && (bool)msg["stable"]) {
 
 			lock(GameContext) {
+				//TODO исключительно код для отладки (и то не всегда нужен)
+				Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
+
 				//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
 				if(!isContextReady(GameContext, "Game"))
 					return;
@@ -90,9 +93,6 @@ public class InManager : Manager<InManager> {
 				rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
 			}
 			//Debug.Log ("--------------- lock ----------------------");
-
-			//TODO исключительно код для отладки (и то не всегда нужен)
-			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 		}
 	}
 	

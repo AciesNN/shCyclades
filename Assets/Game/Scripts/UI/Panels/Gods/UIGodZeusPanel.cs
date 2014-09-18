@@ -14,6 +14,7 @@ public class UIGodZeusPanel : UIGamePanel {
 	}
 	
 	public void OnCardChangeClick() {
+		Sh.Out.Send( Messanges.ChangeCard() );
 	}
 	
 	public void OnEndTurn() {

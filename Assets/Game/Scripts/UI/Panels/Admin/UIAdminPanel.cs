@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UIAdminPanel : UIGamePanel {
@@ -48,23 +48,23 @@ public class UIAdminPanel : UIGamePanel {
 	*/
 	public void OnDataLoad() {
 		#if UNITY_WEBPLAYER
-		Sh.In._LoadContextFromCash(loadFileName.text);
+			Sh.In._LoadContextFromCash(loadFileName.text);
 		#else
 		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
-		string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
-		Sh.In._LoadContextFromText(text);
-		//NGUIDebug.Log("" + Shmipl.Base.json.dumps( Cyclades.Program.srv.GetContext("Game").data));
+			string text = System.IO.File.ReadAllText(path).Replace("\n", " ");
+			Sh.In._LoadContextFromText(text);
+			//NGUIDebug.Log("" + Shmipl.Base.json.dumps( Cyclades.Program.srv.GetContext("Game").data));
 		#endif
 	}
 
 	public void OnDataSave() {
 		string text = Sh.In._gameContext.ToString();
 		#if UNITY_WEBPLAYER
-		Sh.In._testDataCash[loadFileName.text] = text;
+			Sh.In._testDataCash[loadFileName.text] = text;
 		#else
-		string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
-		System.IO.File.WriteAllText(path, text);
-		Debug.Log (text);
+			string path = "Assets\\Game\\Data\\test\\" + loadFileName.text + ".txt";
+			System.IO.File.WriteAllText(path, text);
+			Debug.Log (text);
 		#endif
 	}
 	#endregion

@@ -9,6 +9,7 @@ class CardGorEventer: IslandClickMapEventer {
 	#region Events
 	override public void Activate() {
 		base.Activate();
+		mapStates.Panel.SetTab(PanelType.MAP_TAB_ACTION_AND_CANCEL);
 
 		int c = Sh.In.GameContext.GetList ("/map/islands/owners").Count;
 		allowedIslands = new List<long>();
