@@ -26,6 +26,7 @@ public class UIMapStates : MonoBehaviour {
 		foreach(MapEventer e in es) {
 			mapEventers[e.type] = e;
 		}
+		_TestMapEventors();
 	}
 
 	public void SetEventorType(MapEventerType type) {
@@ -79,4 +80,12 @@ public class UIMapStates : MonoBehaviour {
 		eventer.OnMapCancel();
 	}
 	#endregion
+
+	void _TestMapEventors() {
+		MapEventerType[] eventers = System.Enum.GetValues(typeof(MapEventerType)) as MapEventerType[];
+		foreach(MapEventerType e in eventers) {
+			if (!mapEventers.ContainsKey(e))
+				Debug.LogError("Не зарегестрирован Map eventor: " + e);
+		}
+	}
 }
