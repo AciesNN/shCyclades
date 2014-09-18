@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Cyclades.Game;
 using Cyclades.Game.Client;
 
-class CardPolEventer: IslandClickMapEventer {
+class CardKraEventer: IslandClickMapEventer {
 	
 	#region Events
 	override public void Activate() {

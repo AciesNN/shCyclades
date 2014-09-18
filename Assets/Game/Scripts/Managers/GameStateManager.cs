@@ -84,6 +84,7 @@ public class GameStateManager : Manager<GameStateManager> {
 			case "Turn.Card.Use": {
 				string card = Sh.In.GameContext.GetStr("/cards/open/[{0}]", Sh.In.GameContext.GetLong("/cards/open_card_number"));
 				MapEventerType type = UIConsts.cardsMapEventors[card];
+
 				SetMapEventorType(type);
 				break;
 			}

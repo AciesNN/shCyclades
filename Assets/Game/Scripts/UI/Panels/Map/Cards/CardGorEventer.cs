@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Cyclades.Game;
 using Cyclades.Game.Client;
 
-class CardPolEventer: IslandClickMapEventer {
+class CardGorEventer: IslandClickMapEventer {
 	
 	#region Events
 	override public void Activate() {
@@ -21,7 +21,7 @@ class CardPolEventer: IslandClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
-		Sh.Out.Send(Messanges.UseCardPol(island));
+		Sh.Out.Send(Messanges.UseCardGor(island));
 	}
 	#endregion
 }

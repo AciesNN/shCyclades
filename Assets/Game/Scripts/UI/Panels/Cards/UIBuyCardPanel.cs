@@ -10,7 +10,7 @@ public class UIBuyCardPanel : UIGamePanel {
 	public UISprite CardSprite;
 	public UILabel CardText;
 	public List<GameObject> PriceElements;
-	public int slot;
+	[HideInInspector]public int slot;
 	#endregion
 
 	private string card;
@@ -19,7 +19,7 @@ public class UIBuyCardPanel : UIGamePanel {
 		set {
 			card = value;
 			CardSprite.spriteName =  "card-" + UIConsts.cardIconSprites[card];
-			//CardText.text = "";
+			CardText.text = (UIConsts.cardIconSprites[card] == "empty" ? card : "");
 		}
 	}
 

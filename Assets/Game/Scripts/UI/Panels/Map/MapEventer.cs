@@ -49,7 +49,11 @@ public enum MapEventerType {
 
 	CARDPEG,
 	CARDSYL,
-	CARDPOL
+	CARDPOL,
+	CARDMIN,
+	CARDCHR,
+	CARDGOR,
+	CARDKRA
 
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
