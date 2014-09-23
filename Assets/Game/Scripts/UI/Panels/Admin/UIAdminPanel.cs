@@ -58,7 +58,7 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void OnDataSave() {
-		string text = Sh.In._gameContext.ToString();
+		string text = Sh.In.GameContext.ToString();
 		#if UNITY_WEBPLAYER
 			Sh.In._testDataCash[loadFileName.text] = text;
 		#else

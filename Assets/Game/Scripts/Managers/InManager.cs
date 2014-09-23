@@ -26,25 +26,13 @@ public class InManager : Manager<InManager> {
 	}
 
 	void Start() {
-		//_LoadContextFromCash("0");
 	}
 
-	public IContextGet GameContext {
-		get { 
-			IContextGet res;
-			if (Cyclades.Game.Client.Messanges.cur_player >= 0)
-				res = Cyclades.Program.clnts[(int)Cyclades.Game.Client.Messanges.cur_player].GetContext("Game");
-			else 
-				res = null;
-			return res; 
-		} 
-	}
-
-	public Context _gameContext {
+	public Context GameContext {
 		get { 
 			Context res;
-			if (Cyclades.Game.Client.Messanges.cur_player >= 0)
-				res = Cyclades.Program.clnts[(int)Cyclades.Game.Client.Messanges.cur_player].GetContext("Game");
+			if (Sh.GameState.currentUser >= 0)
+				res = Cyclades.Program.clnts[Sh.GameState.currentUser].GetContext("Game");
 			else 
 				res = null;
 			return res; 
@@ -76,21 +64,26 @@ public class InManager : Manager<InManager> {
 		    && msg.ContainsKey("path") && (string)msg["path"] == "/cur_state"
 		    && msg.ContainsKey("stable") && (bool)msg["stable"]) {
 
-			lock(GameContext) {
-				//TODO исключительно код для отладки (и то не всегда нужен)
-				Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
+			//TODO исключительно код для отладки (и то не всегда нужен)
+			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 
-				//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
-				if(!isContextReady(GameContext, "Game"))
-					return;
+			if (GameContext != null) {
+				GameContext._lock_();
+				try {
+					//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
+					if(!isContextReady(GameContext, "Game"))
+						return;
 
-				if (!_is_init_game_context) {
-					_is_init_game_context = true;
-					rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+					if (!_is_init_game_context) {
+						_is_init_game_context = true;
+						rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+					}
+
+					Sh.GameState.GameContext_UpdateData();
+					rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+				} finally {
+					GameContext._unlock_();
 				}
-
-				Sh.GameState.GameContext_UpdateData();
-				rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
 			}
 			//Debug.Log ("--------------- lock ----------------------");
 		}
