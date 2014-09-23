@@ -30,12 +30,7 @@ public class InManager : Manager<InManager> {
 
 	public Context GameContext {
 		get { 
-			Context res;
-			if (Sh.GameState.currentUser >= 0)
-				res = Cyclades.Program.clnts[Sh.GameState.currentUser].GetContext("Game");
-			else 
-				res = null;
-			return res; 
+			return Cyclades.Program.clnts[Sh.Smipl._pl].GetContext("Game");
 		} 
 	}
 
@@ -64,15 +59,17 @@ public class InManager : Manager<InManager> {
 		    && msg.ContainsKey("path") && (string)msg["path"] == "/cur_state"
 		    && msg.ContainsKey("stable") && (bool)msg["stable"]) {
 
-			//TODO исключительно код для отладки (и то не всегда нужен)
-			Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
-
 			if (GameContext != null) {
 				GameContext._lock_();
 				try {
 					//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
-					if(!isContextReady(GameContext, "Game"))
+					if (!isContextReady(GameContext, "Game")) {
+						NGUIDebug.Log("ERROR: отказ от прорисовки контекста: нестабилен!");
+						Debug.LogError("ERROR: отказ от прорисовки контекста: нестабилен!");
 						return;
+					}
+					//TODO исключительно код для отладки (и то не всегда нужен)
+					Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 
 					if (!_is_init_game_context) {
 						_is_init_game_context = true;
