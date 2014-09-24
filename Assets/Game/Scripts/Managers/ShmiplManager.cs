@@ -3,9 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SmiplManager : Manager<SmiplManager> {
+public class ShmiplManager : Manager<ShmiplManager> {
 
 	public int _pl = 0; //TODO
+	public string _gm = "Game"; //TODO
 
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
 
@@ -14,8 +15,8 @@ public class SmiplManager : Manager<SmiplManager> {
 
 		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent());
 
-		Shmipl.Base.Messenger<string, object, Hashtable>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
-		Shmipl.Base.Messenger<string, object, Hashtable>.AddListener("Shmipl.DoMacros", OnContextChanged);
+		Shmipl.Base.Messenger<string, object, Hashtable, long>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
+		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.AddListener("Shmipl.DoMacros", OnContextChanged);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.Error", OnError);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
@@ -47,18 +48,18 @@ public class SmiplManager : Manager<SmiplManager> {
 		#endif
 	}
 
-	private void OnContextChanged(string context_name, object to, Hashtable msg) {
-		if (context_name == "Game" && (long)msg["to"] == _pl) {
+	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
+		if (context_name == _gm && (long)msg["to"] == _pl) {
 			Debug.Log("change: " + Shmipl.Base.json.dumps(msg));
-			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, bool>.Broadcast("UnityShmipl.UpdateView", msg, false));
+			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, stable, false));
 			//Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger.Broadcast("UnityShmipl.UpdateView"));
 		}
 	}
 	
-	private void OnContextDeserialize(string context_name, object to, Hashtable msg) {
-		if (context_name == "Game" && (long)msg["to"] == _pl) {
+	private void OnContextDeserialize(string context_name, object to, Hashtable msg, long counter) {
+		if (context_name == _gm && (long)msg["to"] == _pl) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));
-			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, bool>.Broadcast("UnityShmipl.UpdateView", msg, true));
+			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, true, true));
 			//Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger.Broadcast("UnityShmipl.UpdateView"));
 		}
 	}

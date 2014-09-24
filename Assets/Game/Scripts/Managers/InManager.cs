@@ -22,15 +22,22 @@ public class InManager : Manager<InManager> {
 	override protected void Init() {
 		base.Init();
 
-		Shmipl.Base.Messenger<Hashtable, bool>.AddListener("UnityShmipl.UpdateView", UpdateGameData);
+		Shmipl.Base.Messenger<Hashtable, long, bool, bool>.AddListener("UnityShmipl.UpdateView", UpdateGameData);
 	}
 
 	void Start() {
 	}
 
+	long counter = -1;
 	public Context GameContext {
-		get { 
-			return Cyclades.Program.clnts[Sh.Smipl._pl].GetContext("Game");
+		get {
+			if (counter == -1)
+				return null;
+			Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[Sh.Sрmipl._pl];
+			if (dsp == null || !dsp.history_tree.ContainsKey(Sh.Sрmipl._gm))
+				return null;
+			Shmipl.FrmWrk.ContextHistory ch = dsp.history_tree[Sh.Sрmipl._gm];
+			return ch.Get (counter); //TODO кешировать надо при изменении counter
 		} 
 	}
 
@@ -44,30 +51,15 @@ public class InManager : Manager<InManager> {
 
 	public void _LoadContextFromText(string text) {
 		Hashtable msg = Shmipl.Base.json.loads(text);
-		Cyclades.Program.srv.Deserialize("Game", msg);
-		foreach(Shmipl.FrmWrk.Client.DispetcherFSM clnt in Cyclades.Program.clnts) {
-			clnt.GetContext("Game").Deserialize(text); //TODO по идее, после десериализации должен быть трубный глас
-		}
-		UpdateGameData(null, true);
+		Cyclades.Program.srv.Deserialize(Sh.Sрmipl._gm, msg);
 	}
 
-	public void UpdateGameData(Hashtable msg, bool deserialize) {
+	public void UpdateGameData(Hashtable msg, long counter, bool stable, bool deserialize) {
 		//будем обновлять в двух случаях: это десериализация, или это установка стабильного состояния 
-		if (deserialize
-		    ||
-		    msg.ContainsKey("macros") && (string)msg["macros"] == "SET"
-		    && msg.ContainsKey("path") && (string)msg["path"] == "/cur_state"
-		    && msg.ContainsKey("stable") && (bool)msg["stable"]) {
+		if (deserialize || stable) {
+			this.counter = counter;
 
 			if (GameContext != null) {
-				GameContext._lock_();
-				try {
-					//Debug.Log ("+++++++++++++++++ lock +++++++++++++++++++++++ state: " + GameContext.GetStr("/cur_state") + " counter: " + GameContext.GetLong("/counter"));
-					if (!isContextReady(GameContext, "Game")) {
-						NGUIDebug.Log("ERROR: отказ от прорисовки контекста: нестабилен!");
-						Debug.LogError("ERROR: отказ от прорисовки контекста: нестабилен!");
-						return;
-					}
 					//TODO исключительно код для отладки (и то не всегда нужен)
 					Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 
@@ -78,14 +70,13 @@ public class InManager : Manager<InManager> {
 
 					Sh.GameState.GameContext_UpdateData();
 					rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
-				} finally {
-					GameContext._unlock_();
-				}
+			} else {
+				NGUIDebug.Log("ERROR: контекст не обнаружен по счетчику: " + counter + " (" + deserialize + ")");
 			}
-			//Debug.Log ("--------------- lock ----------------------");
 		}
 	}
-	
+
+	/*
 	bool isContextReady(IContextGet context, string name) {
 		if (context == null)
 			return false;
@@ -108,4 +99,5 @@ public class InManager : Manager<InManager> {
 
 		return true;
 	}
+	*/
 }
