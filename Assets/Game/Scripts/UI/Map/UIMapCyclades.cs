@@ -20,11 +20,11 @@ public class UIMapCyclades : UIMapHexController {
 		return CellToCycladesCoord(res);
 		
 	}
-	
-	public override Vector3 CellToWorldPosition(GridPosition pos) {
+
+	public override Vector3 CellToWorldPosition(GridPosition pos, float z) {
 
 		GridPosition cell = CycladesCoordToCell(pos);
-		Vector3 res = base.CellToWorldPosition(cell);
+		Vector3 res = base.CellToWorldPosition(cell, z);
 
 		return res;
 

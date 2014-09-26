@@ -38,10 +38,14 @@ public class UIMapController : MonoBehaviour {
 		return res;
 	}
 
-	public virtual Vector3 CellToWorldPosition(GridPosition cell) {
+	public virtual Vector3 CellToWorldPosition(GridPosition pos) {
+		return CellToWorldPosition(pos, 0.0f);
+	}
+
+	public virtual Vector3 CellToWorldPosition(GridPosition cell, float z) {
 		Vector2 res = new Vector2((cell.x + 0.5f) * CellXSize, (cell.y + 0.5f) * CellYSize);
 		//res += GetZerroPoint();
-		return new Vector3(res.x, res.y, 0);
+		return new Vector3(res.x, res.y, z);
 	}
 
 	protected Vector2 GetCenter() {

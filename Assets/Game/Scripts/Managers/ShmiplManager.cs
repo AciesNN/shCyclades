@@ -50,9 +50,13 @@ public class ShmiplManager : Manager<ShmiplManager> {
 
 	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
 		if (context_name == _gm && (long)msg["to"] == _pl) {
-			Debug.Log("change: " + Shmipl.Base.json.dumps(msg));
-			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, stable, false));
-			//Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger.Broadcast("UnityShmipl.UpdateView"));
+			if (msg.ContainsKey("macros") && msg["macros"] is String && (string)msg["macros"] == "SHOW") {//todo выглядит хардкордно
+				Debug.Log("show: " + Shmipl.Base.json.dumps(msg));
+				Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable>.Broadcast("UnityShmipl.ShowAnimation", msg));
+			} else {
+				Debug.Log("change: " + Shmipl.Base.json.dumps(msg));
+				Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, stable, false));
+			}
 		}
 	}
 	
@@ -60,7 +64,6 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		if (context_name == _gm && (long)msg["to"] == _pl) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));
 			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, true, true));
-			//Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger.Broadcast("UnityShmipl.UpdateView"));
 		}
 	}
 	

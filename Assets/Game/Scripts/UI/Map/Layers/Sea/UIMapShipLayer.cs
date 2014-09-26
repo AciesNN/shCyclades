@@ -35,4 +35,29 @@ public class UIMapShipLayer : UIMapGridLayer {
 
 		return el;
 	}
+
+	public void GameContext_ShowAnimation(Hashtable msg) {
+		if (msg.ContainsKey("Animation") && msg["Animation"] is string) {//TODO надо придумать красивый фильтр
+			string animation = (string)msg["Animation"];
+			if (animation == "MoveShip") {
+				long x_from = (long)msg["x_from"]; long x_to = (long)msg["x_to"]; long y_from = (long)msg["y_from"]; long y_to = (long)msg["y_to"];
+				long count = (long)msg["count"];
+				CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count);
+			}
+		}
+	}
+
+	void CreateAnimation_MoveShip(GridPosition from, GridPosition to, long count) {
+		UIMapShipElement anim = CreateSingleElement<UIMapShipElement>(from);
+		anim.SetCount((int)count);
+		float time = 1;
+
+		Vector3 _from = anim.transform.position;
+		anim.transform.localPosition = MapController.CellToWorldPosition(to, anim.transform.localPosition.z);
+		Vector3 _to = anim.transform.position;
+		anim.transform.position = _from;
+
+		iTween.MoveTo(anim.gameObject, _to, time);
+		Destroy(anim, time);
+	}
 }

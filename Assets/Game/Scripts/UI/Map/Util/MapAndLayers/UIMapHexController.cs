@@ -23,14 +23,14 @@ public class UIMapHexController : UIMapController {
 
 	}
 	
-	public override Vector3 CellToWorldPosition(GridPosition cell) {
+	public override Vector3 CellToWorldPosition(GridPosition cell, float z) {
 
 		float x = (cell.x + 0.5f + (HexGridType == HexGridOrientation.HORIZONTAL	&& (cell.y % 2 != 0 && odd || cell.y % 2 == 0 && !odd) ? 0.5f : 0.0f)) * CellXSize;
 		float y = (cell.y + 0.5f + (HexGridType == HexGridOrientation.VERTICAL		&& (cell.x % 2 != 0 && odd || cell.x % 2 == 0 && !odd) ? 0.5f : 0.0f)) * CellYSize;
 
 		Vector2 res = new Vector2(x, y);
 		//res += GetZerroPoint();
-		return new Vector3(res.x, res.y, 0);
+		return new Vector3(res.x, res.y, z);
 	}
 
 }
