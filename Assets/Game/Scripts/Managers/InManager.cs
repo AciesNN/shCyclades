@@ -80,29 +80,4 @@ public class InManager : Manager<InManager> {
 	public void ShowAnimation(Hashtable msg) {
 		rootUI.BroadcastMessage("GameContext_ShowAnimation", msg, SendMessageOptions.DontRequireReceiver);
 	}
-
-	/*
-	bool isContextReady(IContextGet context, string name) {
-		if (context == null)
-			return false;
-		try {
-			if (context.Get<long>("/counter") == 0)
-				return false;
-		} catch {
-			return false;
-		}
-
-		try {
-			//TODO тут используется вредная серверная функция - надо придумывать, как обходить
-			//TODO не учитывается текущее изменение - на самом деле, текущее состояние может быть неактуально, например можно смотреть на признак изменяющего сообщения
-			string cur_state = context.GetStr("/cur_state");
-			if(!Cyclades.Program.srv.GetFSM(name).IsStateStable( cur_state ))
-				return false;
-		} catch {
-			return false;
-		}
-
-		return true;
-	}
-	*/
 }
