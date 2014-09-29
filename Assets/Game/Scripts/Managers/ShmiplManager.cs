@@ -63,7 +63,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	private void OnContextDeserialize(string context_name, object to, Hashtable msg, long counter) {
 		if (context_name == _gm && (long)msg["to"] == _pl) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));
-			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, true, true));
+			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, false, true));
 		}
 	}
 	

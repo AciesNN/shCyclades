@@ -15,7 +15,7 @@ public class UIMapShipLayer : UIMapGridLayer {
 			for(int y = 0; y < MapController.YSize; ++y) {
 				GridPosition cell = new GridPosition(x, y);
 				if(MapController.IsCellPossible(cell) && Library.Map_GetIslandByPoint(Sh.In.GameContext, x, y) == -1) {
-					CreateShip(cell);
+					//CreateShip(cell);
 				}
 			}
 		}
@@ -27,8 +27,8 @@ public class UIMapShipLayer : UIMapGridLayer {
 			el = CreateElement<UIMapShipElement>(cell);
 		}
 
-		int owner = (int)Library.Map_GetPointOwner(Sh.In.GameContext, cell.x, cell.y);
-		int count = Library.Map_GetShipCountByPoint(Sh.In.GameContext, cell.x, cell.y);
+		int owner = (int)Library.Map_GetPointOwner(Sh.In.GameContextUnstable, cell.x, cell.y);
+		int count = Library.Map_GetShipCountByPoint(Sh.In.GameContextUnstable, cell.x, cell.y);
 
 		el.SetCount(count);
 		el.SetOwner(owner);
@@ -42,13 +42,16 @@ public class UIMapShipLayer : UIMapGridLayer {
 			if (animation == "MoveShip") {
 				long x_from = (long)msg["x_from"]; long x_to = (long)msg["x_to"]; long y_from = (long)msg["y_from"]; long y_to = (long)msg["y_to"];
 				long count = (long)msg["count"];
-				CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count);
+				StartCoroutine( CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count) );
 			}
 		}
 	}
 
-	void CreateAnimation_MoveShip(GridPosition from, GridPosition to, long count) {
+	IEnumerator CreateAnimation_MoveShip(GridPosition from, GridPosition to, long count) {
+		CreateShip(from);
+
 		UIMapShipElement anim = CreateSingleElement<UIMapShipElement>(from);
+		anim.name += " (animation)";
 		anim.SetCount((int)count);
 		float time = 1;
 
@@ -58,6 +61,10 @@ public class UIMapShipLayer : UIMapGridLayer {
 		anim.transform.position = _from;
 
 		iTween.MoveTo(anim.gameObject, _to, time);
-		Destroy(anim, time);
+		
+		yield return new WaitForSeconds(time);
+
+		Destroy(anim.gameObject);
+		CreateShip(to);
 	}
 }

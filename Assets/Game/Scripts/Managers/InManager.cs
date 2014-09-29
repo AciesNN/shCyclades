@@ -42,6 +42,13 @@ public class InManager : Manager<InManager> {
 		} 
 	}
 
+	//todo красиво? вроде не очень
+	public Context GameContextUnstable {
+		get {
+			return Cyclades.Program.clnts[Sh.Sрmipl._pl].GetContext(Sh.Sрmipl._gm);
+		} 
+	}
+
 	public void _LoadContextFromCash(string cashNumber) {
 		if (_testDataCash.ContainsKey(cashNumber)) {
 			_LoadContextFromText(_testDataCash[cashNumber]);
@@ -55,22 +62,30 @@ public class InManager : Manager<InManager> {
 		Cyclades.Program.srv.Deserialize(Sh.Sрmipl._gm, msg);
 	}
 
+	//TODO 
+	//видятся вот какие проблемы: 
+	//-обновление контекста может случиться в нестабильный момент 
 	public void UpdateGameData(Hashtable msg, long counter, bool stable, bool deserialize) {
 		//будем обновлять в двух случаях: это десериализация, или это установка стабильного состояния 
 		if (deserialize || stable) {
+			if (this.counter >= counter)
+				return;
 			this.counter = counter;
+			Debug.Log ("counter == " + counter);
 
 			if (GameContext != null) {
-					//TODO исключительно код для отладки (и то не всегда нужен)
-					Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
+				//TODO исключительно код для отладки (и то не всегда нужен)
+				Sh.GameState.currentUser = (int)Cyclades.Game.Library.GetCurrentPlayer(GameContext);
 
-					if (!_is_init_game_context) {
-						_is_init_game_context = true;
-						rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
-					}
+				if (!_is_init_game_context) {
+					//if (!stable)
+					//	return;
+					_is_init_game_context = true;
+					rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+				}
 
-					Sh.GameState.GameContext_UpdateData();
-					rootUI.BroadcastMessage("GameContext_UpdateData", SendMessageOptions.DontRequireReceiver);
+				Sh.GameState.GameContext_UpdateData();
+				rootUI.BroadcastMessage("GameContext_UpdateData", /*deserialize,*/ SendMessageOptions.DontRequireReceiver);
 			} else {
 				NGUIDebug.Log("ERROR: контекст не обнаружен по счетчику: " + counter + " (" + deserialize + ")");
 			}
