@@ -85,7 +85,7 @@ public class InManager : Manager<InManager> {
 				}
 
 				Sh.GameState.GameContext_UpdateData();
-				rootUI.BroadcastMessage("GameContext_UpdateData", /*deserialize,*/ SendMessageOptions.DontRequireReceiver);
+				rootUI.BroadcastMessage("GameContext_UpdateData", deserialize, SendMessageOptions.DontRequireReceiver);
 			} else {
 				NGUIDebug.Log("ERROR: контекст не обнаружен по счетчику: " + counter + " (" + deserialize + ")");
 			}

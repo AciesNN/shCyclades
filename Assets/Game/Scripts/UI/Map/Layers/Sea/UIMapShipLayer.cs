@@ -10,12 +10,14 @@ public class UIMapShipLayer : UIMapGridLayer {
 		elements = new UIMapShipElement[MapController.XSize, MapController.YSize];
 	}
 
-	public void GameContext_UpdateData() {
-		for(int x = 0; x < MapController.XSize; ++x) {
-			for(int y = 0; y < MapController.YSize; ++y) {
-				GridPosition cell = new GridPosition(x, y);
-				if(MapController.IsCellPossible(cell) && Library.Map_GetIslandByPoint(Sh.In.GameContext, x, y) == -1) {
-					//CreateShip(cell);
+	public void GameContext_UpdateData(bool deserialize) {
+		if (deserialize) {
+			for(int x = 0; x < MapController.XSize; ++x) {
+				for(int y = 0; y < MapController.YSize; ++y) {
+					GridPosition cell = new GridPosition(x, y);
+					if(MapController.IsCellPossible(cell) && Library.Map_GetIslandByPoint(Sh.In.GameContext, x, y) == -1) {
+						CreateShip(cell);
+					}
 				}
 			}
 		}

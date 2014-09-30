@@ -10,7 +10,7 @@ public class UIMapIslandHornLayer : UIMapGridLayer {
 		elements = new UIMapIslandHornElement[MapController.XSize, MapController.YSize];
 	}
 
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData(bool deserialize) {
 		List<object> horns = Sh.In.GameContext.GetList ("/map/islands/horn");
 		for(int i = 0; i < horns.Count; ++i) {
 			int count = (int)(long)horns[i];

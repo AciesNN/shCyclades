@@ -25,7 +25,7 @@ public class UIBattlePanel : UIGamePanel {
 
 	}
 	
-	override protected void GameContext_UpdateData_Panel() {
+	override protected void GameContext_UpdateData_Panel(bool deserialize) {
 		UpdateSide(attackSideWidget);
 		UpdateSide(deffenceSideWidget);
 	}

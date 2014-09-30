@@ -12,7 +12,7 @@ public class UIMapSeaCreaturesLayer : UIMapGridLayer {
 		creature = CreateSingleElement<UIMapCreatureElement>(GridPosition.LessThanZero());
 	}
 
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData(bool deserialize) {
 		GridPosition pos = new GridPosition(Sh.In.GameContext.GetList("/creatures/Kraken/coords"));
 		creature.context.SetActive(!pos.IsLessThanZero());
 		if (!pos.IsLessThanZero())

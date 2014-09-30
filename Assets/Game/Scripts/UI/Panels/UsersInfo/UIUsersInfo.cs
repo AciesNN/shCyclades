@@ -25,7 +25,7 @@ public class UIUsersInfo : UIGamePanel {
 	}
 
 	#region UpdateData
-	override protected void GameContext_UpdateData_Panel() {
+	override protected void GameContext_UpdateData_Panel(bool deserialize) {
 
 		List<long> player_order = GetPlayerInformationOrder();
 		List<string> player_gods_order = GetPlayerGodsInformationOrder(players_number);

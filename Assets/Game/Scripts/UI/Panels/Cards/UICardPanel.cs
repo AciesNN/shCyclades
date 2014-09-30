@@ -33,7 +33,7 @@ public class UICardPanel : UIGamePanel {
 	}
 
 	#region UpdateData
-	override protected void GameContext_UpdateData_Panel() {
+	override protected void GameContext_UpdateData_Panel(bool deserialize) {
 
 		for(int i = 0; i < 3; ++i) {
 			string card = GetSlotCard(i);

@@ -16,7 +16,7 @@ public class UIMapIslandCreaturesLayer : UIMapGridLayer {
 			creatures[ct] = CreateSingleElement<UIMapCreatureElement>(GridPosition.LessThanZero());
 	}
 
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData(bool deserialize) {
 		foreach (string ct in c_types) {
 			int island = Sh.In.GameContext.GetInt("/creatures/{0}/island", ct);
 			creatures[ct].context.SetActive(island >= 0);

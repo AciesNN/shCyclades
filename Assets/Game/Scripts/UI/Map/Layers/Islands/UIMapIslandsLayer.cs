@@ -34,7 +34,7 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 
 	}
 
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData(bool deserialize) {
 
 		List<object> islands = Sh.In.GameContext.GetList ("/map/islands/coords");
 		for(int i = 0; i < islands.Count; ++i) {

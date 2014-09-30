@@ -55,12 +55,12 @@ public class UIGamePanel : MonoBehaviour {
 	virtual public void GameContext_LateInit() {
 	}
 
-	public void GameContext_UpdateData() {
+	public void GameContext_UpdateData(bool deserialize) {
 		if(IsActive())
-			GameContext_UpdateData_Panel();
+			GameContext_UpdateData_Panel(deserialize);
 	}
 
-	virtual protected void GameContext_UpdateData_Panel() {
+	virtual protected void GameContext_UpdateData_Panel(bool deserialize) {
 	}
 
 	virtual public void Show() {
