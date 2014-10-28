@@ -36,6 +36,7 @@ public abstract class Manager <T> : MonoBehaviour where T : Manager <T> {
 	 * If there is already a manager destroy self, else initialise and assign to the static reference.
 	 */ 
 	void Awake(){
+		DontDestroyOnLoad(gameObject);
 		if (manager == null) {
 			if (!initialised) Init();
 			manager = (T) this;
