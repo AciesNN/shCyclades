@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ShmiplManager : Manager<ShmiplManager> {
 
-	public int _pl = 0; //TODO
+	public long _pl = 0; //TODO
 	public string _gm = "Game"; //TODO
 
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений

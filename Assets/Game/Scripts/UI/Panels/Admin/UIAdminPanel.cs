@@ -16,12 +16,13 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	void OnChangeActiveUser(int curUser) {
-		UIToggle t = UIToggle.GetActiveToggle(toggleGroupe); //волшебное число - номер группы радиобаттаннов "текущий юзверь"
+		//TODO
+		/*UIToggle t = UIToggle.GetActiveToggle(toggleGroupe); //волшебное число - номер группы радиобаттаннов "текущий юзверь"
 		if (t && t.name != "" + Sh.GameState.currentUser) 
 			return;
 		if (Sh.GameState.currentUser != curUser) {
 			Sh.GameState.currentUser = curUser;
-		}
+		}*/
 	}
 
 	public void OnChangeActiveUser0() {

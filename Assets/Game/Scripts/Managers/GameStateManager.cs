@@ -6,12 +6,12 @@ using Cyclades.Game;
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
 
-	public int currentUser {
-		get { return (int)Cyclades.Game.Client.Messanges.cur_player; }
+	private long _currentUser;
+	public long currentUser {
+		get { return _currentUser; }
 		set {
 			NGUIDebug.Log ("current user: " + value);
-			Cyclades.Game.Client.Messanges.cur_player = value;
-			//UIToggle.GetActiveToggle(UIAdminPanel.toggleGroupe). = CurrentUser;
+			_currentUser = value;
 		}
 	}
 
@@ -27,7 +27,7 @@ public class GameStateManager : Manager<GameStateManager> {
 
 	protected override void Init() {
 		base.Init ();
-		currentUser = 0;
+		currentUser = 0L;
 	}
 
 	void SetAuctionState() {
