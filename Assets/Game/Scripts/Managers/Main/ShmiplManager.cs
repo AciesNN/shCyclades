@@ -90,6 +90,10 @@ public class ShmiplManager : Manager<ShmiplManager> {
 			Debug.Log("-FSM: " + fsm_name);
 	}
 
+	void OnLevelWasLoaded(int level) {
+
+	}
+
 	#region Events
 	public void OnServerCreateClick() {
 
@@ -103,7 +107,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 
 	public void OnHotSeatClientCreateClick() {
-		Cyclades.Program.CreateHotSeatClient(Cyclades.Program.players_number, Cyclades.Program.srv.conn_pull);
+		Cyclades.Program.CreateHotSeatClient(Cyclades.Program.srv.conn_pull);
 	}
 
 	public void OnGameStartClick() {

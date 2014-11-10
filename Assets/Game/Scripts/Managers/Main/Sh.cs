@@ -19,7 +19,4 @@ public class Sh: MonoBehaviour {
 		get { return ShmiplManager.GetInstance(); }
 	}
 
-	void Awake() {
-		DontDestroyOnLoad(gameObject);
-	}
 }
