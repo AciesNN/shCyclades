@@ -11,7 +11,6 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 	public PhotonView photonView;
 
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
-
 	protected override void Init ()	{		
 		base.Init ();
 		
@@ -23,6 +22,7 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
+		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", ServerConnectionRegister);
 
 		#if UNITY_WEBPLAYER
 		Shmipl.Base.Log.inFile = false;
@@ -35,8 +35,6 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 		#endif
 
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load(path, typeof(TextAsset))).text;
-
-		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 
 		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 		PhotonNetwork.automaticallySyncScene = true;
@@ -51,12 +49,18 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
 	}
 
+	void ServerConnectionRegister(object name) {
+		Debug.Log ("ServerConnectionRegister: " + name);
+	}
+
 	void OnDeserializeConnections(object name, Hashtable data) {
 		Debug.Log ("OnDeserializeConnections: " + name + ", " + Shmipl.Base.json.dumps(data));
 		try {
 			object z = Cyclades.Program.clnts[_pl].GetRootName();
-			int a = 1;
-		} catch {}
+			Debug.Log ("player " + _pl + " is " + z);
+		} catch (Exception ex) {
+			Debug.Log ("err: " + ex);
+		}
 	}
 
 	void OnDestroy() {
@@ -101,14 +105,14 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 			Debug.Log("-FSM: " + fsm_name);
 	}
 
-	void OnLevelWasLoaded(int level) {
+	/*void OnLevelWasLoaded(int level) {
 
-	}
+	}*/
 
 	#region Events
 	public void OnServerCreateClick() {
 
-		PhotonNetwork.CreateRoom("test",true,true,5);
+		PhotonNetwork.CreateRoom("test",true,true,20);
 		Cyclades.Program.CreateServer();
 
 	}
@@ -120,7 +124,7 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 
 		Shmipl.FrmWrk.Net.UniversalClientConnection conn = new Shmipl.FrmWrk.Net.UniversalClientConnection();
 		conn.send_msg = (string msg) => {
-			PhotonNetwork.RPC(photonView, "PhotonNetworkRPC_ClientToServer", PhotonTargets.MasterClient, msg);
+			PhotonNetwork.RPC(photonView, "PhotonNetworkRPC_ClientToServer", PhotonTargets.MasterClient, PhotonNetwork.playerName, msg);
 		};
 		Cyclades.Program.CreateNetClient(conn, PhotonNetwork.playerName);
 		conn.msgs = Cyclades.Program.clnt.msgs;
@@ -132,6 +136,14 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 	}
 
 	public void OnGameStartClick() {
+		Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
+		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
+		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.Error", OnError);
+		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.AddContext", OnAddContext);
+		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
+		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
+		Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", ServerConnectionRegister);
+
 		try {
 			Cyclades.Program.StartServer((int)System.DateTime.Now.Ticks, true);
 		} catch (Exception ex) {
@@ -141,112 +153,6 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 	}
 	#endregion
 
-	// We have two options here: we either joined(by title, list or random) or created a room.
-	public void OnJoinedRoom()
-	{
-		Debug.Log("OnJoinedRoom");
-		Debug.Log ( "P c r = " + PhotonNetwork.countOfRooms );
-	}
-	
-	public void OnPhotonCreateRoomFailed()
-	{
-		Debug.Log("OnPhotonCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
-	}
-	
-	public void OnPhotonJoinRoomFailed()
-	{
-		Debug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
-	}
-	public void OnPhotonRandomJoinFailed()
-	{
-		Debug.Log("OnPhotonRandomJoinFailed got called. Happens if no room is available (or all full or invisible or closed). JoinrRandom filter-options can limit available rooms.");
-	}
-	
-	public void OnCreatedRoom()
-	{
-		Debug.Log("OnCreatedRoom");
-		//PhotonNetwork.LoadLevel(SceneNameGame);
-	}
 
-	public void OnFailedToConnectToPhoton(object parameters)
-	{
-		Debug.Log("OnFailedToConnectToPhoton. StatusCode: " + parameters + " ServerAddress: " + PhotonNetwork.networkingPeer.ServerAddress);
-	}
-
-	public void OnMasterClientSwitched(PhotonPlayer player)
-	{
-		Debug.Log("OnMasterClientSwitched: " + player);
-		
-		/*string message;
-		InRoomChat chatComponent = GetComponent<InRoomChat>();  // if we find a InRoomChat component, we print out a short message
-		
-		if (chatComponent != null)
-		{
-			// to check if this client is the new master...
-			if (player.isLocal)
-			{
-				message = "You are Master Client now.";
-			}
-			else
-			{
-				message = player.name + " is Master Client now.";
-			}
-			
-			
-			chatComponent.AddLine(message); // the Chat method is a RPC. as we don't want to send an RPC and neither create a PhotonMessageInfo, lets call AddLine()
-		}*/
-	}
-	
-	public void OnLeftRoom()
-	{
-		Debug.Log("OnLeftRoom (local)");
-		
-		// back to main menu        
-		Application.LoadLevel("Menu");
-	}
-
-	public void OnLeftLobby()
-	{
-		Debug.Log("OnLeftLobby (local)");
-	}
-	
-	public void OnDisconnectedFromPhoton()
-	{
-		Debug.Log("OnDisconnectedFromPhoton");
-		
-		// back to main menu        
-		Application.LoadLevel("Menu");
-	}
-	
-	public void OnPhotonInstantiate(PhotonMessageInfo info)
-	{
-		Debug.Log("OnPhotonInstantiate " + info.sender);    // you could use this info to store this or react
-	}
-	
-	public void OnPhotonPlayerConnected(PhotonPlayer player)
-	{
-		Debug.Log("OnPhotonPlayerConnected: " + player);
-
-		Shmipl.FrmWrk.Net.UniversalServerConnection conn = new Shmipl.FrmWrk.Net.UniversalServerConnection(Cyclades.Program.srv.conn_pull);
-		conn.send_msg = (string msg) => {
-			PhotonNetwork.RPC(photonView, "PhotonNetworkRPC_ServerToClient", player, msg);
-		};
-		Cyclades.Program.ConnectNetClient(conn, player.name);
-	}
-	
-	public void OnPhotonPlayerDisconnected(PhotonPlayer player)
-	{
-		Debug.Log("OnPlayerDisconneced: " + player);
-	}
-
-	public void OnJoinedLobby()
-	{
-		Debug.Log("OnJoinedLobby (local)");
-	}
-
-	public void OnConnectedToMaster(PhotonPlayer player)
-	{
-		Debug.Log("OnConnectedToMaster: " + player);
-	}
 }
 

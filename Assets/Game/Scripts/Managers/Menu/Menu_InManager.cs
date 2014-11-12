@@ -34,6 +34,8 @@ public class Menu_InManager : Manager<Menu_InManager> {
 		get {
 			if (counter == -1)
 				return null;
+			if (!Cyclades.Program.clnts.ContainsKey(Sh.Sрmipl._pl))
+				return null;
 			Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[Sh.Sрmipl._pl];
 			if (dsp == null || !dsp.history_tree.ContainsKey(Sh.Sрmipl._gm))
 				return null;
