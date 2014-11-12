@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ShmiplManager : Manager<ShmiplManager> {
 
-	public long _pl = 0; //TODO
+	public object _pl = "Client0"; //TODO
 	public string _gm = "Game"; //TODO
 
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
@@ -50,7 +50,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 
 	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
-		if (context_name == _gm && (long)msg["to"] == _pl) {
+		if (context_name == _gm && msg["to"] == _pl) {
 			if (msg.ContainsKey("macros") && msg["macros"] is String && (string)msg["macros"] == "SHOW") {//todo выглядит хардкордно
 				Debug.Log("show: " + Shmipl.Base.json.dumps(msg));
 				Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable>.Broadcast("UnityShmipl.ShowAnimation", msg));
@@ -62,7 +62,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 	
 	private void OnContextDeserialize(string context_name, object to, Hashtable msg, long counter) {
-		if (context_name == _gm && (long)msg["to"] == _pl) {
+		if (context_name == _gm && msg["to"] == _pl) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));
 			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, false, true));
 		}
@@ -74,12 +74,12 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 	
 	private void OnAddContext(object to, string fsm_name) {
-		if ((long)to == _pl)
+		if (to == _pl)
 			Debug.Log("+FSM: " + fsm_name);
 	}
 	
 	private void OnRemoveContext(object to, string fsm_name) {
-		if ((long)to == _pl)
+		if (to == _pl)
 			Debug.Log("-FSM: " + fsm_name);
 	}
 

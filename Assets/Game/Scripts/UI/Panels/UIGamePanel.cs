@@ -35,8 +35,13 @@ public class UIGamePanel : MonoBehaviour {
 
 	void Awake() {
 		if (panels == null) panels = new Dictionary <PanelType, UIGamePanel> ();
-		if (panelType != PanelType.DEFAULT)
-			panels.Add (panelType, this);
+		if (panelType != PanelType.DEFAULT) {
+			if (panels.ContainsKey(panelType)) {
+				panels[panelType] = this;//TODO это видимо связано со static св-вами панелей и перезагрузкой модулей
+			} else {
+				panels.Add (panelType, this);
+			}
+		}
 		else {
 			if (transform.parent.GetComponent<UIGamePanelTabs>()) {
 				Debug.LogError("У панели (" + name + ") входящей в закладки не установлен тип - переключение будет невозможно");

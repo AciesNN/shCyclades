@@ -68,5 +68,10 @@ public class UIAdminPanel : UIGamePanel {
 			Debug.Log (text);
 		#endif
 	}
+
+	public void OnUpdateData() {
+		Sh.GameState.GameContext_UpdateData();
+		Sh.In.rootUI.BroadcastMessage("GameContext_UpdateData", true, SendMessageOptions.DontRequireReceiver);
+	}
 	#endregion
 }
