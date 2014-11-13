@@ -32,13 +32,26 @@ public class InManager : Manager<InManager> {
 		get {
 			if (counter == -1)
 				return null;
-			if (!Cyclades.Program.clnts.ContainsKey(Sh.Sрmipl._pl))
-				return null;
-			Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[Sh.Sрmipl._pl];
-			if (dsp == null || !dsp.history_tree.ContainsKey(Sh.Sрmipl._gm))
-				return null;
-			Shmipl.FrmWrk.ContextHistory ch = dsp.history_tree[Sh.Sрmipl._gm];
-			return ch.Get (counter); //TODO кешировать надо при изменении counter
+
+			if (Cyclades.Program.isServer) {
+
+				if (!Cyclades.Program.clnts.ContainsKey(Sh.Sрmipl._pl))
+					return null;
+				Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[Sh.Sрmipl._pl];
+				if (dsp == null || !dsp.history_tree.ContainsKey(Sh.Sрmipl._gm))
+					return null;
+				Shmipl.FrmWrk.ContextHistory ch = dsp.history_tree[Sh.Sрmipl._gm];
+				return ch.Get (counter); //TODO кешировать надо при изменении counter
+			
+			} else {
+
+				Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnt;
+				if (dsp == null || !dsp.history_tree.ContainsKey(Sh.Sрmipl._gm))
+					return null;
+				Shmipl.FrmWrk.ContextHistory ch = dsp.history_tree[Sh.Sрmipl._gm];
+				return ch.Get (counter); //TODO кешировать надо при изменении counter
+
+			}
 		} 
 	}
 
@@ -80,6 +93,7 @@ public class InManager : Manager<InManager> {
 				if (!_is_init_game_context) {
 					_is_init_game_context = true;
 					Sh.GameState.GameContext_LateInit();
+					Sh.GameState.GameContext_UpdateData(deserialize);
 				} else {
 					Sh.GameState.GameContext_UpdateData(deserialize);
 				}

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ShmiplManager : Manager<ShmiplManager> {
 
-	public object _pl = "Client0"; //TODO
+	public object _pl = 0L; //TODO
 	public string _gm = "Game"; //TODO
 
 	public PhotonView photonView;
@@ -23,7 +23,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
-		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", ServerConnectionRegister);
+		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
 
 		#if UNITY_WEBPLAYER
 		Shmipl.Base.Log.inFile = false;
@@ -59,7 +59,16 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		#endif
 	}
 
-	void ServerConnectionRegister(object name) {
+	#region Shmipl.Events
+	bool TestAdress(object to) {
+		if (Cyclades.Program.isServer) {
+			return (long)to == (long)_pl;
+		} else {
+			return true;
+		}
+	}
+
+	void OnServerConnectionRegister(object name) {
 		Debug.Log ("ServerConnectionRegister: " + name);
 	}
 	
@@ -74,7 +83,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 
 	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
-		if (context_name == _gm && msg["to"] == _pl) {
+		if (context_name == _gm && TestAdress(msg["to"])) {
 			if (msg.ContainsKey("macros") && msg["macros"] is String && (string)msg["macros"] == "SHOW") {//todo выглядит хардкордно
 				Debug.Log("show: " + Shmipl.Base.json.dumps(msg));
 				Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable>.Broadcast("UnityShmipl.ShowAnimation", msg));
@@ -86,7 +95,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 	
 	private void OnContextDeserialize(string context_name, object to, Hashtable msg, long counter) {
-		if (context_name == _gm && msg["to"] == _pl) {
+		if (context_name == _gm && TestAdress(msg["to"])) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));
 			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, false, true));
 		}
@@ -98,14 +107,15 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	}
 	
 	private void OnAddContext(object to, string fsm_name) {
-		if (to == _pl)
-			Debug.Log("+FSM: " + fsm_name);
+		/*if (to == _pl)
+			Debug.Log("+FSM: " + fsm_name);*/
 	}
 	
 	private void OnRemoveContext(object to, string fsm_name) {
-		if (to == _pl)
-			Debug.Log("-FSM: " + fsm_name);
+		/*if (to == _pl)
+			Debug.Log("-FSM: " + fsm_name);*/
 	}
+	#endregion
 
 	#region Events
 	public void OnServerCreateClick() {
