@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
+public class ShmiplManager : Manager<ShmiplManager> {
 
 	public object _pl = "Client0"; //TODO
 	public string _gm = "Game"; //TODO
@@ -13,7 +13,8 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
 	protected override void Init ()	{		
 		base.Init ();
-		
+
+		// the following line checks if this client was just created (and not yet online). if so, we connect
 		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent());
 
 		Shmipl.Base.Messenger<string, object, Hashtable, long>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
@@ -45,22 +46,9 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 			// Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
 			PhotonNetwork.ConnectUsingSettings("0.9");
 		}
-
+		
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
-	}
-
-	void ServerConnectionRegister(object name) {
-		Debug.Log ("ServerConnectionRegister: " + name);
-	}
-
-	void OnDeserializeConnections(object name, Hashtable data) {
-		Debug.Log ("OnDeserializeConnections: " + name + ", " + Shmipl.Base.json.dumps(data));
-		try {
-			object z = Cyclades.Program.clnts[_pl].GetRootName();
-			Debug.Log ("player " + _pl + " is " + z);
-		} catch (Exception ex) {
-			Debug.Log ("err: " + ex);
-		}
+		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 	}
 
 	void OnDestroy() {
@@ -69,6 +57,20 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 		#else
 		Shmipl.Base.Log.close_all();
 		#endif
+	}
+
+	void ServerConnectionRegister(object name) {
+		Debug.Log ("ServerConnectionRegister: " + name);
+	}
+	
+	void OnDeserializeConnections(object name, Hashtable data) {
+		Debug.Log ("OnDeserializeConnections: " + name + ", " + Shmipl.Base.json.dumps(data));
+		try {
+			object z = Cyclades.Program.clnts[_pl].GetRootName();
+			Debug.Log ("player " + _pl + " is " + z);
+		} catch (Exception ex) {
+			Debug.Log ("err: " + ex);
+		}
 	}
 
 	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
@@ -105,54 +107,39 @@ public class Menu_ShmiplManager : Manager<Menu_ShmiplManager> {
 			Debug.Log("-FSM: " + fsm_name);
 	}
 
-	/*void OnLevelWasLoaded(int level) {
-
-	}*/
-
 	#region Events
 	public void OnServerCreateClick() {
-
+		
 		PhotonNetwork.CreateRoom("test",true,true,20);
 		Cyclades.Program.CreateServer();
-
+		
 	}
-
+	
 	public void OnNetClientCreateClick() {
-
+		
 		PhotonNetwork.playerName = "NetClient" + UnityEngine.Random.Range(100, 1000);
 		PhotonNetwork.JoinRoom("test");
-
+		
 		Shmipl.FrmWrk.Net.UniversalClientConnection conn = new Shmipl.FrmWrk.Net.UniversalClientConnection();
 		conn.send_msg = (string msg) => {
 			PhotonNetwork.RPC(photonView, "PhotonNetworkRPC_ClientToServer", PhotonTargets.MasterClient, PhotonNetwork.playerName, msg);
 		};
 		Cyclades.Program.CreateNetClient(conn, PhotonNetwork.playerName);
 		conn.msgs = Cyclades.Program.clnt.msgs;
-
+		
 	}
-
+	
 	public void OnHotSeatClientCreateClick() {
 		Cyclades.Program.CreateHotSeatClient(Cyclades.Program.srv.conn_pull);
 	}
-
+	
 	public void OnGameStartClick() {
-		Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
-		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
-		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.Error", OnError);
-		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.AddContext", OnAddContext);
-		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
-		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
-		Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", ServerConnectionRegister);
-
 		try {
 			Cyclades.Program.StartServer((int)System.DateTime.Now.Ticks, true);
 		} catch (Exception ex) {
 			NGUIDebug.Log("ERROR: " + ex);
 		}
-		Application.LoadLevel("Main");
 	}
 	#endregion
-
-
 }
 

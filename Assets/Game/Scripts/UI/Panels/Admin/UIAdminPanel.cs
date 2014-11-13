@@ -70,8 +70,7 @@ public class UIAdminPanel : UIGamePanel {
 	}
 
 	public void OnUpdateData() {
-		Sh.GameState.GameContext_UpdateData();
-		Sh.In.rootUI.BroadcastMessage("GameContext_UpdateData", true, SendMessageOptions.DontRequireReceiver);
+		Sh.GameState.GameContext_UpdateData(true);
 	}
 	#endregion
 }

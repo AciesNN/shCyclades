@@ -5,6 +5,10 @@ using Cyclades.Game;
 
 /*содержит информацию о том, в какие состояния при этом должны быть совершены*/
 public class GameStateManager : Manager<GameStateManager> {
+	public void GameContext_NewData ()
+	{
+		throw new System.NotImplementedException ();
+	}
 
 	private long _currentUser;
 	public long currentUser {
@@ -25,9 +29,15 @@ public class GameStateManager : Manager<GameStateManager> {
 	
 	public UIMapStates mapStates;
 
+	public GameObject rootUI;
+	public GameObject rootMenu;
+
 	protected override void Init() {
 		base.Init ();
-		currentUser = 0L;
+
+		rootUI.SetActive(false);
+		rootMenu.SetActive(true);
+
 	}
 
 	void SetAuctionState() {
@@ -95,12 +105,21 @@ public class GameStateManager : Manager<GameStateManager> {
 		}
 	}
 
-	public void GameContext_UpdateData () {
+	public void GameContext_UpdateData (bool deserialize) {
 		SetAuctionState();
 		SetCardState(false);
 		SetBattleState();
 
 		SetMapEventorType();
+
+		rootUI.BroadcastMessage("GameContext_UpdateData", deserialize, SendMessageOptions.DontRequireReceiver);
+	}
+
+	public void GameContext_LateInit () {
+		currentUser = 0L;
+		rootMenu.SetActive(false);
+		rootUI.SetActive(true);
+		rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
 	}
 
 	void SetMapEventorType(MapEventerType type) {

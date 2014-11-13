@@ -21,7 +21,6 @@ public class PhotonManager : MonoBehaviour
 
 	void Awake () {
 		photonView = gameObject.GetComponent<PhotonView>();
-		DontDestroyOnLoad(gameObject);
 	}
 
 	// We have two options here: we either joined(by title, list or random) or created a room.
@@ -83,9 +82,6 @@ public class PhotonManager : MonoBehaviour
 	public void OnLeftRoom()
 	{
 		Debug.Log("OnLeftRoom (local)");
-		
-		// back to main menu        
-		Application.LoadLevel("Menu");
 	}
 	
 	public void OnLeftLobby()
@@ -96,9 +92,6 @@ public class PhotonManager : MonoBehaviour
 	public void OnDisconnectedFromPhoton()
 	{
 		Debug.Log("OnDisconnectedFromPhoton");
-		
-		// back to main menu        
-		Application.LoadLevel("Menu");
 	}
 	
 	public void OnPhotonInstantiate(PhotonMessageInfo info)
