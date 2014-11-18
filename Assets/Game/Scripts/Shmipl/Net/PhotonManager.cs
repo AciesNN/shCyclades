@@ -26,38 +26,40 @@ public class PhotonManager : MonoBehaviour
 	// We have two options here: we either joined(by title, list or random) or created a room.
 	public void OnJoinedRoom()
 	{
-		Debug.Log("OnJoinedRoom");
-		Debug.Log ( "P c r = " + PhotonNetwork.countOfRooms );
+		NGUIDebug.Log("OnJoinedRoom");
 	}
 	
 	public void OnPhotonCreateRoomFailed()
 	{
-		Debug.Log("OnPhotonCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
+		NGUIDebug.Log("OnPhotonCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
 	}
 	
-	public void OnPhotonJoinRoomFailed()
+	public void OnPhotonJoinRoomFailed(object[] codeAndMsg)
 	{
-		Debug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
+		NGUIDebug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
+		try {
+			NGUIDebug.Log("\t" + codeAndMsg[0] + "/" + codeAndMsg[1]);
+		} finally {}
 	}
+
 	public void OnPhotonRandomJoinFailed()
 	{
-		Debug.Log("OnPhotonRandomJoinFailed got called. Happens if no room is available (or all full or invisible or closed). JoinrRandom filter-options can limit available rooms.");
+		NGUIDebug.Log("OnPhotonRandomJoinFailed got called. Happens if no room is available (or all full or invisible or closed). JoinRandom filter-options can limit available rooms.");
 	}
 	
 	public void OnCreatedRoom()
 	{
-		Debug.Log("OnCreatedRoom");
-		//PhotonNetwork.LoadLevel(SceneNameGame);
+		NGUIDebug.Log("OnCreatedRoom");
 	}
 	
 	public void OnFailedToConnectToPhoton(object parameters)
 	{
-		Debug.Log("OnFailedToConnectToPhoton. StatusCode: " + parameters + " ServerAddress: " + PhotonNetwork.networkingPeer.ServerAddress);
+		NGUIDebug.Log("OnFailedToConnectToPhoton. StatusCode: " + parameters + " ServerAddress: " + PhotonNetwork.networkingPeer.ServerAddress);
 	}
 	
 	public void OnMasterClientSwitched(PhotonPlayer player)
 	{
-		Debug.Log("OnMasterClientSwitched: " + player);
+		NGUIDebug.Log("OnMasterClientSwitched: " + player);
 		
 		/*string message;
 		InRoomChat chatComponent = GetComponent<InRoomChat>();  // if we find a InRoomChat component, we print out a short message
@@ -81,27 +83,27 @@ public class PhotonManager : MonoBehaviour
 	
 	public void OnLeftRoom()
 	{
-		Debug.Log("OnLeftRoom (local)");
+		NGUIDebug.Log("OnLeftRoom (local)");
 	}
 	
 	public void OnLeftLobby()
 	{
-		Debug.Log("OnLeftLobby (local)");
+		NGUIDebug.Log("OnLeftLobby (local)");
 	}
 	
 	public void OnDisconnectedFromPhoton()
 	{
-		Debug.Log("OnDisconnectedFromPhoton");
+		NGUIDebug.Log("OnDisconnectedFromPhoton");
 	}
 	
 	public void OnPhotonInstantiate(PhotonMessageInfo info)
 	{
-		Debug.Log("OnPhotonInstantiate " + info.sender);    // you could use this info to store this or react
+		NGUIDebug.Log("OnPhotonInstantiate " + info.sender);    // you could use this info to store this or react
 	}
 	
 	public void OnPhotonPlayerConnected(PhotonPlayer player)
 	{
-		Debug.Log("OnPhotonPlayerConnected: " + player);
+		NGUIDebug.Log("OnPhotonPlayerConnected: " + player);
 		
 		Shmipl.FrmWrk.Net.UniversalServerConnection conn = new Shmipl.FrmWrk.Net.UniversalServerConnection(Cyclades.Program.srv.conn_pull);
 		conn.send_msg = (string msg) => {
@@ -112,17 +114,24 @@ public class PhotonManager : MonoBehaviour
 	
 	public void OnPhotonPlayerDisconnected(PhotonPlayer player)
 	{
-		Debug.Log("OnPlayerDisconneced: " + player);
+		NGUIDebug.Log("OnPlayerDisconneced: " + player);
 	}
 	
 	public void OnJoinedLobby()
 	{
-		Debug.Log("OnJoinedLobby (local)");
+		NGUIDebug.Log("OnJoinedLobby (local): " + PhotonNetwork.countOfPlayers + " users are online in " + PhotonNetwork.countOfRooms + " rooms");
+		RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+		if (rooms.Length > 0) {
+			NGUIDebug.Log("\tthere're " + rooms.Length + " rooms: ");
+			foreach(RoomInfo room in rooms) {
+				NGUIDebug.Log("\t" + room.name);
+			}
+		}
 	}
 	
 	public void OnConnectedToMaster(PhotonPlayer player)
 	{
-		Debug.Log("OnConnectedToMaster: " + player);
+		NGUIDebug.Log("OnConnectedToMaster: " + player);
 	}
 }
 

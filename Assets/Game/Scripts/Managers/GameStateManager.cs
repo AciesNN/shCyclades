@@ -116,7 +116,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public void GameContext_LateInit () {
-		currentUser = 0L;
+		//currentUser = 0L;
 		rootMenu.SetActive(false);
 		rootUI.SetActive(true);
 		rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);

@@ -58,7 +58,11 @@ public class InManager : Manager<InManager> {
 	//todo красиво? вроде не очень
 	public Context GameContextUnstable {
 		get {
-			return Cyclades.Program.clnts[Sh.Sрmipl._pl].GetContext(Sh.Sрmipl._gm);
+			if (Cyclades.Program.isServer) {
+				return Cyclades.Program.clnts[Sh.Sрmipl._pl].GetContext(Sh.Sрmipl._gm);
+			} else {
+				return Cyclades.Program.clnt.GetContext(Sh.Sрmipl._gm);
+			}
 		} 
 	}
 

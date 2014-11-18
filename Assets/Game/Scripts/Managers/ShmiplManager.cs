@@ -7,6 +7,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 
 	public object _pl = 0L; //TODO
 	public string _gm = "Game"; //TODO
+	public string _room_name = "test"; //TODO
 
 	public PhotonView photonView;
 
@@ -38,7 +39,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load(path, typeof(TextAsset))).text;
 
 		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
-		PhotonNetwork.automaticallySyncScene = true;
+		//PhotonNetwork.automaticallySyncScene = true;
 		
 		// the following line checks if this client was just created (and not yet online). if so, we connect
 		if (PhotonNetwork.connectionStateDetailed == PeerState.PeerCreated)
@@ -46,7 +47,9 @@ public class ShmiplManager : Manager<ShmiplManager> {
 			// Connect to the photon master-server. We use the settings saved in PhotonServerSettings (a .asset file in this project)
 			PhotonNetwork.ConnectUsingSettings("0.9");
 		}
-		
+
+		//PhotonNetwork.logLevel = PhotonLogLevel.Informational;
+
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
 		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 	}
@@ -74,12 +77,12 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	
 	void OnDeserializeConnections(object name, Hashtable data) {
 		Debug.Log ("OnDeserializeConnections: " + name + ", " + Shmipl.Base.json.dumps(data));
-		try {
+		/*try {
 			object z = Cyclades.Program.clnts[_pl].GetRootName();
 			Debug.Log ("player " + _pl + " is " + z);
 		} catch (Exception ex) {
 			Debug.Log ("err: " + ex);
-		}
+		}*/
 	}
 
 	private void OnContextChanged(string context_name, object to, Hashtable msg, long counter, bool stable) {
@@ -120,7 +123,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	#region Events
 	public void OnServerCreateClick() {
 		
-		PhotonNetwork.CreateRoom("test",true,true,20);
+		PhotonNetwork.CreateRoom(_room_name,true,true,20);
 		Cyclades.Program.CreateServer();
 		
 	}
@@ -128,7 +131,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	public void OnNetClientCreateClick() {
 		
 		PhotonNetwork.playerName = "NetClient" + UnityEngine.Random.Range(100, 1000);
-		PhotonNetwork.JoinRoom("test");
+		PhotonNetwork.JoinRoom(_room_name);
 		
 		Shmipl.FrmWrk.Net.UniversalClientConnection conn = new Shmipl.FrmWrk.Net.UniversalClientConnection();
 		conn.send_msg = (string msg) => {
@@ -149,6 +152,18 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		} catch (Exception ex) {
 			NGUIDebug.Log("ERROR: " + ex);
 		}
+	}
+
+	public void _OnCreateAll() {
+		OnServerCreateClick();
+
+		OnHotSeatClientCreateClick();
+		OnHotSeatClientCreateClick();
+		OnHotSeatClientCreateClick();
+		OnHotSeatClientCreateClick();
+		OnHotSeatClientCreateClick();
+
+		OnGameStartClick();
 	}
 	#endregion
 }
