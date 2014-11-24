@@ -145,7 +145,11 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	public void OnHotSeatClientCreateClick() {
 		Cyclades.Program.CreateHotSeatClient(Cyclades.Program.srv.conn_pull);
 	}
-	
+
+	public void OnAIClientCreateClick() {
+		Cyclades.Program.CreateAIHotSeatClient(Cyclades.Program.srv.conn_pull);
+	}
+
 	public void OnGameStartClick() {
 		try {
 			Cyclades.Program.StartServer((int)System.DateTime.Now.Ticks, true);
