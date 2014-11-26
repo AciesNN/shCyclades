@@ -21,7 +21,6 @@ public class InManager : Manager<InManager> {
 		base.Init();
 
 		Shmipl.Base.Messenger<Hashtable, long, bool, bool>.AddListener("UnityShmipl.UpdateView", UpdateGameData);
-		Shmipl.Base.Messenger<Hashtable>.AddListener("UnityShmipl.ShowAnimation", ShowAnimation);
 	}
 
 	void Start() {
@@ -105,10 +104,9 @@ public class InManager : Manager<InManager> {
 			} else {
 				NGUIDebug.Log("ERROR: контекст не обнаружен по счетчику: " + counter + " (" + deserialize + ")");
 			}
+		} else {
+			Sh.GameState.GameContext_ShowAnimation(msg);
 		}
 	}
 
-	public void ShowAnimation(Hashtable msg) {
-		//rootUI.BroadcastMessage("GameContext_ShowAnimation", msg, SendMessageOptions.DontRequireReceiver);
-	}
 }

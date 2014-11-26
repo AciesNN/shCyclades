@@ -115,6 +115,10 @@ public class GameStateManager : Manager<GameStateManager> {
 		rootUI.BroadcastMessage("GameContext_UpdateData", deserialize, SendMessageOptions.DontRequireReceiver);
 	}
 
+	public void GameContext_ShowAnimation (Hashtable msg) {
+		rootUI.BroadcastMessage("GameContext_ShowAnimation", msg, SendMessageOptions.DontRequireReceiver);
+	}
+
 	public void GameContext_LateInit () {
 		//currentUser = 0L;
 		rootMenu.SetActive(false);

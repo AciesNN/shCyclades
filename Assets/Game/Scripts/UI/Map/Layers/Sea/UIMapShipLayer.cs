@@ -39,12 +39,26 @@ public class UIMapShipLayer : UIMapGridLayer {
 	}
 
 	public void GameContext_ShowAnimation(Hashtable msg) {
-		if (msg.ContainsKey("Animation") && msg["Animation"] is string) {//TODO надо придумать красивый фильтр
-			string animation = (string)msg["Animation"];
-			if (animation == "MoveShip") {
-				long x_from = (long)msg["x_from"]; long x_to = (long)msg["x_to"]; long y_from = (long)msg["y_from"]; long y_to = (long)msg["y_to"];
+		if (msg.ContainsKey("macros") && msg["macros"] is string) {//TODO надо придумать красивый фильтр
+			string macros = (string)msg["macros"];
+			if (macros == "MOVE_SHIP") {
+				long x_from = (long)msg["x_from"]; 
+				long x_to = (long)msg["x_to"]; 
+				long y_from = (long)msg["y_from"]; 
+				long y_to = (long)msg["y_to"];
 				long count = (long)msg["count"];
+
 				StartCoroutine( CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count) );
+			} else if (macros == "REMOVE_SHIP") {
+				long x = (long)msg["x"]; 
+				long y = (long)msg["y"]; 
+
+				CreateShip(new GridPosition(x, y));
+			} else if (macros == "ADD_SHIP") {
+				long x = (long)msg["x"]; 
+				long y = (long)msg["y"]; 
+				
+				CreateShip(new GridPosition(x, y));
 			}
 		}
 	}
