@@ -9,17 +9,27 @@ public class UIMapShipElement : UIMapGridLayerElement {
 	#endregion
 
 	#region ViewWidgetsSet
-	public void SetCount(int count) {
-		if (count <= 0) {
-			context.SetActive(false);
-		} else {
-			context.SetActive(true);
-			countLabel.text = "" + count;
+	private long count;
+	public long Count {
+		set {
+			count = value;
+			if (count <= 0) {
+				context.SetActive(false);
+			} else {
+				context.SetActive(true);
+				countLabel.text = "" + count;
+			}
+		}
+
+		get {
+			return count;
 		}
 	}
 
-	public void SetOwner(int user) {
-		sprite.color = UIConsts.userColors[user];
+	public long Owner {
+		set {
+			sprite.color = UIConsts.userColors[(int)value];
+		}
 	}
 	#endregion
 

@@ -16,26 +16,27 @@ public class UIMapShipLayer : UIMapGridLayer {
 				for(int y = 0; y < MapController.YSize; ++y) {
 					GridPosition cell = new GridPosition(x, y);
 					if(MapController.IsCellPossible(cell) && Library.Map_GetIslandByPoint(Sh.In.GameContext, x, y) == -1) {
-						CreateShip(cell);
+						long owner = Library.Map_GetPointOwner(Sh.In.GameContext, x, y);
+						long count = Library.Map_GetShipCountByPoint(Sh.In.GameContext, x, y);
+						AddShip(cell, owner, count);
 					}
 				}
 			}
 		}
 	}
 
-	public UIMapShipElement CreateShip(GridPosition cell) {
+	public void AddShip(GridPosition cell, long owner, long count) {
 		UIMapShipElement el = elements[cell.x, cell.y] as UIMapShipElement;
 		if (elements[cell.x, cell.y] == null) {
 			el = CreateElement<UIMapShipElement>(cell);
 		}
-
-		int owner = (int)Library.Map_GetPointOwner(Sh.In.GameContextUnstable, cell.x, cell.y);
-		int count = Library.Map_GetShipCountByPoint(Sh.In.GameContextUnstable, cell.x, cell.y);
-
-		el.SetCount(count);
-		el.SetOwner(owner);
-
-		return el;
+		
+		el.Count += count;
+		if (count > 0) {
+			el.Owner = owner;
+		}
+		
+		//return el;
 	}
 
 	public void GameContext_ShowAnimation(Hashtable msg) {
@@ -47,28 +48,33 @@ public class UIMapShipLayer : UIMapGridLayer {
 				long y_from = (long)msg["y_from"]; 
 				long y_to = (long)msg["y_to"];
 				long count = (long)msg["count"];
+				long owner = (long)msg["owner"]; 
 
-				StartCoroutine( CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count) );
+				StartCoroutine( CreateAnimation_MoveShip(new GridPosition(x_from, y_from), new GridPosition(x_to, y_to), count, owner) );
 			} else if (macros == "REMOVE_SHIP") {
 				long x = (long)msg["x"]; 
 				long y = (long)msg["y"]; 
+				long count = (long)msg["count"]; 
 
-				CreateShip(new GridPosition(x, y));
+				AddShip(new GridPosition(x, y), -1, -count);
 			} else if (macros == "ADD_SHIP") {
 				long x = (long)msg["x"]; 
 				long y = (long)msg["y"]; 
+				long count = (long)msg["count"]; 
+				long owner = (long)msg["owner"]; 
 				
-				CreateShip(new GridPosition(x, y));
+				AddShip(new GridPosition(x, y), owner, count);
 			}
 		}
 	}
 
-	IEnumerator CreateAnimation_MoveShip(GridPosition from, GridPosition to, long count) {
-		CreateShip(from);
+	IEnumerator CreateAnimation_MoveShip(GridPosition from, GridPosition to, long count, long owner) {
+		AddShip(from, owner, -count);
 
 		UIMapShipElement anim = CreateSingleElement<UIMapShipElement>(from);
 		anim.name += " (animation)";
-		anim.SetCount((int)count);
+		anim.Count = count;
+		anim.Owner = owner;
 		float time = 1;
 
 		Vector3 _from = anim.transform.position;
@@ -81,6 +87,6 @@ public class UIMapShipLayer : UIMapGridLayer {
 		yield return new WaitForSeconds(time);
 
 		Destroy(anim.gameObject);
-		CreateShip(to);
+		AddShip(to, owner, count);
 	}
 }

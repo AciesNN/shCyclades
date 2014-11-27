@@ -54,17 +54,6 @@ public class InManager : Manager<InManager> {
 		} 
 	}
 
-	//todo красиво? вроде не очень
-	public Context GameContextUnstable {
-		get {
-			if (Cyclades.Program.isServer) {
-				return Cyclades.Program.clnts[Sh.Sрmipl._pl].GetContext(Sh.Sрmipl._gm);
-			} else {
-				return Cyclades.Program.clnt.GetContext(Sh.Sрmipl._gm);
-			}
-		} 
-	}
-
 	public void _LoadContextFromCash(string cashNumber) {
 		if (_testDataCash.ContainsKey(cashNumber)) {
 			_LoadContextFromText(_testDataCash[cashNumber]);
