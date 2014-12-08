@@ -14,17 +14,17 @@ class PlaceShipMapEventer: SeaClickMapEventer {
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			List<long> islands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);
 			foreach(long island in islands) {
-				List<List<int>> coords = Library.Map_GetIslandCoords(Sh.In.GameContext, (int)island);
-				foreach(List<int> coord in coords) {
-					List<Shmipl.FrmWrk.Library.Coords> seaCoords = Library.Map_GetPointNeighbors(Sh.In.GameContext, coord[0], coord[1]);
-					foreach(Shmipl.FrmWrk.Library.Coords seaCoord in seaCoords) {
-						if (Library.Map_IsPointAccessibleForShip(Sh.In.GameContext, seaCoord.x, seaCoord.y, Sh.GameState.currentUser)) {
-							GridPosition cell = new GridPosition(seaCoord.x, seaCoord.y);
-							if (!allowedCells.Contains(cell))
-							    allowedCells.Add(cell);
-						}
+
+				List<Shmipl.FrmWrk.Library.Coords> seaCoords = Library.Map_GetSeasNearIsland(Sh.In.GameContext, island);
+
+				foreach(Shmipl.FrmWrk.Library.Coords seaCoord in seaCoords) {
+					if (Library.Map_IsPointAccessibleForShip(Sh.In.GameContext, seaCoord.x, seaCoord.y, Sh.GameState.currentUser, false)) {
+						GridPosition cell = new GridPosition(seaCoord.x, seaCoord.y);
+						if (!allowedCells.Contains(cell))
+						    allowedCells.Add(cell);
 					}
 				}
+
 			}
 		}
 		

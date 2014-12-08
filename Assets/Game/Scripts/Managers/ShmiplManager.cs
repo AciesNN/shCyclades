@@ -19,6 +19,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent());
 
 		Shmipl.Base.Messenger<string, object, Hashtable, long>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
+		Shmipl.Base.Messenger<string, object, Hashtable>.AddListener("Shmipl.Init", OnContextInit);
 		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.AddListener("Shmipl.DoMacros", OnContextChanged);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.Error", OnError);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
@@ -91,7 +92,14 @@ public class ShmiplManager : Manager<ShmiplManager> {
 			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, counter, stable, false));
 		}
 	}
-	
+
+	private void OnContextInit(string context_name, object to, Hashtable msg) {
+		if (context_name == _gm && TestAdress(msg["to"])) {
+			Debug.Log("init: " + Shmipl.Base.json.dumps(msg));
+			Shmipl.Base.ThreadSafeMessenger.SendEvent(() => Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", msg, 1, false, true));
+		}
+	}
+
 	private void OnContextDeserialize(string context_name, object to, Hashtable msg, long counter) {
 		if (context_name == _gm && TestAdress(msg["to"])) {
 			Debug.Log("load: " + Shmipl.Base.json.dumps(msg));

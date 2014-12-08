@@ -30,6 +30,9 @@ public class UIUsersInfo : UIGamePanel {
 		List<long> player_order = GetPlayerInformationOrder();
 		List<string> player_gods_order = GetPlayerGodsInformationOrder(players_number);
 
+		if (player_order == null)
+			return; //TODO это может быть в случае если данных нет (напр игра только началась), по идее это надо обрабатывать как-то более симпатишно
+
 		for (int i = 0; i < players_number; ++i) {
 			UIUserInfoWidget w = userInfoWidgets[i];
 			long player = player_order[i];

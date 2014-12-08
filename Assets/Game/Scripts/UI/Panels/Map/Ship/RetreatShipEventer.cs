@@ -38,7 +38,7 @@ class RetreatShipEventer: SeaClickMapEventer {
 		allowedCells = new List<GridPosition>();
 		List<Shmipl.FrmWrk.Library.Coords> seaCoords = Library.Map_GetPointNeighbors(Sh.In.GameContext, lastSeaCell.x, lastSeaCell.y);
 		foreach(Shmipl.FrmWrk.Library.Coords seaCoord in seaCoords) {
-			if (Library.Map_IsPointAccessibleForShip(Sh.In.GameContext, seaCoord.x, seaCoord.y, Sh.GameState.currentUser)) {
+			if (Library.Map_IsPointAccessibleForShip(Sh.In.GameContext, seaCoord.x, seaCoord.y, Sh.GameState.currentUser, false)) {
 				allowedCells.Add(new GridPosition(seaCoord.x, seaCoord.y));
 			}
 		}
