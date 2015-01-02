@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//using Cyclades.Game;
+
 public class UIMapCyclades : UIMapHexController {
 
 	public int CycladGridY;
 	public int CycladGridX;
 
-	void Awake() {
+	public void GameContext_Init() {
+
+		CycladGridX = (int)Sh.In.GameContext.GetLong("/map/size_x");
+		CycladGridY = (int)Sh.In.GameContext.GetLong("/map/size_y");
+
 		YSize = CycladGridY * 2 - 1;
 		XSize = CycladGridX + CycladGridY - 1;
 		HexGridType = HexGridOrientation.HORIZONTAL;
 		odd = (CycladGridY % 2 != 0); //Y потому, что она - горизонтал
+
+	}
+
+	void Awake() {
 	}
 
 	public override GridPosition WorldPositionToCell(Vector3 pos) {

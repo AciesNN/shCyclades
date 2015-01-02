@@ -120,10 +120,14 @@ public class GameStateManager : Manager<GameStateManager> {
 	}
 
 	public void GameContext_LateInit () {
+		rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+	}
+
+	public void GameContext_Init() {
 		//currentUser = 0L;
 		rootMenu.SetActive(false);
 		rootUI.SetActive(true);
-		rootUI.BroadcastMessage("GameContext_LateInit", SendMessageOptions.DontRequireReceiver);
+		rootUI.BroadcastMessage("GameContext_Init", SendMessageOptions.DontRequireReceiver);
 	}
 
 	void SetMapEventorType(MapEventerType type) {

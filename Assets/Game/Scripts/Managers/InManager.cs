@@ -84,11 +84,10 @@ public class InManager : Manager<InManager> {
 
 				if (!_is_init_game_context) {
 					_is_init_game_context = true;
+					Sh.GameState.GameContext_Init();
 					Sh.GameState.GameContext_LateInit();
-					Sh.GameState.GameContext_UpdateData(deserialize);
-				} else {
-					Sh.GameState.GameContext_UpdateData(deserialize);
 				}
+				Sh.GameState.GameContext_UpdateData(deserialize);
 
 			} else {
 				NGUIDebug.Log("ERROR: контекст не обнаружен по счетчику: " + counter + " (" + deserialize + ")");
