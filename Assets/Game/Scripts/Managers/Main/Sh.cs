@@ -19,4 +19,10 @@ public class Sh: MonoBehaviour {
 		get { return ShmiplManager.GetInstance(); }
 	}
 
+	void Awake() {
+		if (GameObject.FindGameObjectWithTag("StartScene") == null) {
+			Debug.Log("load menu scene");
+			Application.LoadLevel("Menu");
+		}
+	}
 }

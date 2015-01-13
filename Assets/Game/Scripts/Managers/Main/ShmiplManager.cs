@@ -18,15 +18,6 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		// the following line checks if this client was just created (and not yet online). if so, we connect
 		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent());
 
-		Shmipl.Base.Messenger<string, object, Hashtable, long>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
-		Shmipl.Base.Messenger<string, object, Hashtable>.AddListener("Shmipl.Init", OnContextInit);
-		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.AddListener("Shmipl.DoMacros", OnContextChanged);
-		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.Error", OnError);
-		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
-		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
-		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
-		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
-
 		#if UNITY_WEBPLAYER
 		Shmipl.Base.Log.inFile = false;
 		Shmipl.Base.Log.inConsole = false;
@@ -55,12 +46,56 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 	}
 
+	void Start() {
+		Shmipl.Base.Messenger<string, object, Hashtable, long>.AddListener("Shmipl.DeserializeContext", OnContextDeserialize);
+		Shmipl.Base.Messenger<string, object, Hashtable>.AddListener("Shmipl.Init", OnContextInit);
+		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.AddListener("Shmipl.DoMacros", OnContextChanged);
+		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.Error", OnError);
+		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
+		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
+		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
+		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+
+		//отрисуем то, что есть
+		long counter = -1;
+		if (Cyclades.Program.clnts.ContainsKey(_pl)) {
+			Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[_pl];
+			if (dsp != null && dsp.history_tree.ContainsKey(_gm)) {
+				Shmipl.FrmWrk.ContextHistory ch = dsp.history_tree[_gm];
+				long[] counters = ch.GetCounters();
+				
+				foreach (long c in counters) {
+					if (c > counter)
+						counter = c;
+				}
+			}
+		}
+		
+		if (counter == -1) {
+			NGUIDebug.Log("counter == -1");
+		} else {
+			NGUIDebug.Log("drow context " + counter);
+			Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", null, counter, false, true);
+		}
+	}
+
 	void OnDestroy() {
 		#if UNITY_WEBPLAYER
 		#elif UNITY_ANDROID
 		#else
 		Shmipl.Base.Log.close_all();
 		#endif
+
+		try {
+			Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
+			Shmipl.Base.Messenger<string, object, Hashtable>.RemoveListener("Shmipl.Init", OnContextInit);
+			Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
+			Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.Error", OnError);
+			Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.AddContext", OnAddContext);
+			Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
+			Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
+			Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+		} finally { }
 	}
 
 	#region Shmipl.Events
@@ -120,57 +155,6 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	private void OnRemoveContext(object to, string fsm_name) {
 		/*if (to == _pl)
 			Debug.Log("-FSM: " + fsm_name);*/
-	}
-	#endregion
-
-	#region Events
-	public void OnServerCreateClick() {
-		
-		PhotonNetwork.CreateRoom(_room_name,true,true,20);
-		Cyclades.Program.CreateServer();
-		
-	}
-	
-	public void OnNetClientCreateClick() {
-		
-		PhotonNetwork.playerName = "NetClient" + UnityEngine.Random.Range(100, 1000);
-		PhotonNetwork.JoinRoom(_room_name);
-		
-		Shmipl.FrmWrk.Net.UniversalClientConnection conn = new Shmipl.FrmWrk.Net.UniversalClientConnection();
-		conn.send_msg = (string msg) => {
-			PhotonNetwork.RPC(photonView, "PhotonNetworkRPC_ClientToServer", PhotonTargets.MasterClient, PhotonNetwork.playerName, msg);
-		};
-		Cyclades.Program.CreateNetClient(conn, PhotonNetwork.playerName);
-		conn.msgs = Cyclades.Program.clnt.msgs;
-		
-	}
-	
-	public void OnHotSeatClientCreateClick() {
-		Cyclades.Program.CreateHotSeatClient(Cyclades.Program.srv.conn_pull);
-	}
-
-	public void OnAIClientCreateClick() {
-		Cyclades.Program.CreateAIHotSeatClient(Cyclades.Program.srv.conn_pull);
-	}
-
-	public void OnGameStartClick() {
-		try {
-			Cyclades.Program.StartServer((int)System.DateTime.Now.Ticks, true);
-		} catch (Exception ex) {
-			NGUIDebug.Log("ERROR: " + ex);
-		}
-	}
-
-	public void _OnCreateAll() {
-		OnServerCreateClick();
-
-		OnHotSeatClientCreateClick();
-		OnHotSeatClientCreateClick();
-		OnHotSeatClientCreateClick();
-		OnHotSeatClientCreateClick();
-		OnHotSeatClientCreateClick();
-
-		OnGameStartClick();
 	}
 	#endregion
 }

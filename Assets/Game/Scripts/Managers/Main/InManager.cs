@@ -23,6 +23,10 @@ public class InManager : Manager<InManager> {
 		Shmipl.Base.Messenger<Hashtable, long, bool, bool>.AddListener("UnityShmipl.UpdateView", UpdateGameData);
 	}
 
+	void OnDestroy() {
+		Shmipl.Base.Messenger<Hashtable, long, bool, bool>.RemoveListener("UnityShmipl.UpdateView", UpdateGameData);
+	}
+
 	void Start() {
 	}
 
@@ -67,9 +71,6 @@ public class InManager : Manager<InManager> {
 		Cyclades.Program.srv.Deserialize(Sh.Sрmipl._gm, msg);
 	}
 
-	//TODO 
-	//видятся вот какие проблемы: 
-	//-обновление контекста может случиться в нестабильный момент 
 	public void UpdateGameData(Hashtable msg, long counter, bool stable, bool deserialize) {
 		//будем обновлять в двух случаях: это десериализация, или это установка стабильного состояния 
 		if (deserialize || stable) {
