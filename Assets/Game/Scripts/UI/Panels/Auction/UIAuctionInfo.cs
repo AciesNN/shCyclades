@@ -28,12 +28,20 @@ public class UIAuctionInfo : UIGamePanel {
 		
 		Table.Reposition();	*/
 
-		uiAuctionGods[(int)players_number - 1] = uiAuctionGodApollo;
 		for (int i = 0; i < uiAuctionGods.Count; ++i) {
-			uiAuctionGods[i].gameObject.SetActive(i < players_number);
-			uiAuctionGods[i].AuctionInfoPanel = this;
-			uiAuctionGods[i].MyNumber = i;
+			if (i < players_number - 1) {
+				uiAuctionGods[i].AuctionInfoPanel = this;
+				uiAuctionGods[i].MyNumber = i;
+			} else {
+				uiAuctionGods[i].gameObject.SetActive(false);
+			}
 		}
+
+		int j = (int)players_number - 1;
+		uiAuctionGods[j] = uiAuctionGodApollo;
+		uiAuctionGods[j].AuctionInfoPanel = this;
+		uiAuctionGods[j].MyNumber = j;
+		uiAuctionGods[j].gameObject.SetActive(true);
 	}
 
 	#region UpdateData
@@ -58,6 +66,7 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 	#endregion
 
+	/*
 	private UIAuctionGod AddGodInfoWidget(int w_number) {
 		GameObject w_go = (GameObject) NGUITools.AddChild(Table.gameObject, UIAuctionGodPrefab);
 		w_go.name = "" + w_number + ". " + w_go.name;
@@ -69,6 +78,7 @@ public class UIAuctionInfo : UIGamePanel {
 		uiAuctionGods.Add (w);
 		return w;
 	}
+	*/
 
 	#region Events
 	public void OnBetPanelClose(ModelPanelCloseResult res) {

@@ -45,7 +45,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		//PhotonNetwork.logLevel = PhotonLogLevel.Informational;
 
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
-		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
+		//NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 	}
 
 	void Start() {

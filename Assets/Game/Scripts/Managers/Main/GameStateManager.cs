@@ -14,7 +14,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	public long currentUser {
 		get { return _currentUser; }
 		set {
-			NGUIDebug.Log ("current user: " + value);
+			//NGUIDebug.Log ("current user: " + value);
 			_currentUser = value;
 		}
 	}
