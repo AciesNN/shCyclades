@@ -4,11 +4,11 @@
 	DEFAULT,
 
 	AUCTION_TAB_INFO,
-	AUCTION_TAB_GOD_MARS,
-	AUCTION_TAB_GOD_POSEIDON,
-	AUCTION_TAB_GOD_SOTHIA,
-	AUCTION_TAB_GOD_APPOLON,
-	AUCTION_TAB_GOD_ZEUS,
+	AUCTION_TAB_GOD_MARS,			//Устаревший тип, но удалять нельзя
+	AUCTION_TAB_GOD_POSEIDON,		//Устаревший тип, но удалять нельзя
+	AUCTION_TAB_GOD_SOTHIA,			//Устаревший тип, но удалять нельзя
+	AUCTION_TAB_GOD_APPOLON,		//Устаревший тип, но удалять нельзя
+	AUCTION_TAB_GOD_ZEUS,			//Устаревший тип, но удалять нельзя
 
 	AUCTION_PANEL,
 	BUY_CARD_PANEL,
@@ -27,7 +27,9 @@
 	MAP_TAB_RETREAT_SHIP,
 	MAP_TAB_RETREAT_UNIT,
 	
-	MAP_TAB_ACTION_AND_CANCEL
+	MAP_TAB_ACTION_AND_CANCEL,
+
+	AUCTION_TAB_GOD
 	
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }

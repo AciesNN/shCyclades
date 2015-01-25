@@ -7,6 +7,8 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 {
 	public PhotonView photonView;
 
+	bool _messanges_subscribed = false;
+
 	public object _pl = 0L; //TODO
 	public string _gm = "Game"; //TODO
 	public string _room_name = "test"; //TODO
@@ -52,7 +54,8 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.AddContext", OnAddContext);
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
-		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);	
+		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+		_messanges_subscribed = true;
 	}
 
 	void OnDestroy() {
@@ -62,14 +65,16 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 		Shmipl.Base.Log.close_all();
 		#endif
 
-		Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
-		Shmipl.Base.Messenger<string, object, Hashtable>.RemoveListener("Shmipl.Init", OnContextInit);
-		Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
-		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.Error", OnError);
-		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.AddContext", OnAddContext);
-		Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
-		Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
-		Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+		if (_messanges_subscribed) {
+			Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
+			Shmipl.Base.Messenger<string, object, Hashtable>.RemoveListener("Shmipl.Init", OnContextInit);
+			Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
+			Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.Error", OnError);
+			Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.AddContext", OnAddContext);
+			Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
+			Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
+			Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+		}
 	}
 
 

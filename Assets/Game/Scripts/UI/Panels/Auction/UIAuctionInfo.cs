@@ -11,6 +11,7 @@ public class UIAuctionInfo : UIGamePanel {
 	public UITable Table;
 	public GameObject UIAuctionGodPrefab;
 	public List<UIAuctionGod> uiAuctionGods;
+	public UIAuctionGod uiAuctionGodApollo;
 	#endregion
 
 	private long players_number { get { return Sh.In.GameContext.GetLong("/players_number"); } }
@@ -19,13 +20,20 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 
 	override public void GameContext_LateInit() {
-		uiAuctionGods = new List<UIAuctionGod>();
+		/*uiAuctionGods = new List<UIAuctionGod>();
 
 		for (int i = 0; i < players_number; ++i) {
 			AddGodInfoWidget(i);
 		}
 		
-		Table.Reposition();	
+		Table.Reposition();	*/
+
+		uiAuctionGods[(int)players_number - 1] = uiAuctionGodApollo;
+		for (int i = 0; i < uiAuctionGods.Count; ++i) {
+			uiAuctionGods[i].gameObject.SetActive(i < players_number);
+			uiAuctionGods[i].AuctionInfoPanel = this;
+			uiAuctionGods[i].MyNumber = i;
+		}
 	}
 
 	#region UpdateData

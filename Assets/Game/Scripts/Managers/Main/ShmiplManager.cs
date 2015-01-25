@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class ShmiplManager : Manager<ShmiplManager> {
 
+	bool _messanges_subscribed = false;
+
 	public object _pl = 0L; //TODO
 	public string _gm = "Game"; //TODO
 	public string _room_name = "test"; //TODO
@@ -55,8 +57,10 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		Shmipl.Base.Messenger<object, string>.AddListener("Shmipl.RemoveContext", OnRemoveContext);
 		Shmipl.Base.Messenger<object, Hashtable>.AddListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
 		Shmipl.Base.Messenger<object>.AddListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
+		_messanges_subscribed = true;
 
 		//отрисуем то, что есть
+		//TODO выглядит отвратительно
 		long counter = -1;
 		if (Cyclades.Program.clnts.ContainsKey(_pl)) {
 			Shmipl.FrmWrk.Client.DispetcherFSM dsp = Cyclades.Program.clnts[_pl];
@@ -86,7 +90,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		Shmipl.Base.Log.close_all();
 		#endif
 
-		try {
+		if (_messanges_subscribed) {
 			Shmipl.Base.Messenger<string, object, Hashtable, long>.RemoveListener("Shmipl.DeserializeContext", OnContextDeserialize);
 			Shmipl.Base.Messenger<string, object, Hashtable>.RemoveListener("Shmipl.Init", OnContextInit);
 			Shmipl.Base.Messenger<string, object, Hashtable, long, bool>.RemoveListener("Shmipl.DoMacros", OnContextChanged);
@@ -95,7 +99,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 			Shmipl.Base.Messenger<object, string>.RemoveListener("Shmipl.RemoveContext", OnRemoveContext);
 			Shmipl.Base.Messenger<object, Hashtable>.RemoveListener("Shmipl.DeserializeConnections", OnDeserializeConnections);
 			Shmipl.Base.Messenger<object>.RemoveListener("Shmipl.Server.ConnectionRegister", OnServerConnectionRegister);
-		} finally { }
+		}
 	}
 
 	#region Shmipl.Events

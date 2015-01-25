@@ -22,6 +22,7 @@ public class GameStateManager : Manager<GameStateManager> {
 	public UIMapController mapController;
 
 	public UIGamePanelTabs AuctionTabsPanel;
+	public UIGodPanel AuctionGodPanel;
 
 	public UIGamePanelTabs CardsTabsPanel;
 
@@ -42,6 +43,9 @@ public class GameStateManager : Manager<GameStateManager> {
 			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO);
 		} else {
 			string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
+			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD);
+			AuctionGodPanel.SetGod(currentGod);
+			/*
 			switch (currentGod) {
 				case Cyclades.Game.Constants.godNone: 		 break;
 				case Cyclades.Game.Constants.godPoseidon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_POSEIDON); break;
@@ -50,6 +54,7 @@ public class GameStateManager : Manager<GameStateManager> {
 				case Cyclades.Game.Constants.godZeus: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_ZEUS); break;
 				case Cyclades.Game.Constants.godAppolon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_APPOLON); break;
 			}
+			*/
 		}
 	}
 
