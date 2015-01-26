@@ -44,6 +44,7 @@ public class UIGodPanel : UIGamePanel {
 		//todo доступность кнопки с рогом долдна зависеть от того, первый ли на апполоне
 		actions[0].SetSprites(UIConsts.SPRITE_APOLLO_ACTION_HORN, "");
 		actions[0].SetPrice(0);
+		actions[0].click = OnPlaceHorn;
 
 		actions[1].SetSprites("", "");
 		actions[2].SetSprites("", "");
@@ -165,6 +166,10 @@ public class UIGodPanel : UIGamePanel {
 
 	public void OnBuyUnitClick() {
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEUNIT);
+	}
+
+	public void OnPlaceHorn() {
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEHORN);
 	}
 	#endregion
 }
