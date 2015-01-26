@@ -72,5 +72,9 @@ public class UIAdminPanel : UIGamePanel {
 	public void OnUpdateData() {
 		Sh.GameState.GameContext_UpdateData(true);
 	}
+
+	public void OnMainMenuClick() {
+		Application.LoadLevel("Menu");
+	}
 	#endregion
 }

@@ -76,9 +76,9 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		}
 		
 		if (counter == -1) {
-			NGUIDebug.Log("counter == -1");
+			Debug.Log("counter == -1");
 		} else {
-			NGUIDebug.Log("drow context " + counter);
+			Debug.Log("drow context " + counter);
 			Shmipl.Base.Messenger<Hashtable, long, bool, bool>.Broadcast("UnityShmipl.UpdateView", null, counter, false, true);
 		}
 	}
