@@ -43,6 +43,17 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
 		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
+
+		//for introduce
+		OnServerCreateClick();
+
+		OnHotSeatClientCreateClick();
+		OnAIClientCreateClick();
+		OnAIClientCreateClick();
+		OnAIClientCreateClick();
+		OnAIClientCreateClick();
+
+		OnGameStartClick();
 	}
 
 	void Start() {
