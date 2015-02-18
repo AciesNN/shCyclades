@@ -3,7 +3,9 @@ using System.Collections;
 
 public class PhotonManager : MonoBehaviour
 {
+	#if PHOTON
 	PhotonView photonView;
+
 	delegate void LogMethod(string msg);
 	LogMethod log = Debug.Log; 
 
@@ -135,5 +137,6 @@ public class PhotonManager : MonoBehaviour
 	{
 		log("OnConnectedToMaster: " + player);
 	}
+	#endif
 }
 

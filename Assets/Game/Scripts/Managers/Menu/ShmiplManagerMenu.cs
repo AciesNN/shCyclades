@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 {
+	#if PHOTON
 	public PhotonView photonView;
-
+	#endif
 	bool _messanges_subscribed = false;
 
 	public object _pl = 0L; //TODO
@@ -29,6 +30,7 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load(path, typeof(TextAsset))).text;
 
+		#if PHOTON_VIEW
 		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 		//PhotonNetwork.automaticallySyncScene = true;
 		
@@ -42,6 +44,7 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 		//PhotonNetwork.logLevel = PhotonLogLevel.Informational;
 
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
+		#endif
 		NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 
 		//for introduce
@@ -138,14 +141,15 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 
 	#region Events
 	public void OnServerCreateClick() {
-		
+		#if PHOTON_VIEW
 		PhotonNetwork.CreateRoom(_room_name, true,true,20);
+		#endif
 		Cyclades.Program.CreateServer();
 		
 	}
 	
 	public void OnNetClientCreateClick() {
-		
+		#if PHOTON_VIEW
 		PhotonNetwork.playerName = "NetClient" + UnityEngine.Random.Range(100, 1000);
 		PhotonNetwork.JoinRoom(_room_name);
 		
@@ -155,7 +159,7 @@ public class ShmiplManagerMenu: Manager<ShmiplManagerMenu>
 		};
 		Cyclades.Program.CreateNetClient(conn, PhotonNetwork.playerName);
 		conn.msgs = Cyclades.Program.clnt.msgs;
-		
+		#endif
 	}
 	
 	public void OnHotSeatClientCreateClick() {
