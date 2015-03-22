@@ -33,7 +33,7 @@ public class UIAuctionPanel : UIGamePanel {
 		get { return godName; }
 		set {
 			godName = value;
-			GodSprite.spriteName = UIConsts.godSprites[godName];
+			GodSprite.spriteName = UIConsts.godBigSprites[godName];
 		}
 	}
 	#endregion

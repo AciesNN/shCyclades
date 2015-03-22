@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 02f712ce1caa3054a8febfaf52d55d4b
+guid: 28beaab63a01ff04eae25e0f740406e2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Panels
+    21300000: narakan-pic
+    21300002: MarsBig
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -18,18 +19,18 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: 5
-  maxTextureSize: 4096
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: 2
-    aniso: 4
+    filterMode: -1
+    aniso: 1
     mipBias: -1
     wrapMode: 1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1

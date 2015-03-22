@@ -50,6 +50,16 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.godAppolon, "coin_icon"}
 	};
 
+	public static readonly Dictionary<string, string> godBigSprites = new Dictionary<string, string>
+	{
+		{Cyclades.Game.Constants.godNone, ""},
+		{Cyclades.Game.Constants.godPoseidon, "PoseudonBig"},
+		{Cyclades.Game.Constants.godMars, "MarsBig"},
+		{Cyclades.Game.Constants.godSophia, "SothiaBig"},
+		{Cyclades.Game.Constants.godZeus, "ZeusBig"},
+		{Cyclades.Game.Constants.godAppolon, "AppoloBig"}
+	};
+
 	public static readonly Dictionary<string, string> buildSprites = new Dictionary<string, string>
 	{
 		{Cyclades.Game.Constants.buildNone, "GridSquare"},

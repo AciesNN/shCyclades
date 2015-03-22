@@ -1,8 +1,13 @@
 fileFormatVersion: 2
-guid: ee859d236bab7e744bd22cd7b5485a63
+guid: 6691a42db0d47c24fb1642049093d9db
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sea_background
+    21300000: narakan-pic
+    21300002: MarsBig
+    21300004: MarsBig 1
+    21300006: MarsBig 2
+    21300008: MarsBig 3
+    21300010: ZeusBig
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -18,17 +23,17 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: 5
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
