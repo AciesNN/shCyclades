@@ -29,7 +29,9 @@
 	
 	MAP_TAB_ACTION_AND_CANCEL,
 
-	AUCTION_TAB_GOD
+	AUCTION_TAB_GOD,
+
+	PLAYER_INFO_PANEL
 	
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
