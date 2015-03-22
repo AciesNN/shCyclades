@@ -11,7 +11,9 @@ public class ShmiplManager : Manager<ShmiplManager> {
 	public string _gm = "Game"; //TODO
 	public string _room_name = "test"; //TODO
 
+	#if PHOTON_VIEW
 	public PhotonView photonView;
+	#endif
 
 	//TODO тут конечно надо пересмотреть все эти фильтры сообщений
 	protected override void Init ()	{		
@@ -32,6 +34,7 @@ public class ShmiplManager : Manager<ShmiplManager> {
 
 		Cyclades.Program.GetIniTextFromFileMethod = (string path) => ((TextAsset)Resources.Load(path, typeof(TextAsset))).text;
 
+		#if PHOTON_VIEW
 		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 		//PhotonNetwork.automaticallySyncScene = true;
 		
@@ -45,6 +48,8 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		//PhotonNetwork.logLevel = PhotonLogLevel.Informational;
 
 		//Debug.Log ( "P c r = "  +PhotonNetwork.countOfRooms );
+		#endif
+
 		//NGUIDebug.Log("resolution: " + Screen.width + "/" + Screen.height);
 	}
 
