@@ -10,7 +10,16 @@ public class UIMapStates : MonoBehaviour {
 	Dictionary<MapEventerType, MapEventer> mapEventers = new Dictionary<MapEventerType, MapEventer>();
 	MapEventerType type = MapEventerType.DEFAULT;
 	public MapEventer eventer {
-		get { return mapEventers[type]; }
+		get {
+			MapEventer res = null;
+			try {
+				res = mapEventers[type];
+			} catch {
+				Debug.LogError("unk type: " + type); //TODO
+			}
+			
+			return res; 
+		}
 	}
 
 	void Awake() {

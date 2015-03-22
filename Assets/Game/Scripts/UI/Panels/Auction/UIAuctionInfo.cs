@@ -96,9 +96,9 @@ public class UIAuctionInfo : UIGamePanel {
 		if (number < players_number-1) { // not appolon
 			int player = Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, number);
 			if (player >= 0)
-				panel.MinBet = Sh.In.GameContext.GetInt("/auction/bets/[{0}]/[{1}]", number, player);
+				panel.MinBet = Sh.In.GameContext.GetInt("/auction/bets/[{0}]/[{1}]", number, player) + 1;
 			else
-				panel.MinBet = 0;
+				panel.MinBet = 1;
 			panel.MaxBet = Sh.In.GameContext.GetInt("/markers/gold/[{0}]", Sh.GameState.currentUser) + Sh.In.GameContext.GetInt("/markers/priest/[{0}]", Sh.GameState.currentUser);
 		} else { //Appolo
 			int bet = Library.Auction_GetAllOrderBetPlayersForGod(Sh.In.GameContext, number).Count + 1;

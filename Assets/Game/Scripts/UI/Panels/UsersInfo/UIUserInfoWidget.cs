@@ -14,7 +14,9 @@ public class UIUserInfoWidget : MonoBehaviour {
 	#endregion
 
 	#region ViewWidgetsSet
+	int player;
 	public void SetUser(int userNumber) {
+		player = userNumber;
 		UserNumberLabel.text = "";
 		if (userNumber >=0 )
 			UserNumberLabel.text = "" + userNumber;
@@ -46,6 +48,18 @@ public class UIUserInfoWidget : MonoBehaviour {
 
 	public void SetIsCurrentUser(bool isCurrent) {
 		CurrenUserFlag.SetActive(isCurrent);
+	}
+	#endregion
+
+	#region Events
+	public void OnClick() {
+
+		UIUserInfoPanel panel = UIGamePanel.GetPanel<UIUserInfoPanel>(PanelType.PLAYER_INFO_PANEL);
+
+		panel.Player = player;
+
+
+		UIGamePanel.ShowPanel(PanelType.PLAYER_INFO_PANEL);
 	}
 	#endregion
 }
