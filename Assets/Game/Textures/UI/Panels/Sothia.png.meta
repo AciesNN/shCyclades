@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 40f705c119edee04a8b7f1151c09b2f0
+guid: 7f75ffcd01613724f8b90eb0c07e6180
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Sothia
+    21300000: nyuctian
+    21300002: Sothia
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +42,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 

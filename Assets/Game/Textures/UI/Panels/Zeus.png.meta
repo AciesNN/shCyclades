@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 0d174a0aa8224e546ae888907eea5d5d
+guid: ccbbf8aa95d2ed84f8567dd935022c2a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Zeus
+    21300000: sorenze
+    21300002: Zeus
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +42,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 

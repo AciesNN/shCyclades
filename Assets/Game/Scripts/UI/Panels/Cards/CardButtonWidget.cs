@@ -23,8 +23,8 @@ public class CardButtonWidget : MonoBehaviour {
 	#region ViewWidgetsSet
 	public void SetIcon(string card) {
 		string cs = UIConsts.cardIconSprites[card];
-		iconW.normalSprite = "card-button-" + cs + (cs == "empty" ? "" : "1");
-		iconW.hoverSprite = "card-button-" +  cs + (cs == "empty" ? "" : "2");
+		iconW.normalSprite = "card-button-" + cs + (cs == "empty" ? "" : "");
+		iconW.hoverSprite = "card-button-" +  cs + (cs == "empty" ? "" : "");
 		iconW.pressedSprite = iconW.hoverSprite;
 		iconW.disabledSprite = iconW.normalSprite;
 

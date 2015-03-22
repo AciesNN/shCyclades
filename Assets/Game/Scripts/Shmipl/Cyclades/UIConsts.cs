@@ -47,7 +47,7 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.godMars, "Mars"},
 		{Cyclades.Game.Constants.godSophia, "Sothia"},
 		{Cyclades.Game.Constants.godZeus, "Zeus"},
-		{Cyclades.Game.Constants.godAppolon, "coin_icon"}
+		{Cyclades.Game.Constants.godAppolon, "Apollo"}
 	};
 
 	public static readonly Dictionary<string, string> godBigSprites = new Dictionary<string, string>
@@ -74,9 +74,9 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.cardNone, "empty"},
 		{Cyclades.Game.Constants.cardChimera, "chimera"},
 		{Cyclades.Game.Constants.cardDryads, "dryad"},
-		{Cyclades.Game.Constants.cardSphinx, "sphinx"},
-		{Cyclades.Game.Constants.cardKraken, "kraken"},
-		{Cyclades.Game.Constants.cardGorgon, "medusa"},
+		{Cyclades.Game.Constants.cardSphinx, "empty"},
+		{Cyclades.Game.Constants.cardKraken, "empty"},
+		{Cyclades.Game.Constants.cardGorgon, "empty"},
 
 		{Cyclades.Game.Constants.cardMermaid, "empty"},
 		{Cyclades.Game.Constants.cardPegus, "empty"},

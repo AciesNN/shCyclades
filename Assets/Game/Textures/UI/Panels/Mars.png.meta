@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: b536947bf47b32448aa0470d0f1fddb6
+guid: 0461ce8ff846780419b8ec8c4d0e45ca
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Mars
+    21300000: narakan
+    21300002: Mars
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +42,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 

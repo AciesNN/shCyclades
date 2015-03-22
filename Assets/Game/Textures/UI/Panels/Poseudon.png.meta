@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: f7a572a823e08a64c8469a08ffb396fc
+guid: 80a081f5bf761bc49a019145b62cc290
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Poseudon
+    21300000: charybdis
+    21300002: Poseudon
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +42,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 
