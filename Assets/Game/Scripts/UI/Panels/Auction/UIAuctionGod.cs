@@ -24,7 +24,7 @@ public class UIAuctionGod : MonoBehaviour {
 		/*UserNumberLabel.text = "";
 		if (userNumber >= 0)
 			UserNumberLabel.text = "" + userNumber;*/
-		UserColorSprite.color = UIConsts.userColors[userNumber];
+		UserColorSprite.spriteName = UIConsts.userColorsRings[userNumber];
 	}	
 
 	public void SetGod(string godName) {

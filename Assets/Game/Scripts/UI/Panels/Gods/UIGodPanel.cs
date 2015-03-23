@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Cyclades.Game;
 using Cyclades.Game.Client;
 
 public class UIGodPanel : UIGamePanel {
@@ -8,6 +9,7 @@ public class UIGodPanel : UIGamePanel {
 	#region ViewWidgets
 	public UIGodPanelAction[] actions;
 	public UISprite godSprite;
+	public UISprite playerSpriteRing;
 	#endregion
 
 	void Awake() {
@@ -15,6 +17,8 @@ public class UIGodPanel : UIGamePanel {
 
 	public void SetGod(string god) {
 		godSprite.spriteName = UIConsts.godSprites[god];
+		int cur_player = (int)Library.GetCurrentPlayer(Sh.In.GameContext);
+		playerSpriteRing.spriteName = UIConsts.userColorsRings[cur_player];
 
 		switch (god) {
 			case Cyclades.Game.Constants.godAppolon:

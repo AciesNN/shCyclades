@@ -21,6 +21,36 @@ public static class UIConsts {
 		{4, Color.yellow}
 	};
 
+	public static readonly Dictionary<int, string> userColorsRings= new Dictionary<int, string>
+	{
+		{-1, "neutral-player1"},
+		{0, "green-player-ring1"},
+		{1, "red-player-ring1"},
+		{2, "purple-player-ring1"},
+		{3, "blue-player-ring1"},
+		{4, "yellow-player-ring1"}
+	};
+
+	public static readonly Dictionary<int, string> userColorsShields = new Dictionary<int, string>
+	{
+		//+ 1 or 2
+		{0, "shield-green"},
+		{1, "shield-red"},
+		{2, "shield-purple"},
+		{3, "shield-blue"},
+		{4, "shield-yellow"}
+	};
+
+	public static readonly Dictionary<int, string> userColorsCancelButton = new Dictionary<int, string>
+	{
+		//+ 1 or 2
+		{0, "exit-green"},
+		{1, "exit-red"},
+		{2, "exit-purple"},
+		{3, "exit-blue"},
+		{4, "exit-yellow"}
+	};
+
 	public static readonly Dictionary<string, Color> buildColors = new Dictionary<string, Color>
 	{
 		{Cyclades.Game.Constants.buildNone, Color.gray},

@@ -6,6 +6,7 @@ public class CardButtonWidget : MonoBehaviour {
 	#region V`iewWidgets
 	UIImageButtonSh iconW;
 	UIImageButtonSh priceW;
+	UIImageButtonSh ring;
 	public GameObject root;
 
 	public UILabel _text;
@@ -18,6 +19,7 @@ public class CardButtonWidget : MonoBehaviour {
 		UIImageButtonSh[] imbs = root.GetComponents<UIImageButtonSh>();
 		iconW = imbs[0];
 		priceW = imbs[1];
+		ring = imbs[2];
 	}
 
 	#region ViewWidgetsSet
@@ -31,6 +33,8 @@ public class CardButtonWidget : MonoBehaviour {
 		iconW.target.spriteName = iconW.normalSprite;	
 
 		_text.text = (cs == "empty" ? card : "");
+
+		ring.target.gameObject.SetActive(card != Cyclades.Game.Constants.cardNone);
 	}
 
 	public void SetPrice(int price) {
@@ -45,6 +49,7 @@ public class CardButtonWidget : MonoBehaviour {
 	public void SetHighlight(bool on) {
 		iconW.isHighlight = on;
 		priceW.isHighlight = on;
+		ring.isHighlight = on;
 	}
 	#endregion
 
