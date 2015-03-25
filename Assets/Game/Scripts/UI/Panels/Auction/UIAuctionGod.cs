@@ -5,9 +5,10 @@ public class UIAuctionGod : MonoBehaviour {
 
 	#region VewWidgets
 	//public UILabel UserNumberLabel;
-	public UISprite UserColorSprite;
+	public UIImageButton UserColorSprite;
 	public UISprite GodSprite;
 	public UILabel BetLabel;
+	public GameObject betObject;
 	#endregion
 
 	public UIAuctionInfo AuctionInfoPanel;
@@ -24,11 +25,17 @@ public class UIAuctionGod : MonoBehaviour {
 		/*UserNumberLabel.text = "";
 		if (userNumber >= 0)
 			UserNumberLabel.text = "" + userNumber;*/
-		UserColorSprite.spriteName = UIConsts.userColorsRings[userNumber];
+		UserColorSprite.normalSprite = UIConsts.userColorsRings[userNumber] + "1";
+		UserColorSprite.hoverSprite = UIConsts.userColorsRings[userNumber] + "2";
+		UserColorSprite.pressedSprite = UIConsts.userColorsRings[userNumber] + "2";
+		UserColorSprite.disabledSprite = UIConsts.userColorsRings[userNumber] + "1";
+
+		UserColorSprite.target.spriteName = UserColorSprite.normalSprite;
 	}	
 
 	public void SetGod(string godName) {
 		GodSprite.spriteName = UIConsts.godSprites[godName];
+		betObject.SetActive( godName != Cyclades.Game.Constants.godAppolon );		
 	}
 
 	public void SetBet(int bet) {

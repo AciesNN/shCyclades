@@ -23,12 +23,13 @@ public static class UIConsts {
 
 	public static readonly Dictionary<int, string> userColorsRings= new Dictionary<int, string>
 	{
-		{-1, "neutral-player1"},
-		{0, "green-player-ring1"},
-		{1, "red-player-ring1"},
-		{2, "purple-player-ring1"},
-		{3, "blue-player-ring1"},
-		{4, "yellow-player-ring1"}
+		//+ 1 or 2
+		{-1, "neutral-player"},
+		{0, "green-player-ring"},
+		{1, "red-player-ring"},
+		{2, "purple-player-ring"},
+		{3, "blue-player-ring"},
+		{4, "yellow-player-ring"}
 	};
 
 	public static readonly Dictionary<int, string> userColorsShields = new Dictionary<int, string>

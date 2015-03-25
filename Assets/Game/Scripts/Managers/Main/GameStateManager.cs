@@ -45,16 +45,6 @@ public class GameStateManager : Manager<GameStateManager> {
 			string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
 			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD);
 			AuctionGodPanel.SetGod(currentGod);
-			/*
-			switch (currentGod) {
-				case Cyclades.Game.Constants.godNone: 		 break;
-				case Cyclades.Game.Constants.godPoseidon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_POSEIDON); break;
-				case Cyclades.Game.Constants.godMars: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_MARS); break;
-				case Cyclades.Game.Constants.godSophia: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_SOTHIA); break;
-				case Cyclades.Game.Constants.godZeus: 		AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_ZEUS); break;
-				case Cyclades.Game.Constants.godAppolon: 	AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD_APPOLON); break;
-			}
-			*/
 		}
 	}
 
