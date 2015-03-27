@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: b1c2a82843a47844abf429faee9dc586
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: purple-player-ring2

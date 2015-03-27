@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 98ec2e7b78788944bbef678965d653c9
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: build-placeholder

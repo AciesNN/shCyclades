@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 73fb9e1bcb68caa4589778c52b41c83c
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: shield-blue1

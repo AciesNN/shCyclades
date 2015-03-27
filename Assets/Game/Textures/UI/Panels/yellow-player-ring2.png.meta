@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: deb1764714430f14097b269f5e910651
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: yellow-player-ring2

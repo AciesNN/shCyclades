@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 1dc0c69141f848248af0a94d56429325
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-boarder

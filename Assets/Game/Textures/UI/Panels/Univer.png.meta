@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: d8d1da0669cb0e044b704f5460ec819d
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: Univer

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 206175136a7fc4b43954ec9322028bd6
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: exit-red2

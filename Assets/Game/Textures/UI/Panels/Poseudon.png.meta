@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 80a081f5bf761bc49a019145b62cc290
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: charybdis

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: dbda689663634cf4e80491118337267d
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: shield-yellow1

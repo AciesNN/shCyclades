@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 6f3bdba32fe94cc4cbe38d7f8fec0c16
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: Templ

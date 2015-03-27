@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 406d85e553b40624395a4e280b7bdcd9
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: blue-player-ring2

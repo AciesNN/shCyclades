@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 7c1fc27248262484089b7ceeaf4e33de
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: vinzuria

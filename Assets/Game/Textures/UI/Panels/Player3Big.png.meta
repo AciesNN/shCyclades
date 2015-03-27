@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 9f7710bb28d502147b3c77808110ff51
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: Lokrhum-1

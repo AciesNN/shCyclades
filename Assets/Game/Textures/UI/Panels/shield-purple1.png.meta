@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 13b631d0a128f004085e834268f4f571
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: shield-purple1

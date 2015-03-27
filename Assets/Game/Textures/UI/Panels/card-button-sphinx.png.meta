@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 177932356b9799b4caaeda5f41131e8e
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-pestarzt

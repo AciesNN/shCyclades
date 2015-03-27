@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 8ddc7b4be8f91c34a9b08bd205516527
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: shield-green1

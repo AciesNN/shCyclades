@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 8cae0e0ed8a354d458a95bf1c1bb656b
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-chimera

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 7f75ffcd01613724f8b90eb0c07e6180
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: nyuctian

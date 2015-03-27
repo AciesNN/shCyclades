@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 29429cd5049ead5458cdec05148976e0
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: Fort

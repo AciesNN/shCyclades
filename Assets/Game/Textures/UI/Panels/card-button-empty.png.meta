@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: c358b94e27e6b204d8f2a12933e8cfec
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-placeholder

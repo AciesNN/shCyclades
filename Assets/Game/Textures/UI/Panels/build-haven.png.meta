@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 9960b3bf19053af4283e6ebe525e1259
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: build-haven

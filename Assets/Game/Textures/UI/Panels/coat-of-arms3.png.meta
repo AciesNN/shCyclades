@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 0ca80c04f71689d449405de989dc36a2
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: coat-of-arms1

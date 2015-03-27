@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 0ddc8d4f5c7ef544eb498c8af9b1e555
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-manticore

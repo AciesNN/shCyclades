@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 8c735cf0720a8ee4faa0ab6a235b23bb
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-dryad

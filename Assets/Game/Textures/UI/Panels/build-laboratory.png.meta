@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: fcfba6ff9982b084c95d448b43def192
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: build-laboratory

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 909e678429f51194b97063b30a805128
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-kraken

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 960762cddbb82984d852f25c34031803
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-hippogryph

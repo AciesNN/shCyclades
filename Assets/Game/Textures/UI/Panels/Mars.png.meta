@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 0461ce8ff846780419b8ec8c4d0e45ca
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: narakan

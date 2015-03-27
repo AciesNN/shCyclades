@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 9eadbb50c652ae542a6328973cafbb28
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: vinzurian-0

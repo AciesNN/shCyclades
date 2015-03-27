@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: ccbbf8aa95d2ed84f8567dd935022c2a
+labels:
+- Gods
 TextureImporter:
   fileIDToRecycleName:
     21300000: sorenze

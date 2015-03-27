@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: e582f42688c5dda41965d0d91fc8dd4f
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-sphinx

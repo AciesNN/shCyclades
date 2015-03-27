@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 28c3867d906926640ba94f1adaa8c8ff
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: build-fortress

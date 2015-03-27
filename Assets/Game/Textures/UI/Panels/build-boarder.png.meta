@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 818d53264c9624d4d8f35e1c808258d4
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: build-boarder

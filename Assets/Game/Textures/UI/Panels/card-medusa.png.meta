@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: c70455ba3ae205b4881e79b693b2485d
+labels:
+- Cards
 TextureImporter:
   fileIDToRecycleName:
     21300000: card-medusa

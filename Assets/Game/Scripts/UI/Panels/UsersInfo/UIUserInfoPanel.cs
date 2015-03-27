@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using Cyclades.Game;
 
@@ -15,6 +16,7 @@ public class UIUserInfoPanel: UIGamePanel
 	public UISprite Metro2;
 	public UISprite Metro3;
 
+	public List<UISprite> GoldSprites = new List<UISprite>();
 	public UILabel IncomeLabel;
 	public UILabel GoldLabel;
 
@@ -23,10 +25,10 @@ public class UIUserInfoPanel: UIGamePanel
 	public UILabel PriestsLabel;
 	public UISprite PriestsSprite;
 
-	public UISprite BuildFortress;
-	public UISprite BuildPort;
-	public UISprite BuildUniver;
-	public UISprite BuildTemple;
+	public UIUserPanelBuildInfo BuildFortress;
+	public UIUserPanelBuildInfo BuildPort;
+	public UIUserPanelBuildInfo BuildUniver;
+	public UIUserPanelBuildInfo BuildTemple;
 	#endregion
 
 	[HideInInspector]
@@ -36,14 +38,9 @@ public class UIUserInfoPanel: UIGamePanel
 	override protected void OnPanelOpen() {
 		PlayerSprite.spriteName = "Player" + player + "Big";
 		PlayerColorName.text = "Локрум (" + player + ")";
-		PlayerShieldSprite.spriteName = UIConsts.userColorsShields[player] + "1";
+		PlayerShieldSprite.spriteName = "coat-of-arms" + player;
 
-		UIImageButton CancelButtonSpriteImageButton = CancelButtonSprite.GetComponent<UIImageButton>();
-		CancelButtonSpriteImageButton.normalSprite = UIConsts.userColorsCancelButton[player] + "1";
-		CancelButtonSpriteImageButton.hoverSprite = UIConsts.userColorsCancelButton[player] + "2";
-		CancelButtonSpriteImageButton.pressedSprite = UIConsts.userColorsCancelButton[player] + "3";
-		CancelButtonSpriteImageButton.disabledSprite = UIConsts.userColorsCancelButton[player] + "4";
-		CancelButtonSprite.spriteName = CancelButtonSpriteImageButton.normalSprite;
+		CancelButtonSprite.SetImageButtonSprites(UIConsts.userColorsCancelButton[player], "1", "2");
 
 		long metroCount = Cyclades.Game.Library.Map_GetMetroCountAtPlayersIslands(Sh.In.GameContext, player);
 		Metro1.gameObject.SetActive(metroCount > 0);
@@ -57,9 +54,7 @@ public class UIUserInfoPanel: UIGamePanel
 		PriestsLabel.text = "" + priestsNumber;
 		PriestsSprite.spriteName = "wisperess" + (priestsNumber > 0 ? "1" : "0");
 
-		bool is_current_user = (player == Library.GetCurrentPlayer(Sh.In.GameContext));
-		IncomeLabel.text = "" + Sh.In.GameContext.GetInt("/markers/income/[{0}]", player);
-		GoldLabel.text = (is_current_user ? "/ " + Sh.In.GameContext.GetInt("/markers/gold/[{0}]", player) : "");
+		SetGoldCount(Sh.In.GameContext.GetInt("/markers/gold/[{0}]", player), Sh.In.GameContext.GetInt("/markers/income/[{0}]", player), (player == Library.GetCurrentPlayer(Sh.In.GameContext)));
 
 		SetBuildSprite(BuildFortress, "build-fortress", Cyclades.Game.Constants.buildFortres);
 		SetBuildSprite(BuildPort, "build-fortress", Cyclades.Game.Constants.buildMarina);
@@ -67,9 +62,30 @@ public class UIUserInfoPanel: UIGamePanel
 		SetBuildSprite(BuildTemple, "build-haven", Cyclades.Game.Constants.buildTemple);
 	}
 
-	void SetBuildSprite(UISprite buildSprite, string buildSpriteName, string buildType) {
+	void SetBuildSprite(UIUserPanelBuildInfo build, string buildSpriteName, string buildType) {
 		long buildsCount = Cyclades.Game.Library.Map_GetBuildCountAtPlayersIslands(Sh.In.GameContext, player, buildType);
-		buildSprite.spriteName = (buildsCount > 0 ? buildSpriteName : "build-placeholder");
+		build.SetInfo((int)buildsCount, buildsCount > 0 ? buildSpriteName : "build-placeholder");
+	}
+
+	void SetGoldCount(int goldCount, int incomeCount, bool is_current_user) {
+		IncomeLabel.text = "" + incomeCount;
+		GoldLabel.text = (is_current_user ? "/ " + goldCount : "");
+
+		GameObject prototipe = GoldSprites[0].gameObject;
+		//TODO на одну меньше надо создавать
+		for (int i = GoldSprites.Count; i <= incomeCount; ++i) {
+			GameObject go = GameObject.Instantiate(prototipe) as GameObject;
+			go.transform.parent = prototipe.transform.parent;
+			UISprite sprite = go.GetComponent<UISprite>();
+			sprite.MakePixelPerfect();
+			sprite.depth = prototipe.GetComponent<UISprite>().depth + GoldSprites.Count;
+			GoldSprites.Add(sprite);
+		}
+		prototipe.transform.parent.GetComponent<UIGrid>().Reposition();
+
+		for (int i = 0; i < GoldSprites.Count; ++i) {
+			GoldSprites[i].gameObject.SetActive(i < incomeCount);
+		}
 	}
 	#endregion
 

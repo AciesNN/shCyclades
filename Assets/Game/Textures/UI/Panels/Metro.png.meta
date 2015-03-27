@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: e3f6aa17417d2844eaa78889f1d08aae
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: Metro

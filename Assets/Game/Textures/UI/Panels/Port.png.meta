@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 31db5bda297797d43bffa577f50d0f14
+labels:
+- Building
 TextureImporter:
   fileIDToRecycleName:
     21300000: Port

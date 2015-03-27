@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 87426f5f705de5c44bca9d33adbf9d35
+labels:
+- Player
 TextureImporter:
   fileIDToRecycleName:
     21300000: red-player-ring2
