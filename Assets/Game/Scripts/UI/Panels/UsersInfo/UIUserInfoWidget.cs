@@ -10,6 +10,7 @@ public class UIUserInfoWidget : MonoBehaviour {
 	#region ViewWidgetsSet
 	void UpdateUser() {
 		UserColorSprite.spriteName = UIConsts.userColorsShields[player] + (isCurrent ? "2" : "1");
+		iTween.ScaleTo(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), 0.5f);
 	}
 
 	int player;
