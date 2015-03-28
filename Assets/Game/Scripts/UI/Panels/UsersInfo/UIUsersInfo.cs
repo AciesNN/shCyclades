@@ -40,6 +40,21 @@ public class UIUsersInfo : UIGamePanel {
 			bool is_current_user = (player == Library.GetCurrentPlayer(Sh.In.GameContext));
 			w.SetUser((int)player); 
 			w.SetIsCurrentUser(is_current_user);
+
+			Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
+			bool alreadyMovedInThisTurn = false;
+			if (!is_current_user) {
+				if (phase == Phase.AuctionPhase) {
+					long bet = Cyclades.Game.Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player);
+					if (bet > 0)
+						alreadyMovedInThisTurn = true;
+				} else if (phase == Phase.TurnPhase) {
+					List<long> l = Sh.In.GameContext.GetList<long>("/turn/player_order");
+					if (l.IndexOf(player) < 0)
+						alreadyMovedInThisTurn = true;
+				}
+			}
+			w.SetAlreadyMovedInThisTurn(alreadyMovedInThisTurn);
 		}
 	}
 
@@ -50,9 +65,9 @@ public class UIUsersInfo : UIGamePanel {
 			return Sh.In.GameContext.GetList<long>("/auction/start_order");
 		} else if (phase == Phase.TurnPhase) {
 			List<long> res = new List<long>();
+			res.AddRange(Sh.In.GameContext.GetList<long>("/auction/player_order"));
 			res.Add(Sh.In.GameContext.Get<long>("/turn/current_player"));
 			res.AddRange(Sh.In.GameContext.GetList<long>("/turn/player_order"));
-			res.AddRange(Sh.In.GameContext.GetList<long>("/auction/player_order"));
 			return res;
 		} else {
 			return null;
@@ -99,12 +114,4 @@ public class UIUsersInfo : UIGamePanel {
 		UIUserInfoWidget userInfoWidget = userInfoWidget_go.GetComponent<UIUserInfoWidget>();
 		userInfoWidgets.Add (userInfoWidget);
 	}
-	
-	#region Widgets
-	/*public void SetCurrentUserNumber(int currentUserNumber) {
-		foreach(UIUserInfoWidget uiw in userInfoWidgets)
-			uiw.SetIsCurrentUser(false);
-		userInfoWidgets[currentUserNumber].SetIsCurrentUser(true);
-	}*/
-	#endregion
 }
