@@ -11,6 +11,7 @@ public class UIUserInfoPanel: UIGamePanel
 	public UILabel PlayerColorName;
 	public UISprite PlayerShieldSprite;
 	public UISprite CancelButtonSprite;
+	public UISprite CancelButtonSpriteTail;
 
 	public UISprite Metro1;
 	public UISprite Metro2;
@@ -40,7 +41,8 @@ public class UIUserInfoPanel: UIGamePanel
 		PlayerColorName.text = "Локрум (" + player + ")";
 		PlayerShieldSprite.spriteName = "coat-of-arms" + player;
 
-		CancelButtonSprite.SetImageButtonSprites(UIConsts.userColorsCancelButton[player], "1", "2");
+		CancelButtonSprite.spriteName = "exit-" + UIConsts.userColorsString[player] + "+";
+		CancelButtonSpriteTail.spriteName = "tail-" + UIConsts.userColorsString[player];
 
 		long metroCount = Cyclades.Game.Library.Map_GetMetroCountAtPlayersIslands(Sh.In.GameContext, player);
 		Metro1.gameObject.SetActive(metroCount > 0);

@@ -25,16 +25,16 @@ public class UIAuctionGod : MonoBehaviour {
 		/*UserNumberLabel.text = "";
 		if (userNumber >= 0)
 			UserNumberLabel.text = "" + userNumber;*/
-		UserColorSprite.normalSprite = UIConsts.userColorsRings[userNumber] + "1";
-		UserColorSprite.hoverSprite = UIConsts.userColorsRings[userNumber] + "2";
-		UserColorSprite.pressedSprite = UIConsts.userColorsRings[userNumber] + "2";
-		UserColorSprite.disabledSprite = UIConsts.userColorsRings[userNumber] + "1";
+		UserColorSprite.normalSprite = UIConsts.userColorsString[userNumber] + "-ring1";
+		UserColorSprite.hoverSprite = UIConsts.userColorsString[userNumber] + "-ring2";
+		UserColorSprite.pressedSprite = UIConsts.userColorsString[userNumber] + "-ring2";
+		UserColorSprite.disabledSprite = UIConsts.userColorsString[userNumber] + "-ring1";
 
 		UserColorSprite.target.spriteName = UserColorSprite.normalSprite;
 	}	
 
 	public void SetGod(string godName) {
-		GodSprite.spriteName = UIConsts.godSprites[godName];
+		GodSprite.spriteName = UIConsts.godSpritesString[godName];
 		betObject.SetActive( godName != Cyclades.Game.Constants.godAppolon );		
 	}
 

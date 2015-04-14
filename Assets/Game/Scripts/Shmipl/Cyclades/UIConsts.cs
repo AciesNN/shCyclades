@@ -21,35 +21,15 @@ public static class UIConsts {
 		{4, Color.yellow}
 	};
 
-	public static readonly Dictionary<int, string> userColorsRings= new Dictionary<int, string>
+	public static readonly Dictionary<int, string> userColorsString = new Dictionary<int, string>
 	{
 		//+ 1 or 2
-		{-1, "neutral-player"},
-		{0, "green-player-ring"},
-		{1, "red-player-ring"},
-		{2, "purple-player-ring"},
-		{3, "blue-player-ring"},
-		{4, "yellow-player-ring"}
-	};
-
-	public static readonly Dictionary<int, string> userColorsShields = new Dictionary<int, string>
-	{
-		//+ 1 or 2
-		{0, "shield-green"},
-		{1, "shield-red"},
-		{2, "shield-purple"},
-		{3, "shield-blue"},
-		{4, "shield-yellow"}
-	};
-
-	public static readonly Dictionary<int, string> userColorsCancelButton = new Dictionary<int, string>
-	{
-		//+ 1 or 2
-		{0, "exit-green"},
-		{1, "exit-red"},
-		{2, "exit-purple"},
-		{3, "exit-blue"},
-		{4, "exit-yellow"}
+		{-1, "neutral"},
+		{0, "green"},
+		{1, "red"},
+		{2, "purple"},
+		{3, "blue"},
+		{4, "yellow"}
 	};
 
 	public static readonly Dictionary<string, Color> buildColors = new Dictionary<string, Color>
@@ -71,24 +51,14 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.godAppolon, Color.white}
 	};
 
-	public static readonly Dictionary<string, string> godSprites = new Dictionary<string, string>
+	public static readonly Dictionary<string, string> godSpritesString = new Dictionary<string, string>
 	{
 		{Cyclades.Game.Constants.godNone, ""},
-		{Cyclades.Game.Constants.godPoseidon, "Poseudon"},
+		{Cyclades.Game.Constants.godPoseidon, "Poseidon"},
 		{Cyclades.Game.Constants.godMars, "Mars"},
-		{Cyclades.Game.Constants.godSophia, "Sothia"},
+		{Cyclades.Game.Constants.godSophia, "Sophia"},
 		{Cyclades.Game.Constants.godZeus, "Zeus"},
-		{Cyclades.Game.Constants.godAppolon, "Apollo"}
-	};
-
-	public static readonly Dictionary<string, string> godBigSprites = new Dictionary<string, string>
-	{
-		{Cyclades.Game.Constants.godNone, ""},
-		{Cyclades.Game.Constants.godPoseidon, "PoseudonBig"},
-		{Cyclades.Game.Constants.godMars, "MarsBig"},
-		{Cyclades.Game.Constants.godSophia, "SothiaBig"},
-		{Cyclades.Game.Constants.godZeus, "ZeusBig"},
-		{Cyclades.Game.Constants.godAppolon, "AppoloBig"}
+		{Cyclades.Game.Constants.godAppolon, "Apollon"}
 	};
 
 	public static readonly Dictionary<string, string> buildSprites = new Dictionary<string, string>
@@ -105,22 +75,22 @@ public static class UIConsts {
 		{Cyclades.Game.Constants.cardNone, "empty"},
 		{Cyclades.Game.Constants.cardChimera, "chimera"},
 		{Cyclades.Game.Constants.cardDryads, "dryad"},
-		{Cyclades.Game.Constants.cardSphinx, "empty"},
-		{Cyclades.Game.Constants.cardKraken, "empty"},
-		{Cyclades.Game.Constants.cardGorgon, "empty"},
+		{Cyclades.Game.Constants.cardSphinx, "sphinx"},
+		{Cyclades.Game.Constants.cardKraken, "chimera"},
+		{Cyclades.Game.Constants.cardGorgon, "dryad"},
 
-		{Cyclades.Game.Constants.cardMermaid, "empty"},
-		{Cyclades.Game.Constants.cardPegus, "empty"},
-		{Cyclades.Game.Constants.cardGigant, "empty"},
-		{Cyclades.Game.Constants.cardCyclope, "empty"},
-		{Cyclades.Game.Constants.cardSylph, "empty"},
-		{Cyclades.Game.Constants.cardHarpy, "empty"},
-		{Cyclades.Game.Constants.cardGriffon, "empty"},
-		{Cyclades.Game.Constants.cardMoyra, "empty"},
-		{Cyclades.Game.Constants.cardSatyr, "empty"},
-		{Cyclades.Game.Constants.cardMinotaur, "empty"},
-		{Cyclades.Game.Constants.cardChiron, "empty"},
-		{Cyclades.Game.Constants.cardPolypheme, "empty"}
+		{Cyclades.Game.Constants.cardMermaid, "sphinx"},
+		{Cyclades.Game.Constants.cardPegus, "chimera"},
+		{Cyclades.Game.Constants.cardGigant, "dryad"},
+		{Cyclades.Game.Constants.cardCyclope, "chimera"},
+		{Cyclades.Game.Constants.cardSylph, "sphinx"},
+		{Cyclades.Game.Constants.cardHarpy, "dryad"},
+		{Cyclades.Game.Constants.cardGriffon, "chimera"},
+		{Cyclades.Game.Constants.cardMoyra, "sphinx"},
+		{Cyclades.Game.Constants.cardSatyr, "dryad"},
+		{Cyclades.Game.Constants.cardMinotaur, "chimera"},
+		{Cyclades.Game.Constants.cardChiron, "sphinx"},
+		{Cyclades.Game.Constants.cardPolypheme, "dryad"}
 
 	};
 

@@ -16,9 +16,9 @@ public class UIGodPanel : UIGamePanel {
 	}
 
 	public void SetGod(string god) {
-		godSprite.spriteName = UIConsts.godSprites[god];
+		godSprite.spriteName = UIConsts.godSpritesString[god];
 		int cur_player = (int)Library.GetCurrentPlayer(Sh.In.GameContext);
-		playerSpriteRing.spriteName = UIConsts.userColorsRings[cur_player] + "1";
+		playerSpriteRing.spriteName = UIConsts.userColorsString[cur_player] + "-ring1";
 
 		switch (god) {
 			case Cyclades.Game.Constants.godAppolon:

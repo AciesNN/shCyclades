@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: ccbbf8aa95d2ed84f8567dd935022c2a
+guid: 7f75ffcd01613724f8b90eb0c07e6180
 labels:
 - Gods
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sorenze
-    21300002: Zeus
+    21300000: nyuctian
+    21300002: Sothia
+    21300004: Zeus_
+    21300006: Zeus
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
