@@ -13,7 +13,7 @@ public class UIUserInfoWidget : MonoBehaviour {
 	void UpdateUser() {
 		UserColorSprite.spriteName = "shield-" + UIConsts.userColorsString[player] + (isCurrent ? "2" : "1");
 
-		iTween.ScaleTo(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), time);
+		LeanTween.scale(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), time);
 		
 		UserColorSprite.color = new Color(UserColorSprite.color.r, UserColorSprite.color.g, UserColorSprite.color.b, (alreadyMovedInThisTurn ? 0.5f : 1f)); ;
 	}

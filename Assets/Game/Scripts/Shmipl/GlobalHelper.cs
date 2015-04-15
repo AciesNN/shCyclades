@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using UnityEngine;
+using System;
 
 public static class GlobalHelper
 {
@@ -17,6 +17,10 @@ public static class GlobalHelper
 		} else {
 			sprite.spriteName = spriteName + normalSuffix;
 		}
+	}
+
+	public static UISprite Sprite(this GameObject go) {
+		return go.GetComponent<UISprite>();
 	}
 }
 
