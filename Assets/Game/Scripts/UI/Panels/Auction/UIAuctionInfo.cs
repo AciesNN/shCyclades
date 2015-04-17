@@ -51,16 +51,22 @@ public class UIAuctionInfo : UIGamePanel {
 			UIAuctionGod w = uiAuctionGods[i];
 			
 			w.SetUser(Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, i));
-			w.SetGod(Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", i));
+			string god = Sh.In.GameContext.Get<string>("/auction/gods_order/[{0}]", i);
+			w.SetGod(god);
 			int player = Library.Aiction_GetCurrentBetPlayerForGod(Sh.In.GameContext, i);
 			if (player == -1)
 				w.SetBet(0);
 			else {
-				int bet = (int)Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player);
-				if (bet < 0)
-					w.SetBet(0);
-				else
-					w.SetBet(bet);
+				if (god == Cyclades.Game.Constants.godAppolon) {
+					List<int> bets = Library.Auction_GetAllOrderBetPlayersForGod(Sh.In.GameContext, i);
+					w.SetApolloBets(bets);
+				} else {
+					int bet = (int)Library.Auction_GetCurrentBetForPlayer(Sh.In.GameContext, player);
+					if (bet < 0)
+						w.SetBet(0);
+					else
+						w.SetBet(bet);
+				}
 			}
 		}
 	}

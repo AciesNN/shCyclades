@@ -9,7 +9,8 @@ class BuildMapEventer: IslandClickMapEventer {
 	override public void Activate() {
 		base.Activate();
 
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
+		//mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
+		TabloidPanel.inst.SetText("Выберите свой остров для строительства");
 
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			allowedIslands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);

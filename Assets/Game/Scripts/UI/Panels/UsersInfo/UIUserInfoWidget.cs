@@ -9,31 +9,32 @@ public class UIUserInfoWidget : MonoBehaviour {
 	public UISprite UserColorSprite;
 	#endregion
 
+	void Start() {
+		UIButton btn = gameObject.GetComponent<UIButton>();
+		btn.enabled = true;
+	}
+
 	#region ViewWidgetsSet
 	void UpdateUser() {
-		UserColorSprite.spriteName = "shield-" + UIConsts.userColorsString[player] + (isCurrent ? "2" : "1");
 
-		LeanTween.scale(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), time);
-		
-		UserColorSprite.color = new Color(UserColorSprite.color.r, UserColorSprite.color.g, UserColorSprite.color.b, (alreadyMovedInThisTurn ? 0.5f : 1f)); ;
 	}
 
 	int player;
-	public void SetUser(int userNumber) {
-		player = userNumber;
-		UpdateUser();
-	}
-
 	bool isCurrent;
-	public void SetIsCurrentUser(bool isCurrent) {
-		this.isCurrent = isCurrent;
-		UpdateUser();
+	public void SetUser(int userNumber, bool isCurrent) {
+		player = userNumber;
+		gameObject.name = "player " + UIConsts.userColorsString[player];
+
+		UserColorSprite.spriteName = "shield-" + UIConsts.userColorsString[player] + (isCurrent ? "2" : "1");
+
+		LeanTween.scale(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), time);
 	}
 
-	bool alreadyMovedInThisTurn;
+	bool alreadyMovedInThisTurn = false;
 	public void SetAlreadyMovedInThisTurn(bool alreadyMovedInThisTurn) {
 		this.alreadyMovedInThisTurn = alreadyMovedInThisTurn;
-		UpdateUser();
+
+		UserColorSprite.color = new Color(UserColorSprite.color.r, UserColorSprite.color.g, UserColorSprite.color.b, (alreadyMovedInThisTurn ? 0.5f : 1f));
 	}
 	#endregion
 

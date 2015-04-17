@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UIAuctionGod : MonoBehaviour {
 
 	#region VewWidgets
-	//public UILabel UserNumberLabel;
 	public UIImageButton UserColorSprite;
 	public UISprite GodSprite;
 	public UILabel BetLabel;
+	public UISprite[] ApolloBetSprites;
 	public GameObject betObject;
 	#endregion
 
@@ -22,9 +23,6 @@ public class UIAuctionGod : MonoBehaviour {
 
 	#region ViewWidgetsSet
 	public void SetUser(int userNumber) {
-		/*UserNumberLabel.text = "";
-		if (userNumber >= 0)
-			UserNumberLabel.text = "" + userNumber;*/
 		UserColorSprite.normalSprite = UIConsts.userColorsString[userNumber] + "-ring1";
 		UserColorSprite.hoverSprite = UIConsts.userColorsString[userNumber] + "-ring2";
 		UserColorSprite.pressedSprite = UIConsts.userColorsString[userNumber] + "-ring2";
@@ -35,7 +33,11 @@ public class UIAuctionGod : MonoBehaviour {
 
 	public void SetGod(string godName) {
 		GodSprite.spriteName = UIConsts.godSpritesString[godName];
-		betObject.SetActive( godName != Cyclades.Game.Constants.godAppolon );		
+		if (godName != Cyclades.Game.Constants.godAppolon) {
+			betObject.SetActive(true);
+		}
+		for (int i = 0; i < ApolloBetSprites.Length; ++i)
+			ApolloBetSprites[i].gameObject.SetActive(false);
 	}
 
 	public void SetBet(int bet) {
@@ -43,6 +45,18 @@ public class UIAuctionGod : MonoBehaviour {
 			BetLabel.text = "";
 			if (bet > 0)
 				BetLabel.text = "" + bet;
+		}
+	}
+
+	public void SetApolloBets(List<int> bets) {
+		if (bets.Count > 0)
+			SetUser(bets[0]);
+
+		for (int i = 0; i < ApolloBetSprites.Length; ++i) {
+			ApolloBetSprites[i].gameObject.SetActive(bets.Count > i + 1);
+			if (bets.Count > i + 1) {
+				ApolloBetSprites[i].spriteName = "vinzurian--" + UIConsts.userColorsString[bets[i+1]];
+			}
 		}
 	}
 	#endregion

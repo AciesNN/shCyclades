@@ -38,8 +38,7 @@ public class UIUsersInfo : UIGamePanel {
 			long player = player_order[i];
 
 			bool is_current_user = (player == Library.GetCurrentPlayer(Sh.In.GameContext));
-			w.SetUser((int)player); 
-			w.SetIsCurrentUser(is_current_user);
+			w.SetUser((int)player, is_current_user); 
 
 			Cyclades.Game.Phase phase = Library.GetPhase(Sh.In.GameContext);
 			bool alreadyMovedInThisTurn = false;

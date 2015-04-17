@@ -31,7 +31,9 @@
 
 	AUCTION_TAB_GOD,
 
-	PLAYER_INFO_PANEL
+	PLAYER_INFO_PANEL,
+	
+	TABLOID_PANEL
 	
 	//ДОБАВЛЯТЬ ТОЛЬКО В КОНЕЦ
 }
