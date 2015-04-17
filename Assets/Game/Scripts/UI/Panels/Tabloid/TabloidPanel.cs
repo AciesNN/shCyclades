@@ -13,8 +13,11 @@ public class TabloidPanel : UIGamePanel {
 	}
 
 	public void SetText(string text) {
-		if (text != "" && !content.activeSelf)
+		if (text != "" && !content.activeSelf) {
+			textLabel.text = "";
+			bannerSprite.gameObject.transform.localScale = new Vector3(0f, 1f, 1f);
 			content.SetActive(true);
+		}
 			
 		if (textLabel.text != text) {
 			if (textLabel.text != "") {
@@ -27,7 +30,7 @@ public class TabloidPanel : UIGamePanel {
 
 	LTDescr AnimateShrink() {
 		textLabel.text = "";
-		return LeanTween.scaleX(bannerSprite.gameObject, 0.0f, 0.5f);
+		return LeanTween.scaleX(bannerSprite.gameObject, 0.0f, 0.3f);
 	}
 
 	void AnimateGrow(string text) {
@@ -36,6 +39,6 @@ public class TabloidPanel : UIGamePanel {
 			content.SetActive(false);
 			return;
 		}
-		LeanTween.scaleX(bannerSprite.gameObject, 1.0f, 0.5f);
+		LeanTween.scaleX(bannerSprite.gameObject, 1.0f, 0.3f);
 	}
 }

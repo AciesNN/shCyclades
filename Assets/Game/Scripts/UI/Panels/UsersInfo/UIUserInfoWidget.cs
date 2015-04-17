@@ -7,10 +7,11 @@ public class UIUserInfoWidget : MonoBehaviour {
 
 	#region VewWidgets
 	public UISprite UserColorSprite;
+	UIButton btn;
 	#endregion
 
 	void Start() {
-		UIButton btn = gameObject.GetComponent<UIButton>();
+		btn = UserColorSprite.GetComponent<UIButton>();
 		btn.enabled = true;
 	}
 
@@ -34,7 +35,10 @@ public class UIUserInfoWidget : MonoBehaviour {
 	public void SetAlreadyMovedInThisTurn(bool alreadyMovedInThisTurn) {
 		this.alreadyMovedInThisTurn = alreadyMovedInThisTurn;
 
-		UserColorSprite.color = new Color(UserColorSprite.color.r, UserColorSprite.color.g, UserColorSprite.color.b, (alreadyMovedInThisTurn ? 0.5f : 1f));
+		float alpha = (alreadyMovedInThisTurn ? 0.5f : 1f);
+		LeanTween.alphaWidget(UserColorSprite, alpha, time);
+		if (btn != null)
+			btn.defaultColor = new Color(btn.defaultColor.r, btn.defaultColor.g, btn.defaultColor.b, alpha);
 	}
 	#endregion
 
