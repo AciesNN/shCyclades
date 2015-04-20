@@ -70,7 +70,13 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 	}
 
 	public void OnCancelButtonClick() {
-		TabPanel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
+		UIMapStates.inst.Panel.HideAll();
+		(UIMapStates.inst.eventer as BuildMapEventer).OnPanelSlotBuildClose();
 	}
 	#endregion
+
+	public override void Show() {
+		base.Show();
+		TabloidPanel.inst.SetText("Выберите слот, на котором будет распологаться здание");
+	}
 }

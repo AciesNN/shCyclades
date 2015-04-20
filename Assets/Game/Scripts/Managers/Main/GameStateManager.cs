@@ -42,8 +42,10 @@ public class GameStateManager : Manager<GameStateManager> {
 		if (phase == Cyclades.Game.Phase.AuctionPhase) {
 			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_INFO);
 		} else {
-			string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
 			AuctionTabsPanel.SetTab(PanelType.AUCTION_TAB_GOD);
+			int currentPlayer = Sh.In.GameContext.GetInt("/turn/current_player");
+			AuctionGodPanel.SetPlayer(currentPlayer);
+			string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
 			AuctionGodPanel.SetGod(currentGod);
 		}
 	}

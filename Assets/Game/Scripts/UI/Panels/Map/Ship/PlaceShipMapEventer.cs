@@ -9,7 +9,7 @@ class PlaceShipMapEventer: SeaClickMapEventer {
 	#region Events
 	override public void Activate() {
 		base.Activate();
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_SHIP);
+		TabloidPanel.inst.SetText("Выберите место для размещения корабля");
 		
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			List<long> islands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);

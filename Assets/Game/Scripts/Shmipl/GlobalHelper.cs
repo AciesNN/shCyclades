@@ -19,6 +19,17 @@ public static class GlobalHelper
 		}
 	}
 
+	public static void SetImageButtonSprites(this UIImageButton btn, string spriteName, string normalSuffix = "", string hoverSuffix = "") {
+		btn.normalSprite = spriteName + normalSuffix;
+		btn.hoverSprite = spriteName + hoverSuffix;
+		btn.pressedSprite = spriteName + hoverSuffix;
+		btn.disabledSprite = spriteName + normalSuffix;
+
+		btn.target.spriteName = btn.normalSprite;
+
+		btn.pixelSnap = true;
+	}
+
 	public static UISprite Sprite(this GameObject go) {
 		return go.GetComponent<UISprite>();
 	}

@@ -119,7 +119,7 @@ public static class UIConsts {
 	};
 
 
-	public static readonly string SPRITE_GOD_ACTION_ENDTURN = "cancel_icon";
+	public static readonly string SPRITE_GOD_ACTION_ENDTURN = "end_turn";
 	public static readonly string SPRITE_APOLLO_ACTION_HORN = "the-coin";
 	public static readonly string SPRITE_GOD_ACTION_BUILD = "Sawmill";
 	public static readonly string SPRITE_MARS_ACTION_BUY_UNIT = "hero_icon";
@@ -128,7 +128,5 @@ public static class UIConsts {
 	public static readonly string SPRITE_SOPHIA_ACTION_BUY_MAN = "Priest";
 	public static readonly string SPRITE_ZEUS_ACTION_BUY_MAN = "Priest";
 	public static readonly string SPRITE_MARS_ACTION_MOVE_UNIT = "hero_icon";
-	public static readonly string SPRITE_MARS_ACTION_MOVE_UNIT_ADD = "move_icon";
 	public static readonly string SPRITE_POSEIDON_ACTION_MOVE_UNIT = "hero_icon";
-	public static readonly string SPRITE_POSEIDON_ACTION_MOVE_UNIT_ADD = "move_icon";
 }

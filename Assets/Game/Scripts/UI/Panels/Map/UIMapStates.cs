@@ -6,6 +6,10 @@ public class UIMapStates : MonoBehaviour {
 
 	public UIGamePanelTabs Panel;
 	public UIMapController MapController;
+	static public UIMapStates inst {
+		get;
+		private set;
+	}
 
 	Dictionary<MapEventerType, MapEventer> mapEventers = new Dictionary<MapEventerType, MapEventer>();
 	MapEventerType type = MapEventerType.DEFAULT;
@@ -23,6 +27,7 @@ public class UIMapStates : MonoBehaviour {
 	}
 
 	void Awake() {
+		inst = this;
 		if (!MapController)
 			MapController = GetComponent<UIMapController>();
 		if (!MapController)

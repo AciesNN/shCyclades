@@ -4,6 +4,7 @@ using System.Collections.Generic;
 abstract class SeaClickMapEventer : MapEventer {
 
 	protected List<GridPosition> allowedCells;
+	protected UIMapGridCellsLayer l;
 
 	#region Abstract
 	abstract protected void OnClickSeaCell(GridPosition cell);
@@ -12,6 +13,7 @@ abstract class SeaClickMapEventer : MapEventer {
 	#region Events
 	override public void Activate() {
 		allowedCells = new List<GridPosition>();
+		l = mapStates.MapController.GetLayer<UIMapGridCellsLayer>(GridLayerType.GRID);
 	}
 
 	override public void Deactivate() {
@@ -24,12 +26,11 @@ abstract class SeaClickMapEventer : MapEventer {
 	}
 	
 	override public void OnHoverCell(GridPosition cell) {
-		/*if (IsPossibleSeaCell(cell))
-			HighlightSeaCell(cell, true);*/
+		l.OnHoverCell(cell, true);
 	}
 	
 	override public void OnHoverOutCell(GridPosition cell) {
-		/*HighlightSeaCell(cell, false);*/
+		l.OnHoverCell(cell, false);
 	}
 	
 	override public void OnMapCancel() {
@@ -47,7 +48,6 @@ abstract class SeaClickMapEventer : MapEventer {
 	}
 
 	protected void HighlightSeaCell(GridPosition cell, bool active) {
-		UIMapGridCellsLayer l = mapStates.MapController.GetLayer<UIMapGridCellsLayer>(GridLayerType.GRID);
 		l.HiglightCell(cell, active);
 	}
 

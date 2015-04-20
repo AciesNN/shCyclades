@@ -7,6 +7,7 @@ using Cyclades.Game;
 public class UIMapIslandsLayer: UIMapGridLayer {
 
 	Dictionary<int, GridPosition[]> islandsCells = new Dictionary<int, GridPosition[]>();
+	protected UIMapGridCellsLayer l;
 
 	public override void CreateGridElements() {
 
@@ -22,6 +23,7 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 			CreateIsland(i);
 		}
 
+		l = MapController.GetLayer<UIMapGridCellsLayer>(GridLayerType.GRID);
 	}
 
 	void CreateIsland(int island) {
@@ -59,8 +61,17 @@ public class UIMapIslandsLayer: UIMapGridLayer {
 		} else {
 			GridPosition[] points = islandsCells[island];
 			foreach(GridPosition pos in points) {
-				GetElement<UIMapIslandElement>(pos).SetHighlight(isHighlight);
+				l.HiglightCell(pos, isHighlight);
 			}
+		}
+	}
+
+	internal void OnHoverIsland(int island, bool onHover) {
+		if (!islandsCells.ContainsKey(island))
+			return;
+		GridPosition[] points = islandsCells[island];
+		foreach (GridPosition pos in points) {
+			l.OnHoverCell(pos, onHover);
 		}
 	}
 }

@@ -7,7 +7,7 @@ using Cyclades.Game;
 abstract class IslandClickMapEventer : MapEventer {
 
 	protected List<long> allowedIslands;
-
+	protected UIMapIslandsLayer l;
 	#region Abstract
 	abstract protected void OnClickIsland(int island);
 	#endregion
@@ -15,6 +15,7 @@ abstract class IslandClickMapEventer : MapEventer {
 	#region Events
 	override public void Activate() {
 		allowedIslands = new List<long>();
+		l = mapStates.MapController.GetLayer<UIMapIslandsLayer>(GridLayerType.ISLANDS);
 	}
 
 	override public void Deactivate() {
@@ -28,13 +29,13 @@ abstract class IslandClickMapEventer : MapEventer {
 	}
 	
 	override public void OnHoverCell(GridPosition cell) {
-		/*int island = GetIsland(cell);
-		if (IsPossibleIsland(island))
-			HighlightIsland(island, true);*/
+		int island = GetIsland(cell);
+		OnHoverIsland(island, true);
 	}
 	
 	override public void OnHoverOutCell(GridPosition cell) {
-		/*HighlightIsland(-1, false);*/
+		int island = GetIsland(cell);
+		OnHoverIsland(island, false);
 	}
 	
 	override public void OnMapCancel() {
@@ -52,8 +53,11 @@ abstract class IslandClickMapEventer : MapEventer {
 	}
 
 	void HighlightIsland(int island, bool active) {
-		UIMapIslandsLayer l = mapStates.MapController.GetLayer<UIMapIslandsLayer>(GridLayerType.ISLANDS);
 		l.HiglightIsland(island, active);
+	}
+
+	protected void OnHoverIsland(int island, bool onHover) {
+		l.OnHoverIsland(island, onHover);
 	}
 
 	int GetIsland(GridPosition cell) {

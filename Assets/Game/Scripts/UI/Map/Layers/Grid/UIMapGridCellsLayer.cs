@@ -8,16 +8,14 @@ public class UIMapGridCellsLayer : UIMapGridLayer {
 	float highLightAlfa = 1.0f;
 
 	public override void CreateGridElements() {
-		elements = new UIMapGridLayerElement[MapController.XSize, MapController.YSize];
+		elements = new UIMapGridCellElement[MapController.XSize, MapController.YSize];
 
 		for (int x = 0; x < MapController.XSize; ++x) {
 			for (int y = 0; y < MapController.YSize; ++y) {
 				GridPosition pos = new GridPosition(x, y);
 				if (MapController.IsCellPossible(pos)) {
-					UIMapGridLayerElement el = CreateElement<UIMapGridLayerElement>(pos);
-					if (normalAlfa == 0f) {
-						normalAlfa = el.gameObject.GetComponent<UISprite>().alpha;
-					}
+					UIMapGridCellElement el = CreateElement<UIMapGridCellElement>(pos);
+					el.SetAlpha(normalAlfa);
 				}
 			}
 		}
@@ -33,8 +31,11 @@ public class UIMapGridCellsLayer : UIMapGridLayer {
 				}
 			}
 		} else {
-			elements[cell.x, cell.y].GetComponent<UISprite>().alpha = (isHighLight ? highLightAlfa : normalAlfa);
+			(elements[cell.x, cell.y] as UIMapGridCellElement).SetAlpha(isHighLight ? highLightAlfa : normalAlfa);
 		}
 	}
 
+	public void OnHoverCell(GridPosition cell, bool onHover) {
+		(elements[cell.x, cell.y] as UIMapGridCellElement).OnHover(onHover);
+	}
 }

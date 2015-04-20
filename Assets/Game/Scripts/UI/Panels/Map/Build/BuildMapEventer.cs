@@ -9,7 +9,6 @@ class BuildMapEventer: IslandClickMapEventer {
 	override public void Activate() {
 		base.Activate();
 
-		//mapStates.Panel.SetTab(PanelType.MAP_TAB_PLACE_BUILD);
 		TabloidPanel.inst.SetText("Выберите свой остров для строительства");
 
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
@@ -17,6 +16,10 @@ class BuildMapEventer: IslandClickMapEventer {
 		}
 
 		HighlightIslands(true);
+	}
+
+	public void OnPanelSlotBuildClose() {
+		TabloidPanel.inst.SetText("Выберите свой остров для строительства");
 	}
 	#endregion
 

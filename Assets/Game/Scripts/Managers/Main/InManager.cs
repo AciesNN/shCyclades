@@ -77,7 +77,7 @@ public class InManager : Manager<InManager> {
 			if (this.counter >= counter)
 				return;
 			this.counter = counter;
-			Debug.Log ("counter == " + counter);
+			//Debug.Log ("counter == " + counter);
 
 			if (GameContext != null) {
 				//TODO исключительно код для отладки (и то не всегда нужен)

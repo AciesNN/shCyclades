@@ -6,6 +6,8 @@ using Cyclades.Game.Client;
 
 public class UIGodPanel : UIGamePanel {
 
+	public static UIGodPanel inst;
+
 	#region ViewWidgets
 	public UIGodPanelAction[] actions;
 	public UISprite godSprite;
@@ -13,12 +15,22 @@ public class UIGodPanel : UIGamePanel {
 	#endregion
 
 	void Awake() {
+		inst = this;
 	}
 
-	public void SetGod(string god) {
-		godSprite.spriteName = UIConsts.godSpritesString[god];
+	public void SetPlayer(int player) {
 		int cur_player = (int)Library.GetCurrentPlayer(Sh.In.GameContext);
 		playerSpriteRing.spriteName = UIConsts.userColorsString[cur_player] + "-ring1";
+
+		for (int i = 0; i < actions.Length; ++i) {
+			actions[i].SetPlayer(player);
+		}
+	}
+
+	string god;
+	public void SetGod(string god) {
+		this.god = god;
+		godSprite.spriteName = UIConsts.godSpritesString[god];
 
 		switch (god) {
 			case Cyclades.Game.Constants.godAppolon:
@@ -42,83 +54,87 @@ public class UIGodPanel : UIGamePanel {
 		}
 	}
 
+	public void Reset() {
+		SetGod(god);
+	}
+
 	//TODO во всех функциях богов надо бы вычислять доступность кнопок, в том числе и "конца хода" и их цену
 
 	public void SetApollo() {
 		//todo доступность кнопки с рогом долдна зависеть от того, первый ли на апполоне
-		actions[0].SetSprites(UIConsts.SPRITE_APOLLO_ACTION_HORN, "");
+		actions[0].SetActionSprite(UIConsts.SPRITE_APOLLO_ACTION_HORN);
 		actions[0].SetPrice(0);
 		actions[0].click = OnPlaceHorn;
 
-		actions[1].SetSprites("", "");
-		actions[2].SetSprites("", "");
-		actions[3].SetSprites("", "");
+		actions[1].SetActionSprite("");
+		actions[2].SetActionSprite("");
 	}
 
 	public void SetMars() {
-		actions[0].SetSprites(UIConsts.SPRITE_GOD_ACTION_BUILD, "");
+		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetSprites(UIConsts.SPRITE_MARS_ACTION_BUY_UNIT, "");
+		actions[1].SetActionSprite(UIConsts.SPRITE_MARS_ACTION_BUY_UNIT);
 		actions[1].SetPrice(2);
 		actions[1].click = OnBuyUnitClick;
 
-		actions[2].SetSprites(UIConsts.SPRITE_MARS_ACTION_MOVE_UNIT, UIConsts.SPRITE_MARS_ACTION_MOVE_UNIT_ADD);
+		actions[2].SetActionSprite(UIConsts.SPRITE_MARS_ACTION_MOVE_UNIT);
 		actions[2].SetPrice(Cyclades.Game.Constants.moveArmyCost);
 		actions[2].click = OnMoveUnitClick;
 
-		actions[3].SetSprites(UIConsts.SPRITE_GOD_ACTION_ENDTURN, "");
-		actions[3].SetPrice(0);
+		/*actions[3].SetSprites(UIConsts.SPRITE_GOD_ACTION_ENDTURN);
+		actions[3].SetPrice(0);*/
 	}
 
 	public void SetPoseidon() {
-		actions[0].SetSprites(UIConsts.SPRITE_GOD_ACTION_BUILD, "");
+		actions[0].SetActionSprite("port");
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetSprites(UIConsts.SPRITE_MARS_ACTION_BUY_UNIT, "");
+		actions[1].SetActionSprite("ship");
 		actions[1].SetPrice(2);
 		actions[1].click = OnBuyNavyClick;
 
-		actions[2].SetSprites(UIConsts.SPRITE_POSEIDON_ACTION_MOVE_UNIT, UIConsts.SPRITE_POSEIDON_ACTION_MOVE_UNIT_ADD);
+		/*actions[2].SetSprites(UIConsts.SPRITE_POSEIDON_ACTION_MOVE_UNIT);
 		actions[2].SetPrice(Cyclades.Game.Constants.moveNavyCost);
-		actions[2].click = OnMoveNavyClick;
+		actions[2].click = OnMoveNavyClick;*/
 
-		actions[3].SetSprites(UIConsts.SPRITE_GOD_ACTION_ENDTURN, "");
-		actions[3].SetPrice(0);
+		actions[2].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_ENDTURN);
+		actions[2].SetPrice(0);
+		actions[2].click = OnEndTurn;
 	}
 
 	public void SetSophia() {
-		actions[0].SetSprites(UIConsts.SPRITE_GOD_ACTION_BUILD, "");
+		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetSprites(UIConsts.SPRITE_SOPHIA_ACTION_BUY_MAN, "");
+		actions[1].SetActionSprite(UIConsts.SPRITE_SOPHIA_ACTION_BUY_MAN);
 		actions[1].SetPrice(Cyclades.Game.Constants.philosopherPrice[1]);
 		actions[1].click = OnBuyPhilosotherClick;
 
-		actions[2].SetSprites("", "");
-
-		actions[3].SetSprites(UIConsts.SPRITE_GOD_ACTION_ENDTURN, "");
-		actions[3].SetPrice(0);
+		actions[2].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_ENDTURN);
+		actions[2].SetPrice(0);
+		actions[2].click = OnEndTurn;
 	}
 
 	public void SetZeus() {
-		actions[0].SetSprites(UIConsts.SPRITE_GOD_ACTION_BUILD, "");
+		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetSprites(UIConsts.SPRITE_ZEUS_ACTION_BUY_MAN, "");
+		actions[1].SetActionSprite(UIConsts.SPRITE_ZEUS_ACTION_BUY_MAN);
 		actions[1].SetPrice(Cyclades.Game.Constants.priestPrice[1]);
 		actions[1].click = OnBuyPriestClick;
 
-		actions[2].SetSprites(UIConsts.SPRITE_ZEUS_ACTION_CHANGE_CARD, "");
+		/*actions[2].SetSprites(UIConsts.SPRITE_ZEUS_ACTION_CHANGE_CARD);
 		actions[2].SetPrice(Cyclades.Game.Constants.changeCardCost);
-		actions[2].click = OnCardChangeClick;
+		actions[2].click = OnCardChangeClick;*/
 
-		actions[3].SetSprites(UIConsts.SPRITE_GOD_ACTION_ENDTURN, "");
-		actions[3].SetPrice(0);
+		actions[2].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_ENDTURN);
+		actions[2].SetPrice(0);
+		actions[2].click = OnEndTurn;
 	}
 
 
@@ -135,11 +151,11 @@ public class UIGodPanel : UIGamePanel {
 		actions[2].click();
 	}
 
+	//////////////////////////////////
 	public void OnEndTurn() {
 		Sh.Out.Send(Messanges.EndPlayerTurn());
 	}
 
-	//////////////////////////////////
 	public void OnBuildClick() {
 		Sh.GameState.mapStates.SetEventorType(MapEventerType.PLACEBUILD);
 	}
