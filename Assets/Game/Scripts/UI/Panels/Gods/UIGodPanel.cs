@@ -12,6 +12,9 @@ public class UIGodPanel : UIGamePanel {
 	public UIGodPanelAction[] actions;
 	public UISprite godSprite;
 	public UISprite playerSpriteRing;
+
+	public GameObject AdditionalInfoObject;
+	public UILabel AdditionalInfoText;
 	#endregion
 
 	void Awake() {
@@ -27,9 +30,7 @@ public class UIGodPanel : UIGamePanel {
 		}
 	}
 
-	string god;
-	public void SetGod(string god) {
-		this.god = god;
+	void SetGod(string god) {
 		godSprite.spriteName = UIConsts.godSpritesString[god];
 
 		switch (god) {
@@ -52,10 +53,18 @@ public class UIGodPanel : UIGamePanel {
 				Debug.DebugBreak();
 				break;
 		}
+
+		SetAdditionalText("");
 	}
 
 	public void Reset() {
-		SetGod(god);
+		string currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
+		SetGod(currentGod);
+	}
+
+	public void SetAdditionalText(string additionalText) {
+		AdditionalInfoObject.SetActive(additionalText != "");
+		AdditionalInfoText.text = additionalText;
 	}
 
 	//TODO во всех функциях богов надо бы вычислять доступность кнопок, в том числе и "конца хода" и их цену
@@ -88,6 +97,8 @@ public class UIGodPanel : UIGamePanel {
 	}
 
 	public void SetPoseidon() {
+		TabloidPanel.inst.SetText("Великая пучина внемлет тебе!");
+
 		actions[0].SetActionSprite("port");
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
@@ -96,13 +107,15 @@ public class UIGodPanel : UIGamePanel {
 		actions[1].SetPrice(2);
 		actions[1].click = OnBuyNavyClick;
 
-		/*actions[2].SetSprites(UIConsts.SPRITE_POSEIDON_ACTION_MOVE_UNIT);
-		actions[2].SetPrice(Cyclades.Game.Constants.moveNavyCost);
-		actions[2].click = OnMoveNavyClick;*/
-
 		actions[2].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_ENDTURN);
 		actions[2].SetPrice(0);
 		actions[2].click = OnEndTurn;
+
+		UIMapStates.inst.SetEventorType(MapEventerType.MOVESHIP); 
+
+		/*actions[2].SetSprites(UIConsts.SPRITE_POSEIDON_ACTION_MOVE_UNIT);
+		actions[2].SetPrice(Cyclades.Game.Constants.moveNavyCost);
+		actions[2].click = OnMoveNavyClick;*/
 	}
 
 	public void SetSophia() {

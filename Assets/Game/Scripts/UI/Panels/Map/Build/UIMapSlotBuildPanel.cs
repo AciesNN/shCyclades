@@ -50,7 +50,7 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 	#region Events
 	void OnSlotClick(int slot) {
 		Sh.Out.Send(Messanges.BuyBuild(activeIsland, slot));
-		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
+		(UIMapStates.inst.eventer as BuildMapEventer).OnPanelSlotBuildOK();
 	}
 
 	public void OnSlot0Click() {
@@ -71,7 +71,7 @@ public class UIMapSlotBuildPanel: UIGamePanel {
 
 	public void OnCancelButtonClick() {
 		UIMapStates.inst.Panel.HideAll();
-		(UIMapStates.inst.eventer as BuildMapEventer).OnPanelSlotBuildClose();
+		(UIMapStates.inst.eventer as BuildMapEventer).OnPanelSlotBuildCancel();
 	}
 	#endregion
 

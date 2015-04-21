@@ -9,7 +9,7 @@ class BuildMapEventer: IslandClickMapEventer {
 	override public void Activate() {
 		base.Activate();
 
-		TabloidPanel.inst.SetText("Выберите свой остров для строительства");
+		UIInit();
 
 		if (Sh.GameState.currentUser != -1) { //todo совершенно лишнее в реальной игре условие
 			allowedIslands = Library.Map_GetIslandsByOwner(Sh.In.GameContext, Sh.GameState.currentUser);
@@ -18,10 +18,38 @@ class BuildMapEventer: IslandClickMapEventer {
 		HighlightIslands(true);
 	}
 
-	public void OnPanelSlotBuildClose() {
-		TabloidPanel.inst.SetText("Выберите свой остров для строительства");
+	public void OnPanelSlotBuildCancel() {
+		UIInit();
+	}
+
+	public void OnPanelSlotBuildOK() {
+		CloseEventer();
+	}
+
+	void OnClickCancel() {
+		CloseEventer();
 	}
 	#endregion
+
+	void UIInit() {
+		TabloidPanel.inst.SetText("Выберите место для постройки гавани");
+
+		UIGodPanel.inst.godSprite.spriteName = "pic-port";
+
+		UIGodPanel.inst.actions[0].SetActionSprite("");
+		UIGodPanel.inst.actions[0].SetPrice(0);
+		UIGodPanel.inst.actions[0].click = null;
+
+		UIGodPanel.inst.actions[1].SetActionSprite("");
+		UIGodPanel.inst.actions[1].SetPrice(0);
+		UIGodPanel.inst.actions[1].click = null;
+
+		UIGodPanel.inst.actions[2].SetActionSprite("exit");
+		UIGodPanel.inst.actions[2].SetPrice(0);
+		UIGodPanel.inst.actions[2].click = OnClickCancel;
+
+		UIGodPanel.inst.SetAdditionalText("");
+	}
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
@@ -31,4 +59,8 @@ class BuildMapEventer: IslandClickMapEventer {
 	}
 	#endregion
 
+	void CloseEventer() {
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
+		UIGodPanel.inst.Reset();
+	}
 }

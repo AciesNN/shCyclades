@@ -29,7 +29,6 @@ public class UIGodPanelAction: MonoBehaviour {
 	}
 
 	public void SetActionSprite(string spriteName) {
-		gameObject.SetActive(spriteName != "");
 		buttons[1].SetImageButtonSprites(spriteName, "1", "2");
 	}
 
