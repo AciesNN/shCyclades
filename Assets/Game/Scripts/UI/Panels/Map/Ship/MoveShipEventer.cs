@@ -6,13 +6,16 @@ using Cyclades.Game.Client;
 
 class MoveShipEventer: SeaClickMapEventer {
 
-	UIMapMoveShipPanel panel;
 	bool isFirstCall;
 	GridPosition firstCell;
-	int lastCount;
+	int count;
+	int max_units_count;
+	int countOfMovement;
 
 	GridPosition _lastSeaCell {
-		get {	
+		get {
+			if (isFirstCall)
+				return firstCell;
 			GridPosition cell = new GridPosition( Sh.In.GameContext.GetList("/fight/navy/last_coords") );
 			if (cell.IsLessThanZero()) {
 				return firstCell;
@@ -26,7 +29,6 @@ class MoveShipEventer: SeaClickMapEventer {
 	override public void Activate() {
 		base.Activate();
 		isFirstCall = true;
-		lastCount = 1;
 		firstCell = GridPosition.LessThanZero();
 		ReInit();
 	}
@@ -34,52 +36,84 @@ class MoveShipEventer: SeaClickMapEventer {
 	override public void ReActivate() {
 		ReInit ();
 	}
+
+	void OnCountUp() {
+		if (count >= max_units_count)
+			return;
+		count++;
+		UIGodPanel.inst.SetAdditionalText("" + count);
+	}
+
+	void OnCountDown() {
+		if (count <= 1)
+			return;
+		count--;
+		UIGodPanel.inst.SetAdditionalText("" + count);
+	}
+
+	public void OnClickCancel() {
+		Sh.Out.Send(Messanges.CancelMoveNavy());
+		CloseEventer();
+	}
 	#endregion
 
 	#region Abstract
 	override protected void OnClickSeaCell(GridPosition cell) {
+		HighlightSeaCells(false);
 		if (isFirstCall) {
 			isFirstCall = false;
 			firstCell = cell;
+			Sh.Out.Send(Messanges.StartMoveNavy());
 			ReInit();
 		} else {
 			GridPosition lastSeaCell = _lastSeaCell;
-			Sh.Out.Send(Messanges.MoveNavy(lastSeaCell.x, lastSeaCell.y, cell.x, cell.y, panel.activeUnitCount));
-			lastCount = panel.activeUnitCount;
+			Sh.Out.Send(Messanges.MoveNavy(lastSeaCell.x, lastSeaCell.y, cell.x, cell.y, count));
 		}
 	}
 	#endregion
 
+	void UIInit() {
+		if (!isFirstCall) {
+			TabloidPanel.inst.SetText("Укажите, куда переместить корабли и сколько.");
+
+			UIGodPanel.inst.godSprite.spriteName = "pic-ship_move";
+
+			UIGodPanel.inst.actions[0].SetActionSprite("arrow-up");
+			UIGodPanel.inst.actions[0].SetPrice(0);
+			UIGodPanel.inst.actions[0].click = OnCountUp;
+
+			UIGodPanel.inst.actions[1].SetActionSprite("arrow-down");
+			UIGodPanel.inst.actions[1].SetPrice(0);
+			UIGodPanel.inst.actions[1].click = OnCountDown;
+
+			UIGodPanel.inst.actions[2].SetActionSprite(countOfMovement  == 3 ? "exit" : "OK");
+			UIGodPanel.inst.actions[2].SetPrice(0);
+			UIGodPanel.inst.actions[2].click = OnClickCancel;
+
+			UIGodPanel.inst.SetAdditionalText("" + count);
+		}
+	}
+
 	void ReInit() {
 
+		countOfMovement = Sh.In.GameContext.GetInt("/fight/navy/move");
 		GridPosition lastSeaCell = _lastSeaCell;
-		panel = UIMapMoveShipPanel.GetPanel<UIMapMoveShipPanel>(PanelType.MAP_TAB_MOVE_SHIP);
 
 		if (!lastSeaCell.IsLessThanZero()) {
-			panel.ReInit();
-			int max_units_count = Library.Map_GetShipCountByPoint(Sh.In.GameContext, lastSeaCell.x, lastSeaCell.y);
-			panel.SetUnitMaxCount(max_units_count);
-			
-			for (int i = 0; i < max_units_count; ++i)
-				panel.SetUnitActive(i, i < lastCount);
+			max_units_count = Library.Map_GetShipCountByPoint(Sh.In.GameContext, lastSeaCell.x, lastSeaCell.y);
+			count = max_units_count;
+		} else {
+			count = 1; //useless code
 		}
-
-		panel.CountOfMovement = Sh.In.GameContext.GetInt("/fight/navy/move");
-		panel.SetDescription(lastSeaCell);
-		panel.SetUnitsVisible(!isFirstCall);
-
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_MOVE_SHIP);
-
-		HighlightSeaCells(false);
+		
 		if (lastSeaCell.IsLessThanZero()) {
-			CalculateAllowedCellsFrom(); 
+			CalculateAllowedCellsFrom();
 		} else {
 			CalculateAllowedCellsTo();
 		}
-		HighlightSeaCells(true);
+		HighlightSeaCells(!isFirstCall);		
 
-		panel.SetInfoPosition(lastSeaCell);
-
+		UIInit();
 	}
 
 	void CalculateAllowedCellsFrom() {
@@ -105,6 +139,10 @@ class MoveShipEventer: SeaClickMapEventer {
 				allowedCells.Add(new GridPosition(seaCoord.x, seaCoord.y));
 			}
 		}
+	}
 
+	void CloseEventer() {
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
+		UIGodPanel.inst.Reset();
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Cyclades.Game;
@@ -32,9 +33,23 @@ class BuildMapEventer: IslandClickMapEventer {
 	#endregion
 
 	void UIInit() {
-		TabloidPanel.inst.SetText("Выберите место для постройки гавани");
+		String currentGod = Sh.In.GameContext.GetStr("/turn/current_god");
 
-		UIGodPanel.inst.godSprite.spriteName = "pic-port";
+		String buildName = "";
+		String spriteName = "";
+
+		switch (currentGod) {
+			case Cyclades.Game.Constants.godPoseidon:
+				buildName = "Гавани";
+				spriteName = "pic-port";
+				break;
+			case Cyclades.Game.Constants.godMars:
+				buildName = "Форта";
+				spriteName = "fort-icon";
+				break;
+		}
+		TabloidPanel.inst.SetText("Выберите место для постройки " + buildName  + ".");
+		UIGodPanel.inst.godSprite.spriteName = spriteName;
 
 		UIGodPanel.inst.actions[0].SetActionSprite("");
 		UIGodPanel.inst.actions[0].SetPrice(0);

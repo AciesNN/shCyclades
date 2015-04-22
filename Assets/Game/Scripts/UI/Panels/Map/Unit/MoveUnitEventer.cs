@@ -7,7 +7,8 @@ using Cyclades.Game.Client;
 class MoveUnitEventer: IslandClickMapEventer {
 	
 	int fromIsland;
-	UIMapMoveUnitPanel panel;
+	int count;
+	int max_units_count;
 
 	#region Events
 	override public void Activate() {
@@ -15,31 +16,44 @@ class MoveUnitEventer: IslandClickMapEventer {
 
 		fromIsland = -1;
 
-		panel = UIGamePanel.GetPanel<UIMapMoveUnitPanel>(PanelType.MAP_TAB_MOVE_UNIT);
-		panel.SetDescription(fromIsland);
-		panel.SetUnitsVisible(false);
-
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_MOVE_UNIT);
-
 		CalculateAllowedIslandsFrom();
-		HighlightIslands(true);
+	}
+
+	void OnCountUp() {
+		if (count >= max_units_count)
+			return;
+		count++;
+		UIGodPanel.inst.SetAdditionalText("" + count);
+	}
+
+	void OnCountDown() {
+		if (count <= 1)
+			return;
+		count--;
+		UIGodPanel.inst.SetAdditionalText("" + count);
+	}
+
+	public void OnClickCancel() {
+		Sh.Out.Send(Messanges.CancelMoveNavy());
+		CloseEventer();
 	}
 	#endregion
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
+		HighlightIslands(false);
 		if (fromIsland == -1) {
 			fromIsland = island;
-			panel.SetDescription(fromIsland);
-			panel.SetUnitsVisible(true);
-			panel.SetUnitMaxCount( Sh.In.GameContext.GetInt ("/map/islands/army/[{0}]", island) );
-			panel.SetUnitCount(1);
 
-			HighlightIslands(false);
+			max_units_count = Sh.In.GameContext.GetInt("/map/islands/army/[{0}]", island);
+			count = max_units_count;
+
 			CalculateAllowedIslandsTo();
 			HighlightIslands(true);
+
+			UIInit();
 		} else {
-			Sh.Out.Send(Messanges.MoveArmy(fromIsland, island, panel.activeUnitCount));
+			Sh.Out.Send(Messanges.MoveArmy(fromIsland, island, count));
 		}
 	}
 	#endregion
@@ -56,5 +70,30 @@ class MoveUnitEventer: IslandClickMapEventer {
 
 	void CalculateAllowedIslandsTo() {
 		allowedIslands = Library.Map_GetBridgetIslands(Sh.In.GameContext, fromIsland, Sh.GameState.currentUser);
+	}
+
+	void UIInit() {
+		TabloidPanel.inst.SetText("Укажите, куда переместить солдат и сколько.");
+
+		UIGodPanel.inst.godSprite.spriteName = "pic-ship_move";
+
+		UIGodPanel.inst.actions[0].SetActionSprite("arrow-up");
+		UIGodPanel.inst.actions[0].SetPrice(0);
+		UIGodPanel.inst.actions[0].click = OnCountUp;
+
+		UIGodPanel.inst.actions[1].SetActionSprite("arrow-down");
+		UIGodPanel.inst.actions[1].SetPrice(0);
+		UIGodPanel.inst.actions[1].click = OnCountDown;
+
+		UIGodPanel.inst.actions[2].SetActionSprite("exit");
+		UIGodPanel.inst.actions[2].SetPrice(0);
+		UIGodPanel.inst.actions[2].click = OnClickCancel;
+
+		UIGodPanel.inst.SetAdditionalText("" + count);
+	}
+
+	void CloseEventer() {
+		Sh.GameState.mapStates.SetEventorType(MapEventerType.DEFAULT);
+		UIGodPanel.inst.Reset();
 	}
 }

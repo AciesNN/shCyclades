@@ -90,7 +90,7 @@ public class GameStateManager : Manager<GameStateManager> {
 			}
 
 			default: {
-				SetMapEventorType(MapEventerType.DEFAULT);
+				//SetMapEventorType(MapEventerType.DEFAULT);
 				break;
 			}
 		}

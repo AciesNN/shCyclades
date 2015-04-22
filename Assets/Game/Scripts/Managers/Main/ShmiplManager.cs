@@ -20,7 +20,12 @@ public class ShmiplManager : Manager<ShmiplManager> {
 		base.Init ();
 
 		// the following line checks if this client was just created (and not yet online). if so, we connect
-		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent(new WaitForEndOfFrame())); //new WaitForSeconds(0.1)
+		#if UNITY_WEBPLAYER
+		object wait = new WaitForSeconds(0.1f);
+		#else
+		object wait = new WaitForEndOfFrame();
+		#endif
+		StartCoroutine(Shmipl.Base.ThreadSafeMessenger.ReceiveEvent(wait));
 
 		#if UNITY_WEBPLAYER
 		Shmipl.Base.Log.inFile = false;
