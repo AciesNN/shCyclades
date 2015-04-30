@@ -146,7 +146,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 18
   - name: clear_icon
-    x: 733
+    x: 643
     y: 182
     width: 89
     height: 80
@@ -198,7 +198,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Fort
-    x: 737
+    x: 642
     y: 490
     width: 94
     height: 94
@@ -264,7 +264,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: GridSquare
     x: 514
-    y: 133
+    y: 198
     width: 128
     height: 64
     borderLeft: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: GridSquareFilled
-    x: 514
-    y: 198
+    x: 643
+    y: 263
     width: 128
     height: 64
     borderLeft: 0
@@ -406,111 +406,7 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 8
   - name: Path-E
-    x: 1257
-    y: 1444
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-ES
-    x: 1386
-    y: 1444
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-ESW
-    x: 1515
-    y: 1444
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-EW
-    x: 1644
-    y: 1444
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-N
-    x: 1773
-    y: 1444
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NE
-    x: 642
-    y: 425
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NES
     x: 514
-    y: 3
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NESW
-    x: 642
-    y: 360
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NEW
-    x: 385
     y: 263
     width: 128
     height: 64
@@ -522,33 +418,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: Path-NS
-    x: 385
-    y: 198
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NSW
-    x: 385
-    y: 133
-    width: 128
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Path-NW
+  - name: Path-ES
     x: 385
     y: 68
     width: 128
@@ -561,7 +431,20 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: Path-S
+  - name: Path-ESW
+    x: 514
+    y: 133
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-EW
     x: 385
     y: 3
     width: 128
@@ -574,8 +457,112 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: Path-SW
+  - name: Path-N
     x: 514
+    y: 3
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NE
+    x: 1257
+    y: 1444
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NES
+    x: 1386
+    y: 1444
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NESW
+    x: 1515
+    y: 1444
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NEW
+    x: 1644
+    y: 1444
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NS
+    x: 1773
+    y: 1444
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NSW
+    x: 642
+    y: 425
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-NW
+    x: 642
+    y: 360
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Path-S
+    x: 385
     y: 263
     width: 128
     height: 64
@@ -587,9 +574,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Path-SW
+    x: 385
+    y: 198
+    width: 128
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Path-W
-    x: 643
-    y: 263
+    x: 385
+    y: 133
     width: 128
     height: 64
     borderLeft: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Pikeman
     x: 1916
-    y: 1533
+    y: 1920
     width: 128
     height: 128
     borderLeft: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: resource_icon
-    x: 643
+    x: 733
     y: 182
     width: 89
     height: 80
@@ -678,6 +678,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: ship
+    x: 802
+    y: 756
+    width: 58
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 6
+    paddingTop: 5
+    paddingBottom: 8
   - name: SideCliff
     x: 385
     y: 1172
@@ -693,7 +706,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: SmallRock
     x: 1916
-    y: 1662
+    y: 1533
     width: 128
     height: 128
     borderLeft: 0
@@ -719,7 +732,7 @@ MonoBehaviour:
     paddingBottom: 23
   - name: Swordman
     x: 1916
-    y: 1791
+    y: 1662
     width: 128
     height: 128
     borderLeft: 0
@@ -731,8 +744,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Templ
-    x: 707
-    y: 629
+    x: 737
+    y: 490
     width: 94
     height: 94
     borderLeft: 0
@@ -771,7 +784,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Tree
     x: 1916
-    y: 1920
+    y: 1791
     width: 128
     height: 128
     borderLeft: 0
@@ -796,8 +809,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 13
   - name: Univer
-    x: 642
-    y: 490
+    x: 707
+    y: 629
     width: 94
     height: 94
     borderLeft: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Cyclades.Game;
+using Cyclades.Game.Client;
 
 class BuildMapEventer: IslandClickMapEventer {
 
@@ -47,6 +48,14 @@ class BuildMapEventer: IslandClickMapEventer {
 				buildName = "Форта";
 				spriteName = "fort-icon";
 				break;
+			case Cyclades.Game.Constants.godSophia:
+				buildName = "Университета";
+				spriteName = "pic-port";
+				break;
+			case Cyclades.Game.Constants.godZeus:
+				buildName = "Храма";
+				spriteName = "fort-icon";
+				break;
 		}
 		TabloidPanel.inst.SetText("Выберите место для постройки " + buildName  + ".");
 		UIGodPanel.inst.godSprite.spriteName = spriteName;
@@ -68,9 +77,22 @@ class BuildMapEventer: IslandClickMapEventer {
 
 	#region Abstract
 	override protected void OnClickIsland(int island) {
-		UIMapSlotBuildPanel p = UIGamePanel.GetPanel<UIMapSlotBuildPanel>(PanelType.MAP_TAB_SLOT_BUILD);
-		p.SetActiveIsland(island);
-		mapStates.Panel.SetTab(PanelType.MAP_TAB_SLOT_BUILD);
+		List<string> buildings = Sh.In.GameContext.GetList<string>("/map/islands/buildings/[{0}]", island);
+
+		bool is_metro = Sh.In.GameContext.GetBool("/map/islands/is_metro/[{0}]", island);
+		int min_slot = (is_metro ? Library.Map_IslandMetroSizeByIslandSize(buildings.Count) : 0);
+		int slot = -1;
+		for (int slotN = buildings.Count - 1; slotN >= min_slot; --slotN) {
+			if (buildings[slotN] == Constants.buildNone) {
+				slot = slotN;
+				break;
+			}
+		}
+
+		if (slot >= 0)
+			Sh.Out.Send(Messanges.BuyBuild(island, slot));
+
+		//TODO а учитывается ли при создании списка доступных островов наличие свободного места?
 	}
 	#endregion
 

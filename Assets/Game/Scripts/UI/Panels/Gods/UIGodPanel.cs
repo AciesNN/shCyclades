@@ -70,6 +70,8 @@ public class UIGodPanel : UIGamePanel {
 	//TODO во всех функциях богов надо бы вычислять доступность кнопок, в том числе и "конца хода" и их цену
 
 	public void SetApollo() {
+		TabloidPanel.inst.SetText("Время сеять!");
+
 		//todo доступность кнопки с рогом должна зависеть от того, первый ли на апполоне
 		actions[0].SetActionSprite(UIConsts.SPRITE_APOLLO_ACTION_HORN);
 		actions[0].SetPrice(0);
@@ -118,6 +120,7 @@ public class UIGodPanel : UIGamePanel {
 	}
 
 	public void SetSophia() {
+		TabloidPanel.inst.SetText("Богиня мудрости...");
 
 		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
@@ -135,6 +138,7 @@ public class UIGodPanel : UIGamePanel {
 	}
 
 	public void SetZeus() {
+		TabloidPanel.inst.SetText("Громовержец");
 
 		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);

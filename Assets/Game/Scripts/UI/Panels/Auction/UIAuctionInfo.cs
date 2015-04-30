@@ -20,13 +20,6 @@ public class UIAuctionInfo : UIGamePanel {
 	}
 
 	override public void GameContext_LateInit() {
-		/*uiAuctionGods = new List<UIAuctionGod>();
-
-		for (int i = 0; i < players_number; ++i) {
-			AddGodInfoWidget(i);
-		}
-		
-		Table.Reposition();	*/
 
 		for (int i = 0; i < uiAuctionGods.Count; ++i) {
 			if (i < players_number - 1) {
@@ -46,6 +39,9 @@ public class UIAuctionInfo : UIGamePanel {
 
 	#region UpdateData
 	override protected void GameContext_UpdateData_Panel(bool deserialize) {
+
+		TabloidPanel.inst.SetText("Время приносить жертвы богам!");
+
 		for (int i = 0; i < players_number; ++i) {
 			
 			UIAuctionGod w = uiAuctionGods[i];
@@ -71,20 +67,6 @@ public class UIAuctionInfo : UIGamePanel {
 		}
 	}
 	#endregion
-
-	/*
-	private UIAuctionGod AddGodInfoWidget(int w_number) {
-		GameObject w_go = (GameObject) NGUITools.AddChild(Table.gameObject, UIAuctionGodPrefab);
-		w_go.name = "" + w_number + ". " + w_go.name;
-		UIAuctionGod w = w_go.GetComponent<UIAuctionGod>();
-
-		w.AuctionInfoPanel = this;
-		w.MyNumber = w_number;
-
-		uiAuctionGods.Add (w);
-		return w;
-	}
-	*/
 
 	#region Events
 	public void OnBetPanelClose(ModelPanelCloseResult res) {

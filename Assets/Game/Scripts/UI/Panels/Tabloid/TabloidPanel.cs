@@ -30,7 +30,8 @@ public class TabloidPanel : UIGamePanel {
 
 	LTDescr AnimateShrink() {
 		textLabel.text = "";
-		return LeanTween.scaleX(bannerSprite.gameObject, 0.0f, 0.3f);
+		LeanTween.alphaWidget(textLabel, 0.0f, 0.1f);
+		return LeanTween.scaleX(bannerSprite.gameObject, 0.0f, 0.3f).setEase(LeanTweenType.easeInCubic);
 	}
 
 	void AnimateGrow(string text) {
@@ -39,6 +40,7 @@ public class TabloidPanel : UIGamePanel {
 			content.SetActive(false);
 			return;
 		}
-		LeanTween.scaleX(bannerSprite.gameObject, 1.0f, 0.3f);
+		LeanTween.alphaWidget(textLabel, 1.0f, 0.1f).setDelay(0.2f);
+		LeanTween.scaleX(bannerSprite.gameObject, 1.0f, 0.3f).setEase(LeanTweenType.easeOutCubic);
 	}
 }

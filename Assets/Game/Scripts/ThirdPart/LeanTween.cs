@@ -1879,7 +1879,6 @@ public static void update() {
 					    }else if(tweenAction==TweenAction.ROTATE_AROUND){
 							
 							float move = val - tween.lastVal;
-					    	Debug.Log("move:"+move+" val:"+val + " timeTotal:"+timeTotal + " from:"+tween.from+ " diff:"+tween.diff + " type:"+tween.tweenType);
 					    	if(isTweenFinished){
 					    		if(tween.direction>0){
 					    			// figure out how much the rotation has shifted the object over

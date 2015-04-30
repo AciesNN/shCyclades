@@ -16,7 +16,7 @@ public static class UIConsts {
 		{-1, Color.white},
 		{0, Color.green},
 		{1, Color.red},
-		{2, Color.black},
+		{2, Color.magenta},
 		{3, Color.blue},
 		{4, Color.yellow}
 	};
@@ -63,7 +63,7 @@ public static class UIConsts {
 
 	public static readonly Dictionary<string, string> buildSprites = new Dictionary<string, string>
 	{
-		{Cyclades.Game.Constants.buildNone, "GridSquare"},
+		{Cyclades.Game.Constants.buildNone, ""},
 		{Cyclades.Game.Constants.buildMarina, "Port"},
 		{Cyclades.Game.Constants.buildFortres, "Fort"},
 		{Cyclades.Game.Constants.buildUniver, "Univer"},

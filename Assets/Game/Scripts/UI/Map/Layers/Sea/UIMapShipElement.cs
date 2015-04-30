@@ -18,6 +18,7 @@ public class UIMapShipElement : UIMapGridLayerElement {
 			} else {
 				context.SetActive(true);
 				countLabel.text = "" + count;
+				AnimateShip1();
 			}
 		}
 
@@ -33,4 +34,23 @@ public class UIMapShipElement : UIMapGridLayerElement {
 	}
 	#endregion
 
+	void StartAnimation() {
+		LeanTween.cancel(sprite.gameObject);
+		sprite.transform.localRotation = Quaternion.identity;
+
+		float pause = Random.Range(0.0f, 20.0f);
+		LeanTween.delayedCall(pause, AnimateShip1);
+	}
+
+	void AnimateShip1() {
+		LeanTween.rotateAround(sprite.gameObject, Vector3.forward, 8.0f, 1.5f).setEase(LeanTweenType.easeInOutCubic).setOnComplete(AnimateShip2);
+	}
+
+	void AnimateShip2() {
+		LeanTween.rotateAround(sprite.gameObject, Vector3.forward, -16.0f, 3.0f).setEase(LeanTweenType.easeInOutCubic).setLoopPingPong().setRepeat(2).setOnComplete(AnimateShip3);
+	}
+
+	void AnimateShip3() {
+		LeanTween.rotateAround(sprite.gameObject, Vector3.forward, -8.0f, 1.5f).setEase(LeanTweenType.easeInOutCubic).setOnComplete(StartAnimation);
+	}
 }
