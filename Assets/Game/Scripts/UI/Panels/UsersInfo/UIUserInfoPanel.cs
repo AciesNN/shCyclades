@@ -39,7 +39,7 @@ public class UIUserInfoPanel: UIGamePanel
 	override protected void OnPanelOpen() {
 		PlayerSprite.spriteName = "Player" + player + "Big";
 		PlayerColorName.text = "Локрум (" + player + ")";
-		PlayerShieldSprite.spriteName = "coat-of-arms" + player;
+		PlayerShieldSprite.spriteName = UIConsts.userColorsString[player] + "-coat-of-arms";
 
 		CancelButtonSprite.spriteName = "exit-" + UIConsts.userColorsString[player] + "+";
 		CancelButtonSpriteTail.spriteName = "tail-" + UIConsts.userColorsString[player];

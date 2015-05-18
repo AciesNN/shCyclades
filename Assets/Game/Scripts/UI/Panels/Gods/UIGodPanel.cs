@@ -94,7 +94,7 @@ public class UIGodPanel : UIGamePanel {
 		actions[1].SetPrice(2);
 		actions[1].click = OnBuyUnitClick;
 
-		actions[2].SetActionSprite("exit");
+		actions[2].SetActionSprite("end_turn");
 		actions[2].SetPrice(0);
 		actions[2].click = OnEndTurn;
 
@@ -112,7 +112,7 @@ public class UIGodPanel : UIGamePanel {
 		actions[1].SetPrice(2);
 		actions[1].click = OnBuyNavyClick;
 
-		actions[2].SetActionSprite("exit");
+		actions[2].SetActionSprite("end_turn");
 		actions[2].SetPrice(0);
 		actions[2].click = OnEndTurn;
 
@@ -122,15 +122,15 @@ public class UIGodPanel : UIGamePanel {
 	public void SetSophia() {
 		TabloidPanel.inst.SetText("Богиня мудрости...");
 
-		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
+		actions[0].SetActionSprite("sophia-univ-action");
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetActionSprite(UIConsts.SPRITE_SOPHIA_ACTION_BUY_MAN);
+		actions[1].SetActionSprite("sophia-phil-action");
 		actions[1].SetPrice(Cyclades.Game.Constants.philosopherPrice[1]);
 		actions[1].click = OnBuyPhilosotherClick;
 
-		actions[2].SetActionSprite("exit");
+		actions[2].SetActionSprite("end_turn");
 		actions[2].SetPrice(0);
 		actions[2].click = OnEndTurn;
 
@@ -138,17 +138,17 @@ public class UIGodPanel : UIGamePanel {
 	}
 
 	public void SetZeus() {
-		TabloidPanel.inst.SetText("Громовержец");
+		TabloidPanel.inst.SetText("Громовержец...");
 
-		actions[0].SetActionSprite(UIConsts.SPRITE_GOD_ACTION_BUILD);
+		actions[0].SetActionSprite("zeus-temple-action");
 		actions[0].SetPrice(Cyclades.Game.Constants.buildingCost);
 		actions[0].click = OnBuildClick;
 
-		actions[1].SetActionSprite(UIConsts.SPRITE_ZEUS_ACTION_BUY_MAN);
+		actions[1].SetActionSprite("zeus-priest-action");
 		actions[1].SetPrice(Cyclades.Game.Constants.priestPrice[1]);
 		actions[1].click = OnBuyPriestClick;
 
-		actions[2].SetActionSprite("exit");
+		actions[2].SetActionSprite("end_turn");
 		actions[2].SetPrice(0);
 		actions[2].click = OnEndTurn;
 
