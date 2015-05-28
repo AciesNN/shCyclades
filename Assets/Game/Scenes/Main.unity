@@ -9323,7 +9323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomCamera: {fileID: 645265266}
   panels: []
-  min: .800000012
+  min: .699999988
   max: 1
   zoomFactor: -.330000013
   touchZoomFactor: 2

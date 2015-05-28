@@ -44,13 +44,14 @@ public class UIMapStates : MonoBehaviour {
 	}
 
 	public void SetEventorType(MapEventerType type) {
-		if (this.type == type)
-			return;
-		if (this.type != MapEventerType.DEFAULT)
+		if (this.type != MapEventerType.DEFAULT && this.type != type)
 			eventer.Deactivate();
-		this.type = type;
-		eventer.Activate();
-
+		if (this.type != type) {
+			this.type = type;
+			eventer.Activate();
+		} else {
+			eventer.ReActivate();
+		}
 	}
 
 	public MapEventerType GetEventorType() {

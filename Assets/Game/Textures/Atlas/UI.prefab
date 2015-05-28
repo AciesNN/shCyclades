@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 3422556f4dee75946834a7521871e163, type: 2}
   mSprites:
   - name: action-button
-    x: 518
-    y: 177
+    x: 1979
+    y: 1803
     width: 50
     height: 50
     borderLeft: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     paddingTop: 19
     paddingBottom: 20
   - name: alchemists0
-    x: 1500
+    x: 1366
     y: 1202
     width: 66
     height: 66
@@ -68,7 +68,7 @@ MonoBehaviour:
     paddingTop: 16
     paddingBottom: 18
   - name: alchemists1
-    x: 1366
+    x: 1433
     y: 1202
     width: 66
     height: 66
@@ -95,7 +95,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Apollon
     x: 857
-    y: 512
+    y: 67
     width: 69
     height: 69
     borderLeft: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: ApollonBig
-    x: 569
+    x: 1358
     y: 1269
     width: 262
     height: 346
@@ -133,8 +133,8 @@ MonoBehaviour:
     paddingTop: 30
     paddingBottom: 29
   - name: arrow-down2
-    x: 695
-    y: 8
+    x: 2023
+    y: 1207
     width: 23
     height: 29
     borderLeft: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
     paddingBottom: 29
   - name: arrow-up2
     x: 721
-    y: 11
+    y: 228
     width: 23
     height: 29
     borderLeft: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     paddingBottom: 25
   - name: blue-coat-of-arms
     x: 569
-    y: 1027
+    y: 854
     width: 211
     height: 172
     borderLeft: 0
@@ -185,19 +185,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: blue-ring1
-    x: 1151
-    y: 1102
-    width: 97
-    height: 97
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 1
-    paddingBottom: 1
-  - name: blue-ring2
     x: 1641
     y: 1102
     width: 97
@@ -210,8 +197,21 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 1
     paddingBottom: 1
+  - name: blue-ring2
+    x: 1445
+    y: 1102
+    width: 97
+    height: 97
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 1
+    paddingBottom: 1
   - name: build-boarder
-    x: 1951
+    x: 1824
     y: 1207
     width: 60
     height: 61
@@ -225,7 +225,7 @@ MonoBehaviour:
     paddingBottom: 20
   - name: build-fortress
     x: 263
-    y: 651
+    y: 694
     width: 42
     height: 42
     borderLeft: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
     paddingBottom: 29
   - name: build-haven
     x: 263
-    y: 608
+    y: 651
     width: 42
     height: 42
     borderLeft: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
     paddingBottom: 29
   - name: build-laboratory
     x: 263
-    y: 694
+    y: 608
     width: 42
     height: 42
     borderLeft: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
     paddingTop: 29
     paddingBottom: 29
   - name: build-placeholder
-    x: 1825
+    x: 1761
     y: 1207
     width: 62
     height: 61
@@ -276,7 +276,7 @@ MonoBehaviour:
     paddingTop: 19
     paddingBottom: 20
   - name: button
-    x: 426
+    x: 503
     y: 21
     width: 33
     height: 33
@@ -289,8 +289,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: button1
-    x: 781
-    y: 321
+    x: 857
+    y: 277
     width: 72
     height: 74
     borderLeft: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 1
   - name: buttonOn
-    x: 263
-    y: 121
+    x: 1885
+    y: 1201
     width: 33
     height: 33
     borderLeft: 0
@@ -315,8 +315,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: card-boarder2
-    x: 1697
-    y: 1206
+    x: 1983
+    y: 1986
     width: 63
     height: 62
     borderLeft: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 13
   - name: card-boarderb
-    x: 1761
+    x: 1634
     y: 1206
     width: 63
     height: 62
@@ -342,7 +342,7 @@ MonoBehaviour:
     paddingBottom: 13
   - name: card-button-chimera
     x: 518
-    y: 131
+    y: 182
     width: 45
     height: 45
     borderLeft: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
     paddingBottom: 22
   - name: card-button-dryad
     x: 518
-    y: 85
+    y: 136
     width: 45
     height: 45
     borderLeft: 0
@@ -367,8 +367,8 @@ MonoBehaviour:
     paddingTop: 23
     paddingBottom: 22
   - name: card-button-empty
-    x: 1888
-    y: 1207
+    x: 1983
+    y: 1924
     width: 62
     height: 61
     borderLeft: 0
@@ -380,8 +380,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 14
   - name: card-button-sphinx
-    x: 380
-    y: 10
+    x: 518
+    y: 91
     width: 45
     height: 44
     borderLeft: 0
@@ -406,6 +406,19 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card-dryad
+    x: 634
+    y: 1632
+    width: 305
+    height: 416
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: card-empty
     x: 0
     y: 1199
     width: 305
@@ -418,7 +431,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: card-empty
+  - name: card-kraken
     x: 1552
     y: 1632
     width: 305
@@ -431,7 +444,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: card-kraken
+  - name: card-medusa
     x: 1246
     y: 1632
     width: 305
@@ -444,21 +457,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: card-medusa
-    x: 940
-    y: 1632
-    width: 305
-    height: 416
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: card-sphinx
-    x: 634
+    x: 940
     y: 1632
     width: 305
     height: 416
@@ -498,7 +498,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: coat-of-arms1
     x: 569
-    y: 681
+    y: 335
     width: 211
     height: 172
     borderLeft: 0
@@ -523,8 +523,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: coat-of-arms3
-    x: 569
-    y: 854
+    x: 1621
+    y: 1443
     width: 211
     height: 172
     borderLeft: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: coat-of-arms4
     x: 569
-    y: 335
+    y: 681
     width: 211
     height: 172
     borderLeft: 0
@@ -575,8 +575,8 @@ MonoBehaviour:
     paddingTop: 29
     paddingBottom: 28
   - name: end_turn2
-    x: 618
-    y: 27
+    x: 1999
+    y: 1237
     width: 26
     height: 31
     borderLeft: 0
@@ -588,8 +588,8 @@ MonoBehaviour:
     paddingTop: 25
     paddingBottom: 24
   - name: exit1
-    x: 288
-    y: 490
+    x: 2030
+    y: 1805
     width: 17
     height: 16
     borderLeft: 0
@@ -601,8 +601,8 @@ MonoBehaviour:
     paddingTop: 32
     paddingBottom: 32
   - name: exit2
-    x: 645
-    y: 4
+    x: 1976
+    y: 1225
     width: 21
     height: 20
     borderLeft: 0
@@ -614,45 +614,6 @@ MonoBehaviour:
     paddingTop: 30
     paddingBottom: 30
   - name: exit-blue+
-    x: 1973
-    y: 1644
-    width: 74
-    height: 73
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 4
-    paddingTop: 5
-    paddingBottom: 2
-  - name: exit-green+
-    x: 75
-    y: 14
-    width: 74
-    height: 73
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 4
-    paddingTop: 5
-    paddingBottom: 2
-  - name: exit-purple+
-    x: 0
-    y: 14
-    width: 74
-    height: 73
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 4
-    paddingTop: 5
-    paddingBottom: 2
-  - name: exit-red+
     x: 1858
     y: 1616
     width: 74
@@ -665,9 +626,48 @@ MonoBehaviour:
     paddingRight: 4
     paddingTop: 5
     paddingBottom: 2
+  - name: exit-green+
+    x: 781
+    y: 640
+    width: 74
+    height: 73
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 4
+    paddingTop: 5
+    paddingBottom: 2
+  - name: exit-purple+
+    x: 781
+    y: 566
+    width: 74
+    height: 73
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 4
+    paddingTop: 5
+    paddingBottom: 2
+  - name: exit-red+
+    x: 781
+    y: 418
+    width: 74
+    height: 73
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 4
+    paddingTop: 5
+    paddingBottom: 2
   - name: exit-yellow+
-    x: 150
-    y: 14
+    x: 781
+    y: 492
     width: 74
     height: 73
     borderLeft: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 2
   - name: final_crown
-    x: 306
+    x: 361
     y: 18
     width: 73
     height: 36
@@ -705,8 +705,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: fort-icon
-    x: 857
-    y: 302
+    x: 1231
+    y: 1032
     width: 68
     height: 69
     borderLeft: 0
@@ -718,8 +718,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: green-coat-of-arms
-    x: 1621
-    y: 1443
+    x: 1833
+    y: 1270
     width: 211
     height: 172
     borderLeft: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: green-ring1
-    x: 1543
+    x: 1151
     y: 1102
     width: 97
     height: 97
@@ -744,7 +744,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: green-ring2
-    x: 1935
+    x: 857
     y: 1102
     width: 97
     height: 97
@@ -757,7 +757,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: hex-default
-    x: 1634
+    x: 1698
     y: 1205
     width: 62
     height: 63
@@ -770,8 +770,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 12
   - name: hex-highlignht
-    x: 781
-    y: 17
+    x: 857
+    y: 207
     width: 70
     height: 69
     borderLeft: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 10
   - name: icon-fort1
-    x: 426
+    x: 435
     y: 1
     width: 33
     height: 19
@@ -796,8 +796,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 30
   - name: icon-fort2
-    x: 1973
-    y: 1616
+    x: 263
+    y: 127
     width: 41
     height: 27
     borderLeft: 0
@@ -809,8 +809,8 @@ MonoBehaviour:
     paddingTop: 27
     paddingBottom: 26
   - name: icon-unit1
-    x: 595
-    y: 20
+    x: 1953
+    y: 1207
     width: 22
     height: 38
     borderLeft: 0
@@ -861,8 +861,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 0
   - name: little_crown
-    x: 518
-    y: 62
+    x: 1953
+    y: 1246
     width: 45
     height: 22
     borderLeft: 0
@@ -875,7 +875,7 @@ MonoBehaviour:
     paddingBottom: 40
   - name: Mars
     x: 857
-    y: 442
+    y: 137
     width: 69
     height: 69
     borderLeft: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: MarsBig
-    x: 832
+    x: 306
     y: 1269
     width: 262
     height: 346
@@ -913,7 +913,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: neutral-ring1
-    x: 1347
+    x: 1053
     y: 1102
     width: 97
     height: 97
@@ -926,7 +926,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: neutral-ring2
-    x: 1445
+    x: 1935
     y: 1102
     width: 97
     height: 97
@@ -939,7 +939,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: OK1
-    x: 460
+    x: 469
     y: 2
     width: 24
     height: 18
@@ -952,8 +952,8 @@ MonoBehaviour:
     paddingTop: 32
     paddingBottom: 30
   - name: ok2
-    x: 2015
-    y: 1619
+    x: 747
+    y: 289
     width: 30
     height: 24
     borderLeft: 0
@@ -965,8 +965,8 @@ MonoBehaviour:
     paddingTop: 29
     paddingBottom: 27
   - name: pic-port
-    x: 857
-    y: 162
+    x: 1300
+    y: 1032
     width: 68
     height: 69
     borderLeft: 0
@@ -978,8 +978,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: pic-ship
-    x: 857
-    y: 232
+    x: 1369
+    y: 1032
     width: 68
     height: 69
     borderLeft: 0
@@ -991,7 +991,7 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: pic-ship_move
-    x: 952
+    x: 1438
     y: 1032
     width: 68
     height: 69
@@ -1004,8 +1004,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: Player0Big
-    x: 0
-    y: 88
+    x: 832
+    y: 1269
     width: 262
     height: 346
     borderLeft: 0
@@ -1017,8 +1017,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 16
   - name: Player1Big
-    x: 306
-    y: 228
+    x: 569
+    y: 1269
     width: 262
     height: 346
     borderLeft: 0
@@ -1031,7 +1031,7 @@ MonoBehaviour:
     paddingBottom: 16
   - name: Player2Big
     x: 306
-    y: 575
+    y: 228
     width: 262
     height: 346
     borderLeft: 0
@@ -1043,8 +1043,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 16
   - name: Player3Big
-    x: 306
-    y: 922
+    x: 0
+    y: 88
     width: 262
     height: 346
     borderLeft: 0
@@ -1056,8 +1056,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 16
   - name: Player4Big
-    x: 1095
-    y: 1269
+    x: 0
+    y: 435
     width: 262
     height: 346
     borderLeft: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
     paddingBottom: 16
   - name: Port
     x: 857
-    y: 817
+    y: 912
     width: 94
     height: 94
     borderLeft: 0
@@ -1082,8 +1082,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: port1
-    x: 263
-    y: 88
+    x: 1919
+    y: 1202
     width: 27
     height: 32
     borderLeft: 0
@@ -1108,8 +1108,8 @@ MonoBehaviour:
     paddingTop: 21
     paddingBottom: 19
   - name: Poseidon
-    x: 857
-    y: 652
+    x: 1092
+    y: 1032
     width: 69
     height: 69
     borderLeft: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
     paddingBottom: 15
   - name: PoseidonBig
     x: 306
-    y: 1269
+    y: 575
     width: 262
     height: 346
     borderLeft: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: price-card1a
-    x: 494
+    x: 503
     y: 1
     width: 19
     height: 19
@@ -1147,8 +1147,8 @@ MonoBehaviour:
     paddingTop: 48
     paddingBottom: 3
   - name: price-card1b
-    x: 618
-    y: 1
+    x: 749
+    y: 258
     width: 25
     height: 25
     borderLeft: 0
@@ -1160,8 +1160,8 @@ MonoBehaviour:
     paddingTop: 45
     paddingBottom: 0
   - name: price-card2a
-    x: 645
-    y: 25
+    x: 1999
+    y: 1203
     width: 23
     height: 33
     borderLeft: 0
@@ -1251,7 +1251,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: purple-ring1
-    x: 1837
+    x: 955
     y: 1102
     width: 97
     height: 97
@@ -1264,7 +1264,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: purple-ring2
-    x: 1739
+    x: 1837
     y: 1102
     width: 97
     height: 97
@@ -1303,7 +1303,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: red-ring2
-    x: 1053
+    x: 1739
     y: 1102
     width: 97
     height: 97
@@ -1316,135 +1316,135 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: shield-blue1
-    x: 721
-    y: 202
-    width: 51
-    height: 64
+    x: 77
+    y: 2
+    width: 76
+    height: 85
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 24
-    paddingRight: 25
-    paddingTop: 18
-    paddingBottom: 18
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 13
+    paddingBottom: 2
   - name: shield-blue2
-    x: 781
-    y: 243
-    width: 67
-    height: 77
+    x: 0
+    y: 1
+    width: 76
+    height: 86
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 17
-    paddingTop: 11
-    paddingBottom: 12
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 12
+    paddingBottom: 2
   - name: shield-green1
-    x: 721
-    y: 67
-    width: 51
-    height: 64
+    x: 230
+    y: 2
+    width: 75
+    height: 85
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 24
-    paddingRight: 25
-    paddingTop: 18
-    paddingBottom: 18
-  - name: shield-green2
-    x: 781
-    y: 87
-    width: 67
-    height: 77
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 17
-    paddingTop: 11
-    paddingBottom: 12
-  - name: shield-purple1
-    x: 1983
-    y: 1978
-    width: 57
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 22
-    paddingRight: 21
-    paddingTop: 15
-    paddingBottom: 15
-  - name: shield-purple2
-    x: 1973
-    y: 1718
-    width: 72
-    height: 84
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 15
+    paddingLeft: 12
     paddingRight: 13
-    paddingTop: 8
-    paddingBottom: 8
-  - name: shield-red1
-    x: 721
-    y: 267
-    width: 54
-    height: 67
+    paddingTop: 13
+    paddingBottom: 2
+  - name: shield-green2
+    x: 154
+    y: 1
+    width: 75
+    height: 86
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 22
-    paddingRight: 24
-    paddingTop: 15
-    paddingBottom: 18
-  - name: shield-red2
-    x: 1979
-    y: 1841
-    width: 68
-    height: 82
+    paddingLeft: 12
+    paddingRight: 13
+    paddingTop: 12
+    paddingBottom: 2
+  - name: shield-purple1
+    x: 781
+    y: 801
+    width: 71
+    height: 85
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 15
+    paddingTop: 13
+    paddingBottom: 2
+  - name: shield-purple2
+    x: 781
+    y: 975
+    width: 71
+    height: 86
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 15
+    paddingTop: 12
+    paddingBottom: 2
+  - name: shield-red1
+    x: 781
+    y: 714
+    width: 70
+    height: 86
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 15
-    paddingRight: 17
-    paddingTop: 7
-    paddingBottom: 11
-  - name: shield-yellow1
-    x: 721
-    y: 132
-    width: 51
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 24
-    paddingRight: 25
-    paddingTop: 18
-    paddingBottom: 18
-  - name: shield-yellow2
+    paddingRight: 15
+    paddingTop: 13
+    paddingBottom: 1
+  - name: shield-red2
     x: 781
-    y: 165
-    width: 67
-    height: 77
+    y: 887
+    width: 70
+    height: 87
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 17
-    paddingTop: 11
-    paddingBottom: 12
+    paddingLeft: 15
+    paddingRight: 15
+    paddingTop: 12
+    paddingBottom: 1
+  - name: shield-yellow1
+    x: 1973
+    y: 1628
+    width: 71
+    height: 86
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 15
+    paddingTop: 13
+    paddingBottom: 1
+  - name: shield-yellow2
+    x: 1973
+    y: 1715
+    width: 71
+    height: 87
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 15
+    paddingTop: 12
+    paddingBottom: 1
   - name: ship1
     x: 263
     y: 352
@@ -1473,7 +1473,7 @@ MonoBehaviour:
     paddingBottom: 18
   - name: sm-blue1
     x: 781
-    y: 396
+    y: 270
     width: 73
     height: 73
     borderLeft: 0
@@ -1485,8 +1485,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: sm-blue2
-    x: 781
-    y: 470
+    x: 857
+    y: 352
     width: 73
     height: 73
     borderLeft: 0
@@ -1498,8 +1498,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: sm-green1
-    x: 781
-    y: 988
+    x: 857
+    y: 426
     width: 73
     height: 73
     borderLeft: 0
@@ -1511,8 +1511,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: sm-green2
-    x: 225
-    y: 14
+    x: 857
+    y: 500
     width: 73
     height: 73
     borderLeft: 0
@@ -1524,8 +1524,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: sm-purple1
-    x: 781
-    y: 840
+    x: 857
+    y: 574
     width: 73
     height: 73
     borderLeft: 0
@@ -1537,8 +1537,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: sm-purple2
-    x: 781
-    y: 544
+    x: 857
+    y: 648
     width: 73
     height: 73
     borderLeft: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: sm-red1
     x: 781
-    y: 618
+    y: 48
     width: 73
     height: 73
     borderLeft: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: sm-red2
     x: 781
-    y: 692
+    y: 122
     width: 73
     height: 73
     borderLeft: 0
@@ -1577,7 +1577,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: sm-yellow1
     x: 781
-    y: 766
+    y: 196
     width: 73
     height: 73
     borderLeft: 0
@@ -1590,7 +1590,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: sm-yellow2
     x: 781
-    y: 914
+    y: 344
     width: 73
     height: 73
     borderLeft: 0
@@ -1602,8 +1602,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: Sophia
-    x: 857
-    y: 582
+    x: 952
+    y: 1032
     width: 69
     height: 69
     borderLeft: 0
@@ -1615,8 +1615,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: SophiaBig
-    x: 1358
-    y: 1269
+    x: 306
+    y: 922
     width: 262
     height: 346
     borderLeft: 0
@@ -1629,7 +1629,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: sophia-phil-action1
     x: 721
-    y: 41
+    y: 258
     width: 27
     height: 25
     borderLeft: 0
@@ -1654,8 +1654,8 @@ MonoBehaviour:
     paddingTop: 27
     paddingBottom: 29
   - name: sophia-univ-action1
-    x: 2025
-    y: 1809
+    x: 2030
+    y: 1822
     width: 17
     height: 31
     borderLeft: 0
@@ -1667,8 +1667,8 @@ MonoBehaviour:
     paddingTop: 28
     paddingBottom: 30
   - name: sophia-univ-action2
-    x: 569
-    y: 19
+    x: 537
+    y: 15
     width: 25
     height: 39
     borderLeft: 0
@@ -1693,7 +1693,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 11
   - name: tail-blue
-    x: 645
+    x: 569
     y: 197
     width: 75
     height: 137
@@ -1706,8 +1706,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: tail-green
-    x: 569
-    y: 59
+    x: 645
+    y: 197
     width: 75
     height: 137
     borderLeft: 0
@@ -1719,6 +1719,19 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: tail-purple
+    x: 781
+    y: 1062
+    width: 75
+    height: 137
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tail-red
     x: 645
     y: 59
     width: 75
@@ -1731,22 +1744,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: tail-red
-    x: 569
-    y: 197
-    width: 75
-    height: 137
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: tail-yellow
-    x: 781
-    y: 1062
+    x: 569
+    y: 59
     width: 75
     height: 137
     borderLeft: 0
@@ -1771,8 +1771,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: the-coin
-    x: 1983
-    y: 1925
+    x: 306
+    y: 2
     width: 54
     height: 52
     borderLeft: 0
@@ -1784,8 +1784,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 0
   - name: unit
-    x: 857
-    y: 92
+    x: 1162
+    y: 1032
     width: 68
     height: 69
     borderLeft: 0
@@ -1797,8 +1797,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: unit-move
-    x: 857
-    y: 22
+    x: 1979
+    y: 1854
     width: 68
     height: 69
     borderLeft: 0
@@ -1811,7 +1811,7 @@ MonoBehaviour:
     paddingBottom: 15
   - name: Univer
     x: 857
-    y: 912
+    y: 817
     width: 94
     height: 94
     borderLeft: 0
@@ -1823,8 +1823,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: vinzurian--blue
-    x: 460
-    y: 21
+    x: 1919
+    y: 1235
     width: 33
     height: 33
     borderLeft: 0
@@ -1836,8 +1836,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: vinzurian--green
-    x: 494
-    y: 21
+    x: 263
+    y: 93
     width: 33
     height: 33
     borderLeft: 0
@@ -1849,7 +1849,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: vinzurian--purple
-    x: 528
+    x: 435
     y: 21
     width: 33
     height: 33
@@ -1862,20 +1862,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: vinzurian--red
-    x: 2012
-    y: 1201
-    width: 33
-    height: 33
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 1
-    paddingBottom: 1
-  - name: vinzurian--yellow
-    x: 2012
+    x: 1885
     y: 1235
     width: 33
     height: 33
@@ -1887,8 +1874,21 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 1
     paddingBottom: 1
+  - name: vinzurian--yellow
+    x: 469
+    y: 21
+    width: 33
+    height: 33
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 1
+    paddingBottom: 1
   - name: wisperess0
-    x: 1567
+    x: 1500
     y: 1202
     width: 66
     height: 66
@@ -1901,7 +1901,7 @@ MonoBehaviour:
     paddingTop: 16
     paddingBottom: 18
   - name: wisperess1
-    x: 1433
+    x: 1567
     y: 1202
     width: 66
     height: 66
@@ -1914,8 +1914,8 @@ MonoBehaviour:
     paddingTop: 16
     paddingBottom: 18
   - name: yellow-coat-of-arms
-    x: 1833
-    y: 1270
+    x: 569
+    y: 1027
     width: 211
     height: 172
     borderLeft: 0
@@ -1927,7 +1927,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow-ring1
-    x: 955
+    x: 1543
     y: 1102
     width: 97
     height: 97
@@ -1940,7 +1940,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: yellow-ring2
-    x: 857
+    x: 1347
     y: 1102
     width: 97
     height: 97
@@ -1953,8 +1953,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: Zeus
-    x: 857
-    y: 372
+    x: 1022
+    y: 1032
     width: 69
     height: 69
     borderLeft: 0
@@ -1966,8 +1966,8 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 15
   - name: ZeusBig
-    x: 0
-    y: 435
+    x: 1095
+    y: 1269
     width: 262
     height: 346
     borderLeft: 0
@@ -1979,8 +1979,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: zeus-priest-action1
-    x: 669
-    y: 38
+    x: 721
+    y: 314
     width: 37
     height: 20
     borderLeft: 0
@@ -1992,8 +1992,8 @@ MonoBehaviour:
     paddingTop: 35
     paddingBottom: 34
   - name: zeus-priest-action2
-    x: 1979
-    y: 1812
+    x: 518
+    y: 62
     width: 45
     height: 28
     borderLeft: 0
@@ -2005,8 +2005,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 30
   - name: zeus-temple-action1
-    x: 669
-    y: 8
+    x: 721
+    y: 284
     width: 25
     height: 29
     borderLeft: 0

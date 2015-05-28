@@ -127,7 +127,7 @@ public class UIGodPanel : UIGamePanel {
 		actions[0].click = OnBuildClick;
 
 		actions[1].SetActionSprite("sophia-phil-action");
-		actions[1].SetPrice(Cyclades.Game.Constants.philosopherPrice[1]);
+		actions[1].SetPrice(Cyclades.Game.Constants.philosopherPrice[Sh.In.GameContext.GetInt("/turn/Sophia/buyPhilosopherByTurn")]);
 		actions[1].click = OnBuyPhilosotherClick;
 
 		actions[2].SetActionSprite("end_turn");
@@ -145,7 +145,7 @@ public class UIGodPanel : UIGamePanel {
 		actions[0].click = OnBuildClick;
 
 		actions[1].SetActionSprite("zeus-priest-action");
-		actions[1].SetPrice(Cyclades.Game.Constants.priestPrice[1]);
+		actions[1].SetPrice(Cyclades.Game.Constants.priestPrice[Sh.In.GameContext.GetInt("/turn/Zeus/buyPriestByTurn")]);
 		actions[1].click = OnBuyPriestClick;
 
 		actions[2].SetActionSprite("end_turn");

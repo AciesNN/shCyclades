@@ -28,17 +28,17 @@ public class UIUserInfoWidget : MonoBehaviour {
 
 		UserColorSprite.spriteName = "shield-" + UIConsts.userColorsString[player] + (isCurrent ? "2" : "1");
 
-		LeanTween.scale(UserColorSprite.gameObject, Vector3.one * (isCurrent ? 1 : 0.8f), time);
 	}
 
 	bool alreadyMovedInThisTurn = false;
 	public void SetAlreadyMovedInThisTurn(bool alreadyMovedInThisTurn) {
 		this.alreadyMovedInThisTurn = alreadyMovedInThisTurn;
 
-		float alpha = (alreadyMovedInThisTurn ? 0.5f : 1f);
+		float alpha = (alreadyMovedInThisTurn ? 0.5f : 1.0f);
 		LeanTween.alphaWidget(UserColorSprite, alpha, time);
-		if (btn != null)
+		if (btn != null) {
 			btn.defaultColor = new Color(btn.defaultColor.r, btn.defaultColor.g, btn.defaultColor.b, alpha);
+		}
 	}
 	#endregion
 

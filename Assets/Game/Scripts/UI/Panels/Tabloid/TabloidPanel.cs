@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class TabloidPanel : UIGamePanel {
@@ -7,6 +8,7 @@ public class TabloidPanel : UIGamePanel {
 	public UILabel textLabel;
 
 	public static TabloidPanel inst;
+	protected String text;
 
 	void Awake() {
 		inst = this;
@@ -18,12 +20,13 @@ public class TabloidPanel : UIGamePanel {
 			bannerSprite.gameObject.transform.localScale = new Vector3(0f, 1f, 1f);
 			content.SetActive(true);
 		}
-			
+
+		this.text = text;
 		if (textLabel.text != text) {
 			if (textLabel.text != "") {
-				AnimateShrink().setOnComplete(() => AnimateGrow(text));
+				AnimateShrink().setOnComplete(() => AnimateGrow());
 			} else {
-				AnimateGrow(text);
+				AnimateGrow();
 			}
 		}
 	}
@@ -34,7 +37,7 @@ public class TabloidPanel : UIGamePanel {
 		return LeanTween.scaleX(bannerSprite.gameObject, 0.0f, 0.3f).setEase(LeanTweenType.easeInCubic);
 	}
 
-	void AnimateGrow(string text) {
+	void AnimateGrow() {
 		textLabel.text = text;
 		if (text == "") {
 			content.SetActive(false);
